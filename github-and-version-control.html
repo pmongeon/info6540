@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>GitHub and version control | INFO 6540 - Data Management</title>
+  <meta name="description" content="GitHub and version control | INFO 6540 - Data Management" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="GitHub and version control | INFO 6540 - Data Management" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="pmongeon/INFO6540" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="GitHub and version control | INFO 6540 - Data Management" />
+  
+  
+  
+
+<meta name="author" content="Philippe Mongeon" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-databases-data-management.html"/>
+<link rel="next" href="relational-databases.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><center>INFO6540 - Data Management</center></li>
+<li><center>Winter 2021</center></li>
+<li><center>Philippe Mongeon</center></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Course overview</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i>Schedule</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#assignments"><i class="fa fa-check"></i>Assignments</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#download-all-course-materials-zip-file"><i class="fa fa-check"></i>Download all course materials (zip file)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html"><i class="fa fa-check"></i>Data, Databases, Data Management</a><ul>
+<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#objectives"><i class="fa fa-check"></i>Objectives</a></li>
+<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#learn"><i class="fa fa-check"></i>Learn</a></li>
+<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#practice"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html"><i class="fa fa-check"></i>GitHub and version control</a><ul>
+<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#objectives-1"><i class="fa fa-check"></i>Objectives</a></li>
+<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#version-control"><i class="fa fa-check"></i>Version Control</a><ul>
+<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#what-is-version-control"><i class="fa fa-check"></i>What is version control</a></li>
+<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#types-of-version-contol"><i class="fa fa-check"></i>Types of version contol</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#git-and-github"><i class="fa fa-check"></i>Git and GitHub</a><ul>
+<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#what-is-git"><i class="fa fa-check"></i>What is Git</a></li>
+<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#what-is-github"><i class="fa fa-check"></i>What is GitHub</a></li>
+<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#github-demo"><i class="fa fa-check"></i>GitHub demo</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#practice-1"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="relational-databases.html"><a href="relational-databases.html"><i class="fa fa-check"></i>Relational databases</a></li>
+<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html"><i class="fa fa-check"></i>Structured Query Language (SQL)</a></li>
+<li class="chapter" data-level="" data-path="semi-structured-databases.html"><a href="semi-structured-databases.html"><i class="fa fa-check"></i>Semi-structured databases</a></li>
+<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html"><i class="fa fa-check"></i>Graph databases</a></li>
+<li class="chapter" data-level="" data-path="linked-data.html"><a href="linked-data.html"><i class="fa fa-check"></i>Linked data</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html"><i class="fa fa-check"></i>Ontologies</a></li>
+<li class="chapter" data-level="" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i>Summary</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">INFO 6540 - Data Management</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="github-and-version-control" class="section level1 unnumbered">
+<h1>GitHub and version control</h1>
+<style type="text/css">
+
+# pre code {
+#  white-space: pre-wrap;
+# }
+
+</style>
+<div id="objectives-1" class="section level2 unnumbered">
+<h2>Objectives</h2>
+<p><strong>Concepts</strong></p>
+<ul>
+<li>Version control</li>
+<li>Git and GitHub
+<ul>
+<li>Repo(sitory)</li>
+<li>Fork</li>
+<li>Branch</li>
+<li>Commit</li>
+<li>Pull Request</li>
+</ul></li>
+</ul>
+<p><strong>Practical skills</strong></p>
+<p>After this chapter you will be able to use GitHub to manage collaborative projects, more specifically you will learn how to:</p>
+<ul>
+<li>Create a GitHub account</li>
+<li>Communicate with issues</li>
+<li>Create a fork</li>
+<li>Create a branch</li>
+<li>Make a commit</li>
+<li>Make a pull request</li>
+</ul>
+</div>
+<div id="version-control" class="section level2 unnumbered">
+<h2>Version Control</h2>
+<div id="what-is-version-control" class="section level3 unnumbered">
+<h3>What is version control</h3>
+</div>
+<div id="types-of-version-contol" class="section level3 unnumbered">
+<h3>Types of version contol</h3>
+<div id="local-version-control-systems" class="section level4 unnumbered">
+<h4>Local version control systems</h4>
+</div>
+<div id="centralized-version-control-systems" class="section level4 unnumbered">
+<h4>Centralized version control systems</h4>
+</div>
+<div id="distributed-version-control-systems" class="section level4 unnumbered">
+<h4>Distributed version control systems</h4>
+</div>
+</div>
+</div>
+<div id="git-and-github" class="section level2 unnumbered">
+<h2>Git and GitHub</h2>
+<div id="what-is-git" class="section level3 unnumbered">
+<h3>What is Git</h3>
+</div>
+<div id="what-is-github" class="section level3 unnumbered">
+<h3>What is GitHub</h3>
+</div>
+<div id="github-demo" class="section level3 unnumbered">
+<h3>GitHub demo</h3>
+</div>
+</div>
+<div id="practice-1" class="section level2 unnumbered">
+<h2>Practice</h2>
+<div id="task-1.-create-your-github-account" class="section level4 unnumbered">
+<h4>Task #1. Create your GitHub account</h4>
+<p>If you already have a GitHub account, then you can obviously skip this step. Otherwise, simply go on the <a href="https://www.github.com" target="_blank">GitHub website</a> to sign up.</p>
+</div>
+<div id="task-2.-tell-me-what-is-your-github-username" class="section level4 unnumbered">
+<h4>Task #2. Tell me what is your GitHub username</h4>
+<p>Please fill out this <a href="https://docs.google.com/forms/d/e/1FAIpQLSeKtPcVQZZO_8yjlDkJYr-tSfj60MByrogCHESqp0wbFO_-ag/viewform?usp=sf_link" target="_blank">Google Form</a> to register your GitHub username, to make sure that I know who you are when we are interacting on GitHub.</p>
+</div>
+<div id="task-3.-find-the-course-repository-and-take-a-look-at-the-content-of-the-data_story.txt-file" class="section level4 unnumbered">
+<h4>Task #3. Find the course repository and take a look at the content of the “data_story.txt” file</h4>
+</div>
+<div id="task-4.-fork-the-repository" class="section level4 unnumbered">
+<h4>Task #4. Fork the repository</h4>
+</div>
+<div id="task-5.-create-a-branch-to-make-a-change-to-the-data_story.txt-file" class="section level4 unnumbered">
+<h4>Task #5. Create a branch to make a change to the “data_story.txt” file</h4>
+</div>
+<div id="task-6.-make-one-or-multiple-change-to-the-data_story.txt-file." class="section level4 unnumbered">
+<h4>Task #6. Make one or multiple change to the “data_story.txt” file.</h4>
+<p>I left a typo or two in there for you to fix, if you want to. Alternatively, you can add a chapter to the story, or claim authorship!</p>
+</div>
+<div id="task-7.-commit-your-changes-to-your-branch" class="section level4 unnumbered">
+<h4>Task #7. Commit your changes to your Branch</h4>
+</div>
+<div id="task-8.-make-a-pull-request-to-merge-your-branch-the-main-branch-of-my-repository." class="section level4 unnumbered">
+<h4>Task #8. Make a pull request to merge your branch the main branch of my repository.</h4>
+<p>Please fill out this <a href="https://docs.google.com/forms/d/e/1FAIpQLSeKtPcVQZZO_8yjlDkJYr-tSfj60MByrogCHESqp0wbFO_-ag/viewform?usp=sf_link" target="_blank">Google Form</a> to register your GitHub username, to make sure that I know who you are when we are interacting on GitHub.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-databases-data-management.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="relational-databases.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["INFO6540.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+section
+fig:image-ref-for-in-text
+syllabus
+tab:unnamed-chunk-2
+local-version-control-systems
+centralized-version-control-systems
+distributed-version-control-systems
+task-8.-make-a-pull-request-to-merge-your-branch-the-main-branch-of-my-repository.

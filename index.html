@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>INFO 6540 - Data Management</title>
+  <meta name="description" content="INFO 6540 - Data Management" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="INFO 6540 - Data Management" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="pmongeon/INFO6540" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="INFO 6540 - Data Management" />
+  
+  
+  
+
+<meta name="author" content="Philippe Mongeon" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="data-databases-data-management.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><center>INFO6540 - Data Management</center></li>
+<li><center>Winter 2021</center></li>
+<li><center>Philippe Mongeon</center></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Course overview</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i>Schedule</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#assignments"><i class="fa fa-check"></i>Assignments</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#download-all-course-materials-zip-file"><i class="fa fa-check"></i>Download all course materials (zip file)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html"><i class="fa fa-check"></i>Data, Databases, Data Management</a><ul>
+<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#objectives"><i class="fa fa-check"></i>Objectives</a></li>
+<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#learn"><i class="fa fa-check"></i>Learn</a></li>
+<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#practice"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html"><i class="fa fa-check"></i>GitHub and version control</a><ul>
+<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#objectives-1"><i class="fa fa-check"></i>Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="relational-databases.html"><a href="relational-databases.html"><i class="fa fa-check"></i>Relational databases</a></li>
+<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html"><i class="fa fa-check"></i>Structured Query Language (SQL)</a></li>
+<li class="chapter" data-level="" data-path="semi-structured-databases.html"><a href="semi-structured-databases.html"><i class="fa fa-check"></i>Semi-structured databases</a></li>
+<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html"><i class="fa fa-check"></i>Graph databases</a></li>
+<li class="chapter" data-level="" data-path="linked-data.html"><a href="linked-data.html"><i class="fa fa-check"></i>Linked data</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html"><i class="fa fa-check"></i>Ontologies</a></li>
+<li class="chapter" data-level="" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i>Summary</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">INFO 6540 - Data Management</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">INFO 6540 - Data Management</h1>
+<p class="author"><em>Philippe Mongeon</em></p>
+<p class="date"><em>Winter 2021</em></p>
+</div>
+<div id="course-overview" class="section level1 unnumbered">
+<h1>Course overview</h1>
+<p>This course (and this accompanying book) are designed to provide you with a practical and non-technical introduction to data management. It is a hands-on course in which you will get comfortable working with data, databases, and GitHub. After completing this course, you hopefully will have a better understanding of how databases work on the backend of the websites and applications that we use everyday, and feel confident in your ability to work with data and design effective databases that meet the needs of your users.</p>
+<div id="schedule" class="section level2 unnumbered">
+<h2>Schedule</h2>
+<table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
+<thead>
+<tr>
+<th style="text-align:left;">
+Date of Class
+</th>
+<th style="text-align:left;">
+Topics
+</th>
+<th style="text-align:left;">
+Assignments
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Week 1 (Jan 6-8)
+</td>
+<td style="text-align:left;">
+Course overview (no content)
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 2 (Jan 11-15)
+</td>
+<td style="text-align:left;">
+Data, big data, databases, data management
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 3 (Jan 18-22)
+</td>
+<td style="text-align:left;">
+Version control and GitHub
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 4 (Jan 25-29)
+</td>
+<td style="text-align:left;">
+Relational databases
+</td>
+<td style="text-align:left;">
+Assignment #1 (Jan 29)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 5 (Feb 1-5)
+</td>
+<td style="text-align:left;">
+Relational databases
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 6 (Feb 8-12)
+</td>
+<td style="text-align:left;">
+Relational databases
+</td>
+<td style="text-align:left;">
+Group project part #1 (Feb 12)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Reading week (Feb 15-19)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 7 (Feb 22-26)
+</td>
+<td style="text-align:left;">
+Structured Query Language (SQL)
+</td>
+<td style="text-align:left;">
+Group project part #2 (Feb 26)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 8 (Mar 1-5)
+</td>
+<td style="text-align:left;">
+Semi-structured databases
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 9 (Mar 8-12)
+</td>
+<td style="text-align:left;">
+Graph databases
+</td>
+<td style="text-align:left;">
+Group project part #3 (Mar 12)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 10 (Mar 15-19)
+</td>
+<td style="text-align:left;">
+Linked data
+</td>
+<td style="text-align:left;">
+Submit peer-assessment for group members (Mar 19)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 11 (Mar 22-26)
+</td>
+<td style="text-align:left;">
+Ontologies
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 12 (Mar 29-Apr 2)
+</td>
+<td style="text-align:left;">
+Ontologies
+</td>
+<td style="text-align:left;">
+Assignment #2 due the following Friday (Apr 9)
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="assignments" class="section level2 unnumbered">
+<h2>Assignments</h2>
+<table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;'>
+<thead>
+<tr>
+<th style="text-align:left;">
+Component
+</th>
+<th style="text-align:left;">
+Details
+</th>
+<th style="text-align:left;">
+Due date
+</th>
+<th style="text-align:left;">
+Value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Assignment 1
+</td>
+<td style="text-align:left;">
+Excel + GitHub
+</td>
+<td style="text-align:left;">
+2021-01-29
+</td>
+<td style="text-align:left;">
+20%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Group project part 1
+</td>
+<td style="text-align:left;">
+Mission statement and objectives
+</td>
+<td style="text-align:left;">
+2021-02-12
+</td>
+<td style="text-align:left;">
+15%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Group project part 2
+</td>
+<td style="text-align:left;">
+Database design
+</td>
+<td style="text-align:left;">
+2021-02-26
+</td>
+<td style="text-align:left;">
+20%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Group project part 3
+</td>
+<td style="text-align:left;">
+SQL and database views
+</td>
+<td style="text-align:left;">
+2021-03-12
+</td>
+<td style="text-align:left;">
+15%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Participation
+</td>
+<td style="text-align:left;">
+Team assessment
+</td>
+<td style="text-align:left;">
+2021-03-19
+</td>
+<td style="text-align:left;">
+10%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Assignment 2
+</td>
+<td style="text-align:left;">
+Build your own ontology
+</td>
+<td style="text-align:left;">
+2021-04-09
+</td>
+<td style="text-align:left;">
+20%
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="download-all-course-materials-zip-file" class="section level2 unnumbered">
+<h2>Download all course materials (zip file)</h2>
+<p>You can download all the course material <a href="/files/info6540_2021-01-04.zip">here</a>. (last update: 2021-01-04).</p>
+<ul>
+<li>The syllabus.</li>
+<li>The assignments.</li>
+<li>The Excel sheet for the peer-assessment.</li>
+<li>iCalendar files for the assignment delivery.</li>
+<li>PDF and EPUB versions of this book.</li>
+<li>Materials (e.g., data, slides, readings) for each section of the book.</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="data-databases-data-management.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["INFO6540.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>
