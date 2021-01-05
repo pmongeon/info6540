@@ -6,3 +6,8 @@ local-version-control-systems
 centralized-version-control-systems
 distributed-version-control-systems
 task-8.-make-a-pull-request-to-merge-your-branch-the-main-branch-of-my-repository.
+set-up-your-github-account
+contribute-to-a-project
+practice-2
+task-1.-write-a-mission-and-objectives-statement-for-your-database-team-assignment-1
+task-2.-write-a-mission-and-objectives-statement-for-your-database-team-assignment-1
