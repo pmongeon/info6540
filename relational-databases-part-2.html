@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Relational databases (Part 1) | INFO 6540 - Data Management</title>
-  <meta name="description" content="Relational databases (Part 1) | INFO 6540 - Data Management" />
+  <title>Relational databases (Part 2) | INFO 6540 - Data Management</title>
+  <meta name="description" content="Relational databases (Part 2) | INFO 6540 - Data Management" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Relational databases (Part 1) | INFO 6540 - Data Management" />
+  <meta property="og:title" content="Relational databases (Part 2) | INFO 6540 - Data Management" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="pmongeon/INFO6540" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Relational databases (Part 1) | INFO 6540 - Data Management" />
+  <meta name="twitter:title" content="Relational databases (Part 2) | INFO 6540 - Data Management" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="github-and-version-control.html"/>
-<link rel="next" href="relational-databases-part-2.html"/>
+<link rel="prev" href="relational-databases-part-1.html"/>
+<link rel="next" href="structured-query-language-sql.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -163,195 +163,97 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="relational-databases-part-1" class="section level1 unnumbered">
-<h1>Relational databases (Part 1)</h1>
-<div id="learning-objectives-2" class="section level2 unnumbered">
+<div id="relational-databases-part-2" class="section level1 unnumbered">
+<h1>Relational databases (Part 2)</h1>
+<div id="learning-objectives-3" class="section level2 unnumbered">
 <h2>Learning objectives</h2>
 <p><strong>Concepts</strong></p>
 <ul>
-<li>Mission and objectives statements</li>
-<li>Relational databases</li>
-<li>Tables and fields</li>
+<li>Relationship types</li>
+<li>Entity-Relationship Diagrams</li>
 </ul>
 <p><strong>Practical skills</strong></p>
 <ul>
-<li>Writing a mission and objectives statement for your database (team assignment #1)
-<!-- - Using a RDBMS to design a database (team assignment #2) --></li>
-<li>Creating database tables and fields (team assignment #2)
-<!-- - Building entity relationship diagrams (ERD) (team assignment #2) --></li>
-<li>Documenting databases (team assignment #2)</li>
+<li>Create an Entity-Relationship Diagram (team assignment #2)</li>
+<li>Optimize the structure of your database (team assignment #2)</li>
 </ul>
 </div>
-<div id="relational-databases" class="section level2 unnumbered">
-<h2>Relational databases</h2>
-<p>Relational databases stores relations that are represented as tables. Each column of a table is an attribute (which I will call fields from now on), and tuples (or records) are set of attributes. Let’s consider the table below which is a set of relations representing students. Each record is a unique student, who is defined by 4 attributes: their student ID, first name, last name, and program. The subject being represented in this table are the students, and all the students are represented by the same set of limited features and no student can exist in this database with different features than the others. A relational database is a collection of tables linked to one another, each representing a different subject (courses, buildings, animals, concerts, orders, conversations, families, foods, games, or anything that we wish to capture in the database), and each with their own set of fields, and records.</p>
-<p><img src="files/ch3/relational_model.png" /><!-- --></p>
-<p>The figure below shows how tables are linked to one another in the relational model.</p>
-<p><img src="files/ch3/linked_tables.png" /><!-- --></p>
-<p>In the next few weeks, you will learn how to design your own relational database, so let’s get started.</p>
-</div>
-<div id="database-design" class="section level2 unnumbered">
-<h2>Database design</h2>
-<div id="mission-and-objectives" class="section level3 unnumbered">
-<h3>Mission and objectives</h3>
-<p>As I mentioned in the opening chapter of this book, databases are created for a specific purpose, and that purpose should be clearly defined before you start creating tables and fields and their relationships. This is the first step of the database design process that Hernandez (2013) proposes in his book, so let us start there are well.</p>
-<div id="database-mission-statement" class="section level4 unnumbered">
-<h4>Database mission statement</h4>
-<p>The database mission statement is a short text written in general and accessible language that states the specific purpose of your database. It is important to note that it is not the same as the mission statement of the organization for which the database will be designed. This statement refers specifically to the database and what the database will do for the organization. To keep that in mind as you formulate your database mission statement, you may want to start the text the following way:</p>
-<p align="center">
-<br><em>The purpose of the [name of organization] <strong>database</strong> is…</em><br><br>
-</p>
-<p>This way you are less likely to forget that the database is what matters here.</p>
-<p>Ideally, your database mission statement would be aligned with the mission of the organization for which it is intended, so having a good understanding of what the mission of the organization is essential. In real life, this part of the database design process would likely involve conducting interviews with the key actors of the organizations, and across its different departments, to ensure that you have a good idea of the needs that your database will be addressing. In the context of this course, you will not be conducting interviews and will have to use your best judgment in ensuring that your database mission statement is related to the mission of the organization. Also, since organizations usually state their missions on their website, you can certainly use that information to help you.</p>
-<p>It should also be noted that the database that you will be proposing, and its mission statement, do not necessarily have to cover everything that an organization does. You could for instance, choose to develop a database that would support the teaching mission of a university, without considering or mentioning the other missions of the university such as research.</p>
-<p>Some other constraints that are present in the context of the course, but not in real life, are the minimum number of specific tasks that your database should be supporting (5) and the minimum number of required tables in your database design (10). You can use these requirements to try to gauge whether your mission statement is too narrow or too broad.</p>
-<div id="a-database-for-gummybox" class="section level5 unnumbered">
-<h5>A database for GummyBox</h5>
-<p>GummyBox is a new store that specializes in the sale and delivery of gummy assortments, and which is in need of a database to support it’s operations. The mission for this database could be formulated as follows:</p>
-<blockquote>
-<p>The purpose of the GummyBox database is to maintain the data the company uses to best serve the sweet tooth of their customers.</p>
-</blockquote>
-</div>
-</div>
-<div id="database-objectives-statement" class="section level4 unnumbered">
-<h4>Database objectives statement</h4>
-<p>The database objectives are general <em>tasks</em> supported by the database. One way to distinguish them from the database mission is to remember that the mission statement relates to what the <em>organization</em> does, while the database objectives relates to the specific <em>tasks</em> or <em>needs</em> of <em>people</em> within the organization (e.g. employees) or outside the organizaion (e.g. clients or users). Here are some example:</p>
+<div id="relationship-types" class="section level2 unnumbered">
+<h2>Relationship types</h2>
+<p>Relationships are the key determinants of the structure of your database and are represented by foreign keys in some of your tables that are linked to primary keys of other tables. Luckily, relationships are a relatively simple concept that is easy to implement in your database design process. There are only three basic kinds of relationship, so let’s take a quick look at them.</p>
+<div id="one-to-one-relationship" class="section level3 unnumbered">
+<h3>One-to-one relationship</h3>
+<p>This relationship exist when one record in a table can only assiciated with <strong>only one</strong> record in another table, and <strong>vice versa</strong>. A one-to-one relationship may exist, for instance, between the office space and the personnel of an organization, as long as nobody is allowed to share and office, or to have two offices. These relationships are quite rare in reality, since it often makes more sense to bring back to combine tables with one to one relationships in a unique table. However, there are situations where the use of one-to-one relationships can be required or appropriate, for example:</p>
 <ul>
-<li>Keep track of students progress in their programs</li>
-<li>Maintain vehicle inventory</li>
-<li>Manage song collections</li>
-<li>Manage team roster</li>
-<li>Keep track of players performance</li>
+<li><strong>Security</strong>: you may want to store sensitive information about an individual in a different table that only some authorized users can access.</li>
+<li><strong>Semantics</strong>: even though you could include information about the office space in your employees table, you might not want to store information about your offices with your <em>employees</em> table. <em>first_name</em>, <em>last_name</em>, <em>eye color</em> are characteristics of people, but <em>building</em> or <em>room_number</em> are not.</li>
 </ul>
-<p>Here is a list of criteria to help you write a good objective statement:</p>
+</div>
+<div id="one-to-many-relationship" class="section level3 unnumbered">
+<h3>One-to-many relationship</h3>
+<p>One-to-many relationship exists when one record in a table can be associated with <strong>one or more</strong> records in another table. This is the most frequent type of relationship in properly designed databases. A typical example is the customers table and the orders table, a single customer record can be associated with multiple orders, but only one customer can be associated with a specific order.</p>
+</div>
+<div id="many-to-many-relationship" class="section level3 unnumbered">
+<h3>Many-to-many relationship</h3>
+<p>Many-to-many relationship exists when one record in a table can be associated with <strong>multiple</strong> records in another table and <strong>vice versa</strong>. A typical example is a product that can be part of multiple orders and an order than can contain multiple products. Another example is the relationship between university courses and students. In the <em>courses</em> table, the record for “Data Management” has an association with 54 records from the <em>students</em> table. Inversely, a single recordin the <em>students</em> table can be associated to multiple records in teh <em>courses</em> table.</p>
+<div id="some-isssue-with-many-to-many-relationship" class="section level4 unnumbered">
+<h4>Some isssue with many-to-many relationship</h4>
+<p>These relationships are very frequent in the world, and they are great. But they also rise potential issues that needs to be resolved in your database design. By definition, these relationship imply that the <strong>non-duplication of the primary key</strong> rule will be violated, so that something that your RDBMS will not allow.</p>
+<p><img src="files/ch4/duplicated_primary_key.png" /><!-- --></p>
+<p>One solution for that is to use a <strong>composite primary key</strong>, this simply means that your table as 2 or more primary keys instead of a single one. In practice, this means that each primary key is allowed to be repeated in the table, as long as the combination of primary key values does not repeat.</p>
+<p><img src="files/ch4/composite_primary_key.png" /><!-- --></p>
+<p>However the composite key solution by itself is often not optimal, since it can create a lot of <strong>redundancy</strong> in your table which is something that you want to minimize as much as possible.</p>
+<p><img src="files/ch4/redundancy.png" /><!-- --></p>
+<p>This is what <strong>associative tables</strong> are for. They are basically tables create with the specific purpose of linking your subjects together to prevent primary key duplication and minimize redundancy.</p>
+<p><img src="files/ch4/associative_table.png" /><!-- --></p>
+</div>
+</div>
+</div>
+<div id="table-types" class="section level2 unnumbered">
+<h2>Table types</h2>
+<p>Since the associative table was just introduced, this is probably a good time to go over the three basic types of tables that you will encounter in your database.</p>
 <ul>
-<li>It represents a <em>single</em> task.</li>
-<li>It is clear.</li>
-<li>It does not contain unessential details.</li>
-<li>It states <em>what</em> the task is, but does <em>not</em> indicate <em>how</em> it will be done by the database.</li>
+<li><strong>Data tables</strong> typically represent the main subjects of your database (e.g., objects, people, events). They usually have a single primary key and they gather data that provides information about the subject represented in the table.</li>
+<li><strong>Associative tables</strong> are use to create associations between the subjects in your database (e.g., students-courses, products-orders, customers-orders). They have typically have multiple foreign keys that together will form the composite primary key.</li>
+<li><strong>Validation (or lookup) tables</strong> are used for data quality and validation purposed. They contain the list of possible values that a field can take. For instance, your grade for this class have a limited set of possible values (A+, A, A-, B+, B, B-, F, AUD, ILL, INC, IP, P). A validation table <em>can but does not have to</em> be used to store these possible values in order to ensure that a user cannot enter the grade “G” or “Banana” in the <em>grade</em> field of the database.</li>
 </ul>
-<div id="objectives-for-the-gummybox-database" class="section level5 unnumbered">
-<h5>Objectives for the GummyBox database</h5>
-<p>It was decided, after consultation with the GummyBox team, that their database will have the following objectives:</p>
-<ul>
-<li>Maintain customer information</li>
-<li>Keep track of orders</li>
-<li>Maintain information on gummies</li>
-<li>Collect gummy reviews</li>
-<li>Maintain a collection of standard gummy assortments</li>
-</ul>
+<p>You will see some of these tables in action in the video below where we will work on the entity-relationship diagram of our GummyBox database.</p>
 </div>
-</div>
-</div>
-<div id="database-structure" class="section level3 unnumbered">
-<h3>Database structure</h3>
-<p>Now that we have established the mission and objectives that the database will be supporting, we are ready to start working on the structure of the database itself.</p>
-<div id="tables" class="section level4 unnumbered">
-<h4>Tables</h4>
-<p>The first step is to create the preliminary of tables that your database will contain. Tables are central to relational databases as they are representations of relations (that’s where the name “relational database” comes from). The tables are made of records (rows) and fields (columns), that represent a <em>single</em> subject, which can be an <strong>object</strong> (users, employees, equipment, rooms, address) or an <strong>event</strong> (e.g, concerts, conferences, meetings). So at this point of the process, the question to ask yourself is:</p>
-<p align="center">
-<br><em>What are the objects and events that need to be stored in the database in order to fulfill its mission and objectives?</em><br><br>
-</p>
-<p>If your building a database for a job placement agency, for example, your database would likely need to include jobs, job-seekers and employers, and agents. For a University, you might have students, courses, instructors, departments, etc.</p>
-<p><strong>All tables should :</strong></p>
-<ul>
-<li>Represent a single subject (object or event).</li>
-<li>have a primary key.</li>
-<li>minimizes redundancy.</li>
-</ul>
-</div>
-<div id="creating-tables-for-your-database-video" class="section level4 unnumbered">
-<h4>Creating tables for your database (video)</h4>
-<iframe src="https://dal.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=da0922ec-863e-4dbb-a84c-acbc0023cbf4&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay">
+<div id="entity-relationship-diagrams" class="section level2 unnumbered">
+<h2>Entity-relationship diagrams</h2>
+<p>An entity-relationship diagram (ERD) is simply a visual representation of your database that typically includes every table along with their fields and the relationship between them. The ERD is a useful tool for designing your database because it helps you visualize your table and fields and the relationship between them, which makes it easier to spot mistakes and inconsistencies. It is also a useful tool to include in the database documentation as it can provide users with a good understanding of the data so that they can more effectively use it. There are many tools that you can use to create ERDs (including MySQL workbench). In the video below, I use <a href="https://app.diagrams.net/">diagrams.net</a> (formerly draw.io) to draw the following ERD in order to improve and expand the design of my GummyBox database</p>
+<p><img src="files/ch4/gummybox_erd.png" /><!-- --></p>
+<iframe src="https://dal.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=f3c055af-72fc-4e1d-99c9-acc10184cc04&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay">
 </iframe>
 </div>
-<div id="fields" class="section level4 unnumbered">
-<h4>Fields</h4>
-<p>Now that you have identified the different subjects (tables) that your database is dealing with, the next part of the process is to ask what <strong>characteristics</strong> of these subjects should be recorded in the database. This will determine what <strong>fields</strong> (also called columns, variables, features) are required for each of your tables.</p>
-<p><strong>Every</strong> table needs to have at least one field that is going to be the <strong>primary key</strong>. The primary key is a unique identifier for each record that will be stored in the table, which means that it cannot appear twice in the table. The primary key is also what you will use to link tables together. When the primary key of a table is used in another table to form such a link between the tables, it is called a <strong>foreign key</strong>.</p>
-<p><strong>All fields should</strong>:</p>
+<div id="getting-started-with-mysql-workbench" class="section level2 unnumbered">
+<h2>Getting started with MySQL workbench</h2>
+<p>MySQL workbench is an open source RDBMS that offers all the features that you will need to design and manage your databases. To install it on your computer:</p>
+<ol style="list-style-type: decimal">
+<li><p>Go to <a href="https://dev.mysql.com/downloads/workbench/">https://dev.mysql.com/downloads/workbench/</a></p></li>
+<li><p>If your computer’s operating system is Microsoft Windows, choose any of the two <em>recommended Download</em> options.</p>
 <ul>
-<li>Be unique in the entire database.</li>
-<li>Represent a distinct characteristic.</li>
-<li>Contain a single value that cannot be deconstructed into smaller ones.</li>
-<li>Not contain a calculated value.</li>
-</ul>
-</div>
-<div id="creating-fields-for-your-tables-video" class="section level4 unnumbered">
-<h4>Creating fields for your tables (video)</h4>
-<iframe src="https://dal.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=b98e9fb3-39d7-4f50-a32e-acbc002f0eb7&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay">
+<li>If you have an online connection while running the MySQL Installer, choose the mysql-installer-web-community file.</li>
+<li>If you do <strong>not</strong> have an online connection while running the MySQL Installer, choose the mysql-installer-community file.</li>
+</ul></li>
+<li><p>You will be asked if you want to sign up for an Oracle web account. <strong>You do not need to sign up</strong>. Simply click on “No thanks, just start my download” (as show in the image below).</p></li>
+</ol>
+<p><img src="files/ch4/no_need_to_sign_up.png" /><!-- --></p>
+<p>In this next video, I provide a very brief introduction to MySQL workbench, and show you how to get started with creating your database model, making tables, declaring primary and foreign keys, and automatically generate your ERD.</p>
+<iframe src="https://dal.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=68a72e0b-6361-4a9a-9eec-acc2002d20d6&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay">
 </iframe>
 </div>
-<div id="naming-tables-and-fields" class="section level4 unnumbered">
-<h4>Naming tables and fields</h4>
-<p>There are also some guidelines to follow when naming your tables and fields to make your database easier to understand and navigate.</p>
-<p><strong>Characteristics of a good table and field names (Hernandez, 2013)</strong></p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Rule</th>
-<th align="left">Bad</th>
-<th align="left">Good</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Accurate, unique, and meaningful to the organization</td>
-<td align="left">TableA</td>
-<td align="left">Employees</td>
-</tr>
-<tr class="even">
-<td align="left">Refers to a single subject (unless it is an associative table)</td>
-<td align="left">Faculties/Departments</td>
-<td align="left">Make two tables</td>
-</tr>
-<tr class="odd">
-<td align="left">As short as possible</td>
-<td align="left">CoursesOffered</td>
-<td align="left">Courses</td>
-</tr>
-<tr class="even">
-<td align="left">Do not use words like <em>list</em>, <em>records</em>, <em>data</em></td>
-<td align="left">CoursesList</td>
-<td align="left">Courses</td>
-</tr>
-<tr class="odd">
-<td align="left">Does not use acronyms</td>
-<td align="left">SRI</td>
-<td align="left">Student_Ratings_of_Instruction</td>
-</tr>
-<tr class="even">
-<td align="left">Does not unduly restrict the data that can be entered into the table</td>
-<td align="left">Fall_courses</td>
-<td align="left">Courses</td>
-</tr>
-<tr class="odd">
-<td align="left">For <strong>tables</strong> use the plural form of the name</td>
-<td align="left">Employee</td>
-<td align="left">Employees</td>
-</tr>
-<tr class="even">
-<td align="left">For <strong>fields</strong> use the singular form of the name</td>
-<td align="left">First_Names</td>
-<td align="left">First_Name</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="describing-tables-and-fields" class="section level4 unnumbered">
-<h4>Describing tables and fields</h4>
-<p>Another important aspect of database management and design is <strong>documentation</strong>. A properly documented database ensures that the users understand what tables of the database contain and why they exist. Having good names to for your tables and fields might reduce the need for your database users to refer to the documentation all the time, but it certainly does not eliminate the need for it.</p>
-<p>Describing your tables and fields also help ensuring they are needed and well-designed. If you cannot describe the purpose of a table, it may be that it has, in fact, no puprose.</p>
-<p>Here are a few simple rules to follow:</p>
-<ul>
-<li>Clearly and concisely describe the table and field.</li>
-<li>For tables only, your description should also indicate <strong>why</strong> the table is necessary.</li>
-<li>Focus on what the table or fields contain rather than how they will specifically be used or accessed.</li>
-<li>Do not use examples in your descriptions.</li>
-</ul>
+<div id="exercises-1" class="section level2 unnumbered">
+<h2>Exercises</h2>
+<p>As an exercise for this week, you can download the GummyBox ERD that I created with diagrams.net <a href="files/GummyBox.drawio">here</a>.
+Once you downloaded the file, you can open it by going to <a href="https://app.diagrams.net/">https://app.diagrams.net</a>, click on <strong>File</strong>, then <strong>Open from…</strong> and then select the file you just downloaded.
+and then:</p>
+<ol style="list-style-type: decimal">
+<li>See if you can spot the error. (Tip: it is not a critical error as the database would still work fine as it is, but there is at least one unnecessary table in there)</li>
+<li>Try adding the gummy_reviews to the design.</li>
+<li>Try adding the gummy_assortments to the design.</li>
+</ol>
 
-</div>
-</div>
 </div>
 </div>
             </section>
@@ -359,8 +261,8 @@
           </div>
         </div>
       </div>
-<a href="github-and-version-control.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="relational-databases-part-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="relational-databases-part-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="structured-query-language-sql.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
