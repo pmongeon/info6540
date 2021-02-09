@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Relational databases (Part 1) | INFO 6540 - Data Management</title>
-  <meta name="description" content="Relational databases (Part 1) | INFO 6540 - Data Management" />
+  <title>1 Schema documentation | INFO 6540 - Data Management</title>
+  <meta name="description" content="1 Schema documentation | INFO 6540 - Data Management" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Relational databases (Part 1) | INFO 6540 - Data Management" />
+  <meta property="og:title" content="1 Schema documentation | INFO 6540 - Data Management" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="pmongeon/INFO6540" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Relational databases (Part 1) | INFO 6540 - Data Management" />
+  <meta name="twitter:title" content="1 Schema documentation | INFO 6540 - Data Management" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="github-and-version-control.html"/>
-<link rel="next" href="relational-databases-part-2.html"/>
+<link rel="prev" href="conclusion.html"/>
+
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -135,14 +135,13 @@
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#learning-objectives-4"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#data-types"><i class="fa fa-check"></i>Data types</a>
 <ul>
-<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#strings-data-types"><i class="fa fa-check"></i>Strings data types</a></li>
+<li class="chapter" data-level="0.0.1" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#strings-data-types"><i class="fa fa-check"></i><b>0.0.1</b> Strings data types</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#numeric-data-types"><i class="fa fa-check"></i>Numeric data types</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#date-and-time-data-types"><i class="fa fa-check"></i>Date and time data types</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#other-data-types"><i class="fa fa-check"></i>Other data types</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#how-mysql-handles-data-types"><i class="fa fa-check"></i>How MySQL handles data types</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#constraints"><i class="fa fa-check"></i>Constraints</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#generating-your-database-documentation-automatically-with-mysql-workbench"><i class="fa fa-check"></i>Generating your database documentation automatically with MySQL workbench</a></li>
+<li class="chapter" data-level="0.1" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#generating-your-database-documentation-automatically-with-mysql-workbench"><i class="fa fa-check"></i><b>0.1</b> Generating your database documentation automatically with MySQL workbench</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#exercises-2"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html"><i class="fa fa-check"></i>Structured Query Language (SQL)</a>
@@ -244,194 +243,552 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="relational-databases-part-1" class="section level1 unnumbered">
-<h1>Relational databases (Part 1)</h1>
-<div id="learning-objectives-2" class="section level2 unnumbered">
-<h2>Learning objectives</h2>
-<p><strong>Concepts</strong></p>
-<ul>
-<li>Mission and objectives statements</li>
-<li>Relational databases</li>
-<li>Tables and fields</li>
-</ul>
-<p><strong>Practical skills</strong></p>
-<ul>
-<li>Writing a mission and objectives statement for your database (team assignment #1)
-<!-- - Using a RDBMS to design a database (team assignment #2) --></li>
-<li>Creating database tables and fields (team assignment #2)
-<!-- - Building entity relationship diagrams (ERD) (team assignment #2) --></li>
-<li>Documenting databases (team assignment #2)</li>
-</ul>
+<div id="schema-documentation" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Schema documentation</h1>
+<p>Generated by MySQL Workbench Model Documentation v1.0.0 - Copyright (c) 2015 Hieu Le</p>
+<div id="table-courses" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Table: <code>courses</code></h2>
+<div id="description" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Description:</h3>
+<p>Excel equivalent is document_id workbook</p>
 </div>
-<div id="relational-databases" class="section level2 unnumbered">
-<h2>Relational databases</h2>
-<p>Relational databases stores relations that are represented as tables. Each column of a table is an attribute (which I will call fields from now on), and tuples (or records) are set of attributes. Let’s consider the table below which is a set of relations representing students. Each record is a unique student, who is defined by 4 attributes: their student ID, first name, last name, and program. The subject being represented in this table are the students, and all the students are represented by the same set of limited features and no student can exist in this database with different features than the others. A relational database is a collection of tables linked to one another, each representing a different subject (courses, buildings, animals, concerts, orders, conversations, families, foods, games, or anything that we wish to capture in the database), and each with their own set of fields, and records.</p>
-<p><img src="files/ch3/relational_model.png" /><!-- --></p>
-<p>The figure below shows how tables are linked to one another in the relational model.</p>
-<p><img src="files/ch3/linked_tables.png" /><!-- --></p>
-<p>In the next few weeks, you will learn how to design your own relational database, so let’s get started.</p>
-</div>
-<div id="database-design" class="section level2 unnumbered">
-<h2>Database design</h2>
-<div id="mission-and-objectives" class="section level3 unnumbered">
-<h3>Mission and objectives</h3>
-<p>As I mentioned in the opening chapter of this book, databases are created for a specific purpose, and that purpose should be clearly defined before you start creating tables and fields and their relationships. This is the first step of the database design process that Hernandez (2013) proposes in his book, so let us start there are well.</p>
-<div id="database-mission-statement" class="section level4 unnumbered">
-<h4>Database mission statement</h4>
-<p>The database mission statement is a short text written in general and accessible language that states the specific purpose of your database. It is important to note that it is not the same as the mission statement of the organization for which the database will be designed. This statement refers specifically to the database and what the database will do for the organization. To keep that in mind as you formulate your database mission statement, you may want to start the text the following way:</p>
-<p align="center">
-<br><em>The purpose of the [name of organization] <strong>database</strong> is…</em><br><br>
-</p>
-<p>This way you are less likely to forget that the database is what matters here.</p>
-<p>Ideally, your database mission statement would be aligned with the mission of the organization for which it is intended, so having a good understanding of what the mission of the organization is essential. In real life, this part of the database design process would likely involve conducting interviews with the key actors of the organizations, and across its different departments, to ensure that you have a good idea of the needs that your database will be addressing. In the context of this course, you will not be conducting interviews and will have to use your best judgment in ensuring that your database mission statement is related to the mission of the organization. Also, since organizations usually state their missions on their website, you can certainly use that information to help you.</p>
-<p>It should also be noted that the database that you will be proposing, and its mission statement, do not necessarily have to cover everything that an organization does. You could for instance, choose to develop a database that would support the teaching mission of a university, without considering or mentioning the other missions of the university such as research.</p>
-<p>Some other constraints that are present in the context of the course, but not in real life, are the minimum number of specific tasks that your database should be supporting (5) and the minimum number of required tables in your database design (10). You can use these requirements to try to gauge whether your mission statement is too narrow or too broad.</p>
-<div id="a-database-for-gummybox" class="section level5 unnumbered">
-<h5>A database for GummyBox</h5>
-<p>GummyBox is a new store that specializes in the sale and delivery of gummy assortments, and which is in need of a database to support it’s operations. The mission for this database could be formulated as follows:</p>
-<blockquote>
-<p>The purpose of the GummyBox database is to maintain the data the company uses to best serve the sweet tooth of their customers.</p>
-</blockquote>
-</div>
-</div>
-<div id="database-objectives-statement" class="section level4 unnumbered">
-<h4>Database objectives statement</h4>
-<p>The database objectives are general <em>tasks</em> supported by the database. One way to distinguish them from the database mission is to remember that the mission statement relates to what the <em>organization</em> does, while the database objectives relates to the specific <em>tasks</em> or <em>needs</em> of <em>people</em> within the organization (e.g. employees) or outside the organizaion (e.g. clients or users). Here are some example:</p>
-<ul>
-<li>Keep track of students progress in their programs</li>
-<li>Maintain vehicle inventory</li>
-<li>Manage song collections</li>
-<li>Manage team roster</li>
-<li>Keep track of players performance</li>
-</ul>
-<p>Here is a list of criteria to help you write a good objective statement:</p>
-<ul>
-<li>It represents a <em>single</em> task.</li>
-<li>It is clear.</li>
-<li>It does not contain unessential details.</li>
-<li>It states <em>what</em> the task is, but does <em>not</em> indicate <em>how</em> it will be done by the database.</li>
-</ul>
-<div id="objectives-for-the-gummybox-database" class="section level5 unnumbered">
-<h5>Objectives for the GummyBox database</h5>
-<p>It was decided, after consultation with the GummyBox team, that their database will have the following objectives:</p>
-<ul>
-<li>Maintain customer information</li>
-<li>Keep track of orders</li>
-<li>Maintain information on gummies</li>
-<li>Collect gummy reviews</li>
-<li>Maintain a collection of standard gummy assortments</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="database-structure" class="section level3 unnumbered">
-<h3>Database structure</h3>
-<p>Now that we have established the mission and objectives that the database will be supporting, we are ready to start working on the structure of the database itself.</p>
-<div id="tables" class="section level4 unnumbered">
-<h4>Tables</h4>
-<p>The first step is to create the preliminary of tables that your database will contain. Tables are central to relational databases as they are representations of relations (that’s where the name “relational database” comes from). The tables are made of records (rows) and fields (columns), that represent a <em>single</em> subject, which can be an <strong>object</strong> (users, employees, equipment, rooms, address) or an <strong>event</strong> (e.g, concerts, conferences, meetings). So at this point of the process, the question to ask yourself is:</p>
-<p align="center">
-<br><em>What are the objects and events that need to be stored in the database in order to fulfill its mission and objectives?</em><br><br>
-</p>
-<p>If your building a database for a job placement agency, for example, your database would likely need to include jobs, job-seekers and employers, and agents. For a University, you might have students, courses, instructors, departments, etc.</p>
-<p><strong>All tables should :</strong></p>
-<ul>
-<li>Represent a single subject (object or event).</li>
-<li>have a primary key.</li>
-<li>minimizes redundancy.</li>
-</ul>
-</div>
-<div id="creating-tables-for-your-database-video" class="section level4 unnumbered">
-<h4>Creating tables for your database (video)</h4>
-<iframe src="https://dal.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=da0922ec-863e-4dbb-a84c-acbc0023cbf4&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay">
-</iframe>
-</div>
-<div id="fields" class="section level4 unnumbered">
-<h4>Fields</h4>
-<p>Now that you have identified the different subjects (tables) that your database is dealing with, the next part of the process is to ask what <strong>characteristics</strong> of these subjects should be recorded in the database. This will determine what <strong>fields</strong> (also called columns, variables, features) are required for each of your tables.</p>
-<p><strong>Every</strong> table needs to have at least one field that is going to be the <strong>primary key</strong>. The primary key is a unique identifier for each record that will be stored in the table, which means that it cannot appear twice in the table. The primary key is also what you will use to link tables together. When the primary key of a table is used in another table to form such a link between the tables, it is called a <strong>foreign key</strong>.</p>
-<p><strong>All fields should</strong>:</p>
-<ul>
-<li>Be unique in the entire database.</li>
-<li>Represent a distinct characteristic.</li>
-<li>Contain a single value that cannot be deconstructed into smaller ones.</li>
-<li>Not contain a calculated value.</li>
-</ul>
-</div>
-<div id="creating-fields-for-your-tables-video" class="section level4 unnumbered">
-<h4>Creating fields for your tables (video)</h4>
-<iframe src="https://dal.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=b98e9fb3-39d7-4f50-a32e-acbc002f0eb7&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay">
-</iframe>
-</div>
-<div id="naming-tables-and-fields" class="section level4 unnumbered">
-<h4>Naming tables and fields</h4>
-<p>There are also some guidelines to follow when naming your tables and fields to make your database easier to understand and navigate.</p>
-<p><strong>Characteristics of a good table and field names (Hernandez, 2013)</strong></p>
+<div id="columns" class="section level3" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Columns:</h3>
 <table>
 <thead>
 <tr class="header">
-<th align="left">Rule</th>
-<th align="left">Bad</th>
-<th align="left">Good</th>
+<th>Column</th>
+<th>Data type</th>
+<th>Attributes</th>
+<th>Default</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Accurate, unique, and meaningful to the organization</td>
-<td align="left">TableA</td>
-<td align="left">Employees</td>
+<td><code>course_id</code></td>
+<td>INT</td>
+<td>PRIMARY, Not null</td>
+<td></td>
+<td></td>
 </tr>
 <tr class="even">
-<td align="left">Refers to a single subject (unless it is an associative table)</td>
-<td align="left">Faculties/Departments</td>
-<td align="left">Make two tables</td>
+<td><code>course_title</code></td>
+<td>VARCHAR(45)</td>
+<td></td>
+<td><code>NULL</code></td>
+<td></td>
 </tr>
 <tr class="odd">
-<td align="left">As short as possible</td>
-<td align="left">CoursesOffered</td>
-<td align="left">Courses</td>
+<td><code>subject_id</code></td>
+<td>INT</td>
+<td></td>
+<td><code>NULL</code></td>
+<td><strong>foreign key</strong> to column <code>subject_id</code> on table <code>subjects</code>.</td>
 </tr>
 <tr class="even">
-<td align="left">Do not use words like <em>list</em>, <em>records</em>, <em>data</em></td>
-<td align="left">CoursesList</td>
-<td align="left">Courses</td>
+<td><code>year</code></td>
+<td>VARCHAR(45)</td>
+<td></td>
+<td><code>NULL</code></td>
+<td></td>
 </tr>
 <tr class="odd">
-<td align="left">Does not use acronyms</td>
-<td align="left">SRI</td>
-<td align="left">Student_Ratings_of_Instruction</td>
-</tr>
-<tr class="even">
-<td align="left">Does not unduly restrict the data that can be entered into the table</td>
-<td align="left">Fall_courses</td>
-<td align="left">Courses</td>
-</tr>
-<tr class="odd">
-<td align="left">For <strong>tables</strong> use the plural form of the name</td>
-<td align="left">Employee</td>
-<td align="left">Employees</td>
-</tr>
-<tr class="even">
-<td align="left">For <strong>fields</strong> use the singular form of the name</td>
-<td align="left">First_Names</td>
-<td align="left">First_Name</td>
+<td><code>included</code></td>
+<td>VARCHAR(45)</td>
+<td></td>
+<td><code>NULL</code></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="describing-tables-and-fields" class="section level4 unnumbered">
-<h4>Describing tables and fields</h4>
-<p>Another important aspect of database management and design is <strong>documentation</strong>. A properly documented database ensures that the users understand what tables of the database contain and why they exist. Having good names to for your tables and fields might reduce the need for your database users to refer to the documentation all the time, but it certainly does not eliminate the need for it.</p>
-<p>Describing your tables and fields also help ensuring they are needed and well-designed. If you cannot describe the purpose of a table, it may be that it has, in fact, no puprose.</p>
-<p>Here are a few simple rules to follow:</p>
-<ul>
-<li>Clearly and concisely describe the table and field.</li>
-<li>For tables only, your description should also indicate <strong>why</strong> the table is necessary.</li>
-<li>Focus on what the table or fields contain rather than how they will specifically be used or accessed.</li>
-<li>Do not use examples in your descriptions.</li>
-</ul>
-
+<div id="indices" class="section level3" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> Indices:</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Columns</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PRIMARY</td>
+<td><code>course_id</code></td>
+<td>PRIMARY</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>subject_idx_idx</td>
+<td><code>subject_id</code></td>
+<td>INDEX</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </div>
+</div>
+<div id="table-courses_learning_outcomes" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Table: <code>courses_learning_outcomes</code></h2>
+<div id="description-1" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Description:</h3>
+</div>
+<div id="columns-1" class="section level3" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Columns:</h3>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Data type</th>
+<th>Attributes</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>course_id</code></td>
+<td>INT</td>
+<td>PRIMARY, Not null</td>
+<td></td>
+<td><strong>foreign key</strong> to column <code>course_id</code> on table <code>courses</code>.</td>
+</tr>
+<tr class="even">
+<td><code>learning_outcome_id</code></td>
+<td>INT</td>
+<td>PRIMARY, Not null</td>
+<td></td>
+<td><strong>foreign key</strong> to column <code>learning_outcome_id</code> on table <code>learning_outcomes</code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="indices-1" class="section level3" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Indices:</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Columns</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PRIMARY</td>
+<td><code>course_id</code>, <code>learning_outcome_id</code></td>
+<td>PRIMARY</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>fk_learning_outcomes_idx</td>
+<td><code>learning_outcome_id</code></td>
+<td>INDEX</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="table-integrated_abilities" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Table: <code>integrated_abilities</code></h2>
+<div id="description-2" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Description:</h3>
+</div>
+<div id="columns-2" class="section level3" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Columns:</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Data type</th>
+<th>Attributes</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>integrated_ability_id</code></td>
+<td>INT</td>
+<td>PRIMARY, Not null</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>integrated_ability</code></td>
+<td>VARCHAR(100)</td>
+<td></td>
+<td><code>NULL</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="indices-2" class="section level3" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Indices:</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Columns</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PRIMARY</td>
+<td><code>integrated_ability_id</code></td>
+<td>PRIMARY</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="table-learning_outcomes" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Table: <code>learning_outcomes</code></h2>
+<div id="description-3" class="section level3" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Description:</h3>
+</div>
+<div id="columns-3" class="section level3" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Columns:</h3>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Data type</th>
+<th>Attributes</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>learning_outcome_id</code></td>
+<td>INT</td>
+<td>PRIMARY, Not null</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>learning_outcome</code></td>
+<td>VARCHAR(45)</td>
+<td></td>
+<td><code>NULL</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>level</code></td>
+<td>VARCHAR(3)</td>
+<td></td>
+<td><code>NULL</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>has_IL</code></td>
+<td>TINYINT</td>
+<td></td>
+<td><code>NULL</code></td>
+<td>0 = no sign of IL = related to or clearly ILis based on the number of IL quality criteria associated with the outcome.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="indices-3" class="section level3" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Indices:</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Columns</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PRIMARY</td>
+<td><code>learning_outcome_id</code></td>
+<td>PRIMARY</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="table-learning_outcomes_integrated_abilities" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Table: <code>learning_outcomes_integrated_abilities</code></h2>
+<div id="description-4" class="section level3" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> Description:</h3>
+</div>
+<div id="columns-4" class="section level3" number="1.5.2">
+<h3><span class="header-section-number">1.5.2</span> Columns:</h3>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Data type</th>
+<th>Attributes</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>learning_outcomes_id</code></td>
+<td>INT</td>
+<td>PRIMARY, Not null</td>
+<td></td>
+<td><strong>foreign key</strong> to column <code>learning_outcome_id</code> on table <code>learning_outcomes</code>.</td>
+</tr>
+<tr class="even">
+<td><code>integrated_ability_id</code></td>
+<td>INT</td>
+<td>PRIMARY, Not null</td>
+<td></td>
+<td><strong>foreign key</strong> to column <code>integrated_ability_id</code> on table <code>integrated_abilities</code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="indices-4" class="section level3" number="1.5.3">
+<h3><span class="header-section-number">1.5.3</span> Indices:</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Columns</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PRIMARY</td>
+<td><code>learning_outcomes_id</code>, <code>integrated_ability_id</code></td>
+<td>PRIMARY</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>fk_integrated_abilities_idx</td>
+<td><code>integrated_ability_id</code></td>
+<td>INDEX</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="table-learning_outcomes_threshold_concepts" class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> Table: <code>learning_outcomes_threshold_concepts</code></h2>
+<div id="description-5" class="section level3" number="1.6.1">
+<h3><span class="header-section-number">1.6.1</span> Description:</h3>
+</div>
+<div id="columns-5" class="section level3" number="1.6.2">
+<h3><span class="header-section-number">1.6.2</span> Columns:</h3>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Data type</th>
+<th>Attributes</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>learning_outcome_id</code></td>
+<td>INT</td>
+<td>PRIMARY, Not null</td>
+<td></td>
+<td><strong>foreign key</strong> to column <code>learning_outcome_id</code> on table <code>learning_outcomes</code>.</td>
+</tr>
+<tr class="even">
+<td><code>threshold_concept_id</code></td>
+<td>INT</td>
+<td>PRIMARY, Not null</td>
+<td></td>
+<td><strong>foreign key</strong> to column <code>threshold_concept_id</code> on table <code>threshold_concepts</code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="indices-5" class="section level3" number="1.6.3">
+<h3><span class="header-section-number">1.6.3</span> Indices:</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Columns</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PRIMARY</td>
+<td><code>learning_outcome_id</code>, <code>threshold_concept_id</code></td>
+<td>PRIMARY</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>fk_threshold_concept_id</td>
+<td><code>threshold_concept_id</code></td>
+<td>INDEX</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="table-subjects" class="section level2" number="1.7">
+<h2><span class="header-section-number">1.7</span> Table: <code>subjects</code></h2>
+<div id="description-6" class="section level3" number="1.7.1">
+<h3><span class="header-section-number">1.7.1</span> Description:</h3>
+</div>
+<div id="columns-6" class="section level3" number="1.7.2">
+<h3><span class="header-section-number">1.7.2</span> Columns:</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Data type</th>
+<th>Attributes</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>subject_id</code></td>
+<td>INT</td>
+<td>PRIMARY, Not null</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>subject</code></td>
+<td>VARCHAR(45)</td>
+<td></td>
+<td><code>NULL</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="indices-6" class="section level3" number="1.7.3">
+<h3><span class="header-section-number">1.7.3</span> Indices:</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Columns</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PRIMARY</td>
+<td><code>subject_id</code></td>
+<td>PRIMARY</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="table-threshold_concepts" class="section level2" number="1.8">
+<h2><span class="header-section-number">1.8</span> Table: <code>threshold_concepts</code></h2>
+<div id="description-7" class="section level3" number="1.8.1">
+<h3><span class="header-section-number">1.8.1</span> Description:</h3>
+</div>
+<div id="columns-7" class="section level3" number="1.8.2">
+<h3><span class="header-section-number">1.8.2</span> Columns:</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Data type</th>
+<th>Attributes</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>threshold_concept_id</code></td>
+<td>INT</td>
+<td>PRIMARY, Not null</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>threshold_concept</code></td>
+<td>VARCHAR(45)</td>
+<td></td>
+<td><code>NULL</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="indices-7" class="section level3" number="1.8.3">
+<h3><span class="header-section-number">1.8.3</span> Indices:</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Columns</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PRIMARY</td>
+<td><code>threshold_concept_id</code></td>
+<td>PRIMARY</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
 </div>
 </div>
 </div>
@@ -440,8 +797,8 @@
           </div>
         </div>
       </div>
-<a href="github-and-version-control.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="relational-databases-part-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="conclusion.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
