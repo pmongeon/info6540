@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Relational databases (Part 2) | INFO 6540 - Data Management</title>
-  <meta name="description" content="Relational databases (Part 2) | INFO 6540 - Data Management" />
+  <title>NoSQL databases | INFO 6540 - Data Management</title>
+  <meta name="description" content="NoSQL databases | INFO 6540 - Data Management" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Relational databases (Part 2) | INFO 6540 - Data Management" />
+  <meta property="og:title" content="NoSQL databases | INFO 6540 - Data Management" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="pmongeon/INFO6540" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Relational databases (Part 2) | INFO 6540 - Data Management" />
+  <meta name="twitter:title" content="NoSQL databases | INFO 6540 - Data Management" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="relational-databases-part-1.html"/>
-<link rel="next" href="relational-databases-part-3.html"/>
+<link rel="prev" href="structured-query-language-sql.html"/>
+<link rel="next" href="graph-databases.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,6 +50,10 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 
@@ -185,20 +189,20 @@
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#solutions"><i class="fa fa-check"></i>Solutions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="document-oriented-datababes.html"><a href="document-oriented-datababes.html"><i class="fa fa-check"></i>Document-oriented datababes</a>
+<li><a href="nosql-databases.html#nosql-databases"><strong>NoSQL databases</strong></a>
 <ul>
-<li class="chapter" data-level="" data-path="document-oriented-datababes.html"><a href="document-oriented-datababes.html#learning-objectives-6"><i class="fa fa-check"></i>Learning objectives</a></li>
-<li class="chapter" data-level="" data-path="document-oriented-datababes.html"><a href="document-oriented-datababes.html#nosql-databases"><i class="fa fa-check"></i>NoSQL databases</a></li>
-<li class="chapter" data-level="" data-path="document-oriented-datababes.html"><a href="document-oriented-datababes.html#document-oriented-databases"><i class="fa fa-check"></i>Document-oriented databases</a>
+<li class="chapter" data-level="" data-path="nosql-databases.html"><a href="nosql-databases.html"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="nosql-databases.html"><a href="nosql-databases.html#nosql-databases-1"><i class="fa fa-check"></i>NoSQL databases</a></li>
+<li class="chapter" data-level="0.1" data-path="nosql-databases.html"><a href="nosql-databases.html#document-oriented-databases"><i class="fa fa-check"></i><b>0.1</b> Document-oriented databases</a>
 <ul>
-<li class="chapter" data-level="" data-path="document-oriented-datababes.html"><a href="document-oriented-datababes.html#documents-and-collections"><i class="fa fa-check"></i>Documents and collections</a></li>
-<li class="chapter" data-level="" data-path="document-oriented-datababes.html"><a href="document-oriented-datababes.html#non-structured-data"><i class="fa fa-check"></i>Non-structured data</a></li>
-<li class="chapter" data-level="" data-path="document-oriented-datababes.html"><a href="document-oriented-datababes.html#no-very-few-relations"><i class="fa fa-check"></i>No (very few) relations</a></li>
-<li class="chapter" data-level="" data-path="document-oriented-datababes.html"><a href="document-oriented-datababes.html#implications-for-database-design"><i class="fa fa-check"></i>Implications for database design</a></li>
-<li class="chapter" data-level="" data-path="document-oriented-datababes.html"><a href="document-oriented-datababes.html#mongodb-demo"><i class="fa fa-check"></i>MongoDB demo</a></li>
+<li class="chapter" data-level="0.1.1" data-path="nosql-databases.html"><a href="nosql-databases.html#documents-and-collections"><i class="fa fa-check"></i><b>0.1.1</b> Documents and collections</a></li>
+<li class="chapter" data-level="0.1.2" data-path="nosql-databases.html"><a href="nosql-databases.html#non-structured-data"><i class="fa fa-check"></i><b>0.1.2</b> Non-structured data</a></li>
+<li class="chapter" data-level="0.1.3" data-path="nosql-databases.html"><a href="nosql-databases.html#no-very-few-relations"><i class="fa fa-check"></i><b>0.1.3</b> No (very few) relations</a></li>
+<li class="chapter" data-level="0.1.4" data-path="nosql-databases.html"><a href="nosql-databases.html#implications-for-database-design"><i class="fa fa-check"></i><b>0.1.4</b> Implications for database design</a></li>
+<li class="chapter" data-level="0.1.5" data-path="nosql-databases.html"><a href="nosql-databases.html#mongodb-demo"><i class="fa fa-check"></i><b>0.1.5</b> MongoDB demo</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="document-oriented-datababes.html"><a href="document-oriented-datababes.html#exercises-3"><i class="fa fa-check"></i>Exercises</a></li>
-<li class="chapter" data-level="" data-path="document-oriented-datababes.html"><a href="document-oriented-datababes.html#additional-resources"><i class="fa fa-check"></i>Additional resources</a></li>
+<li class="chapter" data-level="" data-path="nosql-databases.html"><a href="nosql-databases.html#exercises-3"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="0.2" data-path="nosql-databases.html"><a href="nosql-databases.html#additional-resources"><i class="fa fa-check"></i><b>0.2</b> Additional resources</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html"><i class="fa fa-check"></i>Graph databases</a>
 <ul>
@@ -236,96 +240,108 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="relational-databases-part-2" class="section level1 unnumbered">
-<h1>Relational databases (Part 2)</h1>
-<div id="learning-objectives-3" class="section level2 unnumbered">
+<div id="nosql-databases" class="section level1 unnumbered">
+<h1><strong>NoSQL databases</strong></h1>
+<div id="learning-objectives-6" class="section level2 unnumbered">
 <h2>Learning objectives</h2>
 <p><strong>Concepts</strong></p>
 <ul>
-<li>Relationship types</li>
-<li>Entity-Relationship Diagrams</li>
+<li>NoSQL databases</li>
+<li>Document-oriented databases (or document stores)</li>
 </ul>
 <p><strong>Practical skills</strong></p>
 <ul>
-<li>Create an Entity-Relationship Diagram (team assignment #2)</li>
-<li>Optimize the structure of your database (team assignment #2)</li>
+<li>Writing a JSON document.</li>
 </ul>
 </div>
-<div id="relationship-types" class="section level2 unnumbered">
-<h2>Relationship types</h2>
-<p>Relationships are the key determinants of the structure of your database and are represented by foreign keys in some of your tables that are linked to primary keys of other tables. Luckily, relationships are a relatively simple concept that is easy to implement in your database design process. There are only three basic kinds of relationship, so let’s take a quick look at them.</p>
-<div id="one-to-one-relationship" class="section level3 unnumbered">
-<h3>One-to-one relationship</h3>
-<p>This relationship exist when one record in a table can only assiciated with <strong>only one</strong> record in another table, and <strong>vice versa</strong>. A one-to-one relationship may exist, for instance, between the office space and the personnel of an organization, as long as nobody is allowed to share and office, or to have two offices. These relationships are quite rare in reality, since it often makes more sense to bring back to combine tables with one to one relationships in a unique table. However, there are situations where the use of one-to-one relationships can be required or appropriate, for example:</p>
-<ul>
-<li><strong>Security</strong>: you may want to store sensitive information about an individual in a different table that only some authorized users can access.</li>
-<li><strong>Semantics</strong>: even though you could include information about the office space in your employees table, you might not want to store information about your offices with your <em>employees</em> table. <em>first_name</em>, <em>last_name</em>, <em>eye color</em> are characteristics of people, but <em>building</em> or <em>room_number</em> are not.</li>
-</ul>
+<div id="nosql-databases-1" class="section level2 unnumbered">
+<h2>NoSQL databases</h2>
+<p>Now that you have become familiar with relational databases, we will be turning our attention to different types of databases: the <strong>document-oriented database</strong> (also called <strong>document stores</strong>), and the <strong>graph databases</strong> (we’ll cover those in the next chapter). These are two variants of a much wider range of database types that, together, are regrouped under the NoSQL label (which can refer to “non-SQL” or “not only SQL”). These databases have grown in popularity with the rise of the web 2.0 and cloud computing, as well as the diminishing costs of data storage. Unlike relational databases that share a common language (SQL), there is no standard in the NoSQL world. However, we will not be discussing these languages in this course, but instead focus on how the document-oriented databases and graph databases differ from relational databases in the way that they organize data.</p>
 </div>
-<div id="one-to-many-relationship" class="section level3 unnumbered">
-<h3>One-to-many relationship</h3>
-<p>One-to-many relationship exists when one record in a table can be associated with <strong>one or more</strong> records in another table. This is the most frequent type of relationship in properly designed databases. A typical example is the customers table and the orders table, a single customer record can be associated with multiple orders, but only one customer can be associated with a specific order.</p>
+<div id="document-oriented-databases" class="section level2" number="0.1">
+<h2><span class="header-section-number">0.1</span> Document-oriented databases</h2>
+<p>There exists a wide variety of document-oriented databases, each with their own particularities. We will focus here on one very popular example of document-oriented databases: MongoDB (<a href="https://www.mongodb.com/" class="uri">https://www.mongodb.com/</a>). Let’s look at the main differences between MongoDB and MySQL.</p>
+<div id="documents-and-collections" class="section level3" number="0.1.1">
+<h3><span class="header-section-number">0.1.1</span> Documents and collections</h3>
+<p>Instead of using storing records in tables as in the relational model, MongoDB (and other document-oriented databases) do not split the data into multiple tables that are linked together through foreign keys. Instead, data is stored in <strong>documents</strong> that are grouped together in <strong>collections</strong>.</p>
+<p>While they are not conceptually equivalent, documents are to document-oriented databases what tables are to relational databases: they are individual records that have a unique identifier. collections are group of documents, just like tables are groups of records.</p>
 </div>
-<div id="many-to-many-relationship" class="section level3 unnumbered">
-<h3>Many-to-many relationship</h3>
-<p>Many-to-many relationship exists when one record in a table can be associated with <strong>multiple</strong> records in another table and <strong>vice versa</strong>. A typical example is a product that can be part of multiple orders and an order than can contain multiple products. Another example is the relationship between university courses and students. In the <em>courses</em> table, the record for “Data Management” has an association with 54 records from the <em>students</em> table. Inversely, a single recordin the <em>students</em> table can be associated to multiple records in teh <em>courses</em> table.</p>
-<div id="some-isssue-with-many-to-many-relationship" class="section level4 unnumbered">
-<h4>Some isssue with many-to-many relationship</h4>
-<p>These relationships are very frequent in the world, and they are great. But they also rise potential issues that needs to be resolved in your database design. By definition, these relationship imply that the <strong>non-duplication of the primary key</strong> rule will be violated, so that something that your RDBMS will not allow.</p>
-<p><img src="files/ch4/duplicated_primary_key.png" /><!-- --></p>
-<p>One solution for that is to use a <strong>composite primary key</strong>, this simply means that your table as 2 or more primary keys instead of a single one. In practice, this means that each primary key is allowed to be repeated in the table, as long as the combination of primary key values does not repeat.</p>
-<p><img src="files/ch4/composite_primary_key.png" /><!-- --></p>
-<p>However the composite key solution by itself is often not optimal, since it can create a lot of <strong>redundancy</strong> in your table which is something that you want to minimize as much as possible.</p>
-<p><img src="files/ch4/redundancy.png" /><!-- --></p>
-<p>This is what <strong>associative tables</strong> are for. They are basically tables create with the specific purpose of linking your subjects together to prevent primary key duplication and minimize redundancy.</p>
-<p><img src="files/ch4/associative_table.png" /><!-- --></p>
+<div id="non-structured-data" class="section level3" number="0.1.2">
+<h3><span class="header-section-number">0.1.2</span> Non-structured data</h3>
+<p>Rather than the structured data format of relational databases, document-oriented databases use non-structure data formats like XML and JSON. MongoDB uses the JSON format. As you might recall from the first chapter of this course, one particularity of the non-structured data formats is that the structure of the data is included directly in each document, which means that each document in a collection can have a different structure.</p>
 </div>
+<div id="no-very-few-relations" class="section level3" number="0.1.3">
+<h3><span class="header-section-number">0.1.3</span> No (very few) relations</h3>
+<p>Another important feature of the JSON format is that it can include a list of values in a single field. This eliminates the need for associative tables, and consequently, the need to retrieve data with more or less complex SQL queries pulling data from multiple tables using JOINs. With document-oriented databases, the documents contain all the data that we need, reducing the need to pull data from other collections. That said, it remains possible to link collections together, but this is not a typical use of document-oriented databases.</p>
 </div>
+<div id="implications-for-database-design" class="section level3" number="0.1.4">
+<h3><span class="header-section-number">0.1.4</span> Implications for database design</h3>
+<p>The differences between the relational and the document-oriented databases presented so far may seem a bit superficial or technical, but they also have important implications when it comes to designing databases. Most importantly, the documents include not only the entities attribute but <em>also</em> their relationship with other entities. This means 1) that the same data can be repeated in multiple documents and collections, and 2) that there is no need for associative or validation tables. The following video explains in more details these fundamental differences between the two types of databases.</p>
+<p>[INSERT VIDEO HERE]</p>
 </div>
-<div id="table-types" class="section level2 unnumbered">
-<h2>Table types</h2>
-<p>Since the associative table was just introduced, this is probably a good time to go over the three basic types of tables that you will encounter in your database.</p>
-<ul>
-<li><strong>Data tables</strong> typically represent the main subjects of your database (e.g., objects, people, events). They usually have a single primary key and they gather data that provides information about the subject represented in the table.</li>
-<li><strong>Associative tables</strong> are use to create associations between the subjects in your database (e.g., students-courses, products-orders, customers-orders). They have typically have multiple foreign keys that together will form the composite primary key.</li>
-<li><strong>Validation (or lookup) tables</strong> are used for data quality and validation purposed. They contain the list of possible values that a field can take. For instance, your grade for this class have a limited set of possible values (A+, A, A-, B+, B, B-, F, AUD, ILL, INC, IP, P). A validation table <em>can but does not have to</em> be used to store these possible values in order to ensure that a user cannot enter the grade “G” or “Banana” in the <em>grade</em> field of the database.</li>
-</ul>
-<p>You will see some of these tables in action in the video below where we will work on the entity-relationship diagram of our GummyBox database.</p>
-</div>
-<div id="entity-relationship-diagrams" class="section level2 unnumbered">
-<h2>Entity-relationship diagrams</h2>
-<p>An entity-relationship diagram (ERD) is simply a visual representation of your database that typically includes every table along with their fields and the relationship between them. The ERD is a useful tool for designing your database because it helps you visualize your table and fields and the relationship between them, which makes it easier to spot mistakes and inconsistencies. It is also a useful tool to include in the database documentation as it can provide users with a good understanding of the data so that they can more effectively use it. There are many tools that you can use to create ERDs (including MySQL workbench). In the video below, I use <a href="https://app.diagrams.net/">diagrams.net</a> (formerly draw.io) to draw the following ERD in order to improve and expand the design of my GummyBox database</p>
-<p><img src="files/ch4/gummybox_erd.png" /><!-- --></p>
-<iframe src="https://dal.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=f3c055af-72fc-4e1d-99c9-acc10184cc04&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay">
+<div id="mongodb-demo" class="section level3" number="0.1.5">
+<h3><span class="header-section-number">0.1.5</span> MongoDB demo</h3>
+<p>In this video, I demonstrate how to create a collection and documents in MongoDB:</p>
+<iframe src="https://dal.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=1be2c4a7-2a48-41fb-9fb2-acde000829cd&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay">
 </iframe>
 </div>
-<div id="getting-started-with-mysql-workbench" class="section level2 unnumbered">
-<h2>Getting started with MySQL workbench</h2>
-<p>MySQL workbench is an open source RDBMS that offers all the features that you will need to design and manage your databases. To install it on your computer:</p>
-<ol style="list-style-type: decimal">
-<li><p>Go to <a href="https://dev.mysql.com/downloads/workbench/">https://dev.mysql.com/downloads/workbench/</a></p></li>
-<li><p>If your computer’s operating system is Microsoft Windows, choose any of the two <em>recommended Download</em> options.</p>
-<ul>
-<li>If you have an online connection while running the MySQL Installer, choose the mysql-installer-web-community file.</li>
-<li>If you do <strong>not</strong> have an online connection while running the MySQL Installer, choose the mysql-installer-community file.</li>
-</ul></li>
-<li><p>You will be asked if you want to sign up for an Oracle web account. <strong>You do not need to sign up</strong>. Simply click on “No thanks, just start my download” (as show in the image below).</p></li>
-</ol>
-<p><img src="files/ch4/no_need_to_sign_up.png" /><!-- --></p>
-<p>In this next video, I provide a very brief introduction to MySQL workbench, and show you how to get started with creating your database model, making tables, declaring primary and foreign keys, and automatically generate your ERD.</p>
-<iframe src="https://dal.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=68a72e0b-6361-4a9a-9eec-acc2002d20d6&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay">
-</iframe>
 </div>
-<div id="exercises-1" class="section level2 unnumbered">
+<div id="exercises-3" class="section level2 unnumbered">
 <h2>Exercises</h2>
-<p>As an exercise for this week, you can download the GummyBox ERD that I created with diagrams.net <a href="files/GummyBox.drawio">here</a>.
-Once you downloaded the file, you can open it by going to <a href="https://app.diagrams.net/">https://app.diagrams.net</a>, click on <strong>File</strong>, then <strong>Open from…</strong> and then select the file you just downloaded.
-and then:</p>
-<ol style="list-style-type: decimal">
-<li>See if you can spot the error. (Tip: it is not a critical error as the database would still work fine as it is, but there is at least one unnecessary table in there)</li>
-<li>Try adding the gummy_reviews to the design.</li>
-<li>Try adding the gummy_assortments to the design.</li>
-</ol>
+<table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-2">Table 1: </span>customer information
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+customer_id
+</th>
+<th style="text-align:left;">
+first_name
+</th>
+<th style="text-align:left;">
+last_name
+</th>
+<th style="text-align:left;">
+email
+</th>
+<th style="text-align:left;">
+phone_number
+</th>
+<th style="text-align:left;">
+membership_type
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Mickey
+</td>
+<td style="text-align:left;">
+Mouse
+</td>
+<td style="text-align:left;">
+<a href="mailto:mickey.mouse@disney.com" class="email">mickey.mouse@disney.com</a>
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+silver
+</td>
+</tr>
+</tbody>
+</table>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="additional-resources" class="section level2" number="0.2">
+<h2><span class="header-section-number">0.2</span> Additional resources</h2>
+<p>You can use this <a href="https://jsonformatter.org/">online JSON validator and formatter</a> to help you write JSON and convert your data from JSON to CSV or XML or vice versa.</p>
+<p>You can <a href="https://www.mongodb.com/try/download/community">install a local MongoDB server on your computer</a> if you want to use it to create your own document collections. MongoDB offers a series of <a href="https://university.mongodb.com/">free online courses</a> that can also help get you started.</p>
 
 </div>
 </div>
@@ -334,8 +350,8 @@ and then:</p>
           </div>
         </div>
       </div>
-<a href="relational-databases-part-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="relational-databases-part-3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="structured-query-language-sql.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="graph-databases.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
