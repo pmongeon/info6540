@@ -32,7 +32,7 @@
   
 <link rel="prev" href="linked-data.html"/>
 <link rel="next" href="conclusion.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -198,24 +198,36 @@
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#mongodb-demo"><i class="fa fa-check"></i>MongoDB demo</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#exercises-3"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#my-solution"><i class="fa fa-check"></i>My solution</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#additional-resources"><i class="fa fa-check"></i>Additional resources</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html"><i class="fa fa-check"></i>Graph databases</a>
 <ul>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#learning-objectives-7"><i class="fa fa-check"></i>Learning objectives</a></li>
-<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#content-1"><i class="fa fa-check"></i>Content</a></li>
+<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#what-is-a-graph-database"><i class="fa fa-check"></i>What is a graph database?</a>
+<ul>
+<li class="chapter" data-level="0.0.1" data-path="graph-databases.html"><a href="graph-databases.html#nodes"><i class="fa fa-check"></i><b>0.0.1</b> Nodes</a></li>
+<li class="chapter" data-level="0.0.2" data-path="graph-databases.html"><a href="graph-databases.html#edges"><i class="fa fa-check"></i><b>0.0.2</b> Edges</a></li>
+<li class="chapter" data-level="0.0.3" data-path="graph-databases.html"><a href="graph-databases.html#section"><i class="fa fa-check"></i><b>0.0.3</b> </a></li>
+<li class="chapter" data-level="0.0.4" data-path="graph-databases.html"><a href="graph-databases.html#properties"><i class="fa fa-check"></i><b>0.0.4</b> Properties</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#exercises-4"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="linked-data.html"><a href="linked-data.html"><i class="fa fa-check"></i>Linked data</a>
 <ul>
 <li class="chapter" data-level="" data-path="linked-data.html"><a href="linked-data.html#learning-objectives-8"><i class="fa fa-check"></i>Learning objectives</a></li>
-<li class="chapter" data-level="" data-path="linked-data.html"><a href="linked-data.html#content-2"><i class="fa fa-check"></i>Content</a></li>
+<li class="chapter" data-level="" data-path="linked-data.html"><a href="linked-data.html#content-1"><i class="fa fa-check"></i>Content</a></li>
 <li class="chapter" data-level="" data-path="linked-data.html"><a href="linked-data.html#exercises-5"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html"><i class="fa fa-check"></i>Ontologies</a>
 <ul>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#learning-objectives-9"><i class="fa fa-check"></i>Learning objectives</a></li>
-<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#content-3"><i class="fa fa-check"></i>Content</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#what-are-ontologies"><i class="fa fa-check"></i>What are ontologies?</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#components-of-an-ontology"><i class="fa fa-check"></i>Components of an ontology</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#building-a-simple-ontology"><i class="fa fa-check"></i>Building a simple ontology</a>
+<ul>
+<li class="chapter" data-level="0.0.5" data-path="ontologies.html"><a href="ontologies.html#visualizing-our-graph"><i class="fa fa-check"></i><b>0.0.5</b> <strong>Visualizing our graph</strong></a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#exercises-6"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
@@ -244,30 +256,328 @@
 <ul>
 <li>Ontologies</li>
 <li>Classes</li>
-<li>Class hierarchies</li>
-<li>Slot</li>
-<li>Facets</li>
-<li>Instances</li>
+<li>Individuals</li>
+<li>Relationships</li>
+<li>Triples</li>
 </ul>
 <p><strong>Practical Skills</strong></p>
 <ul>
-<li>Using the Protégé software</li>
-<li>Building an Ontology (individual assignment #2)
-<ul>
-<li>Defining classes</li>
-<li>Arranging classes in a taxonomic hierarchy</li>
-<li>Defining slots</li>
-<li>Creating instances</li>
-</ul></li>
+<li>Building a very basic ontology (individual assignment #2)</li>
 </ul>
 </div>
-<div id="content-3" class="section level2 unnumbered">
-<h2>Content</h2>
-<p>Upcoming…</p>
+<div id="what-are-ontologies" class="section level2 unnumbered">
+<h2>What are ontologies?</h2>
+<blockquote>
+<p>“An ontology encompasses a representation, formal naming and definition of the categories, properties and relations between the concepts, data and entities that substantiate one, many, or all domains of discourse.” (<a href="https://en.wikipedia.org/wiki/Ontology_(information_science)">Wikipedia</a>)</p>
+</blockquote>
+</div>
+<div id="components-of-an-ontology" class="section level2 unnumbered">
+<h2>Components of an ontology</h2>
+<ul>
+<li><p><strong>Classes</strong>: The type of things that exist in the domain.</p></li>
+<li><p><strong>Individuals</strong>: These are instances of objects or concepts that belong to a class.</p></li>
+<li><p><strong>Attributes</strong>: Attributes are characteristics of individuals or classes (e.g. price of an individual of the class <em>product</em>, or date of birth of an individual of the class <em>person</em>)</p></li>
+<li><p><strong>Relationships</strong>: These are the ways in which individuals and classes can be related to one another.</p></li>
+<li><p><strong>Triple</strong>: A triple is a representation of ontological components that take the following form:</p></li>
+</ul>
+<div align="center">
+<p>SUBJECT PREDICATE OBJECT</p>
+</div>
+<p>For instance:</p>
+<div align="center">
+<p>In a film ontology: Sylvester Stallone Wrote Rocky</p>
+<p>In a Dalhousie ontology: Philippe Mongeon teaches Data Management course</p>
+<p>In a hockey ontology: Tuukka Rask has_position Goaltender</p>
+</div>
+</div>
+<div id="building-a-simple-ontology" class="section level2 unnumbered">
+<h2>Building a simple ontology</h2>
+<p>Let us now go through a series of five simple steps to build a very simple ontology. This is the exact process that I suggest that you follow for the final assignment. Please use this <a href="files/ontology_template.xlsx">template</a> for this purpose and <strong>for your final assignment</strong>. It comes pre-loaded with the example presented below.</p>
+<p><strong>Important note:</strong> in order to simplify the process we will not use attributes in this example, nor in the final assignment.</p>
+<p>The five steps are:</p>
+<ol style="list-style-type: decimal">
+<li>Defining classes</li>
+<li>Defining individuals</li>
+<li>Assigning individuals to classes</li>
+<li>Defining characteristics</li>
+<li>Writing triples</li>
+</ol>
+<p>Here’s an example of how to follow these steps to fill the provided template to build a basic pizza ontology.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>What kind of things do exists in the domain you want to represent?</strong><br />
+These are your classes. Make a list and insert them in the <strong><em>classes</em></strong> sheet of the template.<br />
+<br />
+</p>
+<table style="width:31%;">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Class_id</th>
+<th align="center">Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">Pizza</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">Base</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">Sauce</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">Cheese</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">Topping</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p></li>
+<li><p><strong>What individuals (instances of classes) do you want to include in my ontology?<br />
+</strong>These will be the nodes in your network. Write in the template the name of each individual in the <strong><em>individuals</em></strong> sheet under the <strong><em>name</em></strong> column. <em><br />
+</em><br />
+</p>
+<table style="width:47%;">
+<colgroup>
+<col width="22%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Individual_id</th>
+<th align="center">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">Hawaiian</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">Canadian</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">Chicken Alfredo</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">Alfredo</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">Chicago style</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">Mozzarella</td>
+</tr>
+<tr class="odd">
+<td align="center">7</td>
+<td align="center">Pineapple</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p></li>
+<li><p><strong>To which class do each individual belong?</strong><br />
+To what class does each of my individuals belong. Your individuals should belong to only one class. You should also have at least one individual for each class, otherwise that class is irrelevant for your ontology. Write the class to which each individual belongs in the <strong><em>class</em></strong> column of he <strong><em>individuals</em></strong> sheet.<br />
+<br />
+</p>
+<table style="width:99%;">
+<colgroup>
+<col width="33%" />
+<col width="37%" />
+<col width="27%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Individual_id</th>
+<th align="center">Name</th>
+<th align="center">Class_id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">Hawaiian</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">Canadian</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">Chicken Alfredo</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">Tomato</td>
+<td align="center">3</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">Chicago style</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">Mozzarella</td>
+<td align="center">4</td>
+</tr>
+<tr class="odd">
+<td align="center">7</td>
+<td align="center">Pineapple</td>
+<td align="center">5</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p></li>
+<li><p><strong>What type of relationships between individuals exist in my ontology?<br />
+</strong>In the <em>relationships</em> sheet, make a list of the different types of relationships that exist between your individuals. Your relationship should be verbs (e.g., <em>acts_in</em>, <em>is_author_of</em>, <em>has_flavor</em>, <em>bought</em>). For each of your relationship, consider whether it has a inverse relationship (e.g., <em>has_actor</em>, <em>has_author is_flavor_of, was_bought_by</em>) and if that is the case, indicate it in the <em>inverse_relationship</em> column. Here is an [<a href="example:\\" class="uri">example:\\</a>](<a href="example:\" class="uri">example:\</a>){.uri}</p>
+<table style="width:78%;">
+<colgroup>
+<col width="25%" />
+<col width="20%" />
+<col width="31%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Relationship_id</th>
+<th align="center">Relationship</th>
+<th align="center">Inverse_relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">has_topping</td>
+<td align="center">is_topping_of</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">has_base</td>
+<td align="center">is_base_of</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">has_sauce</td>
+<td align="center">is_sauce_of</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">has_cheese</td>
+<td align="center">is_cheese_of</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Important note:</strong> For your individual assignment you should have <strong>at least 3 relationships, excluding the inverse ones</strong> and you should <strong>not</strong> use the is_a relationships (these are used to link objects with their class, but for our purpose, we included the class as an attribute in the <em>individuals</em> sheet).<br />
+<br />
+</p></li>
+<li><p><strong>What relationships exist between individuals exist in my ontology?<br />
+</strong>This is where you write your triples in the <strong><em>triples</em></strong> sheet of the template. Make sure that each individual has a relationship with at least one other. In sheet you want to write the <strong>ID</strong> of each component, but it may be less confusing to start with the actual names of the individuals and relationship, like this:<br />
+<br />
+<br />
+</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Subject_id</th>
+<th align="center">Relationship_id</th>
+<th align="center">Object_id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Canadian</td>
+<td align="center">has_cheese</td>
+<td align="center">Mozzarella</td>
+</tr>
+<tr class="even">
+<td align="center">Canadian</td>
+<td align="center">has_base</td>
+<td align="center">Chicago style</td>
+</tr>
+<tr class="odd">
+<td align="center">Hawaiian</td>
+<td align="center">has_topping</td>
+<td align="center">Pineapple</td>
+</tr>
+<tr class="even">
+<td align="center">Chicken Alfredo Pizza</td>
+<td align="center">has_sauce</td>
+<td align="center">Alfredo</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>And then you can replace the values with their respective IDs.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Subject_id</th>
+<th align="center">Relationship_id</th>
+<th align="center">Object_id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">6</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">5</td>
+</tr>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">7</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="center">3</td>
+<td align="center">4</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+As mentioned above, you could normally represent the relationship between an individual and its class can be represented in triples using the <em>is_a</em> relationship (e.g., Philippe is_a Professor). But for this assignment we will <strong>not</strong> use the <em>is_a</em> relationship, since the link between each individual and its class is already declared in the <em>individuals</em> table.</p></li>
+</ol>
+<div id="visualizing-our-graph" class="section level3" number="0.0.5">
+<h3><span class="header-section-number">0.0.5</span> <strong>Visualizing our graph</strong></h3>
+<p>I created a very primitive <a href="https://pmongeon.shinyapps.io/Graph_viewer/">web application</a> that can read data from the ontology template provided. Here is our graph:</p>
+<p><img src="images/graph.png" width="1000" /></p>
+</div>
 </div>
 <div id="exercises-6" class="section level2 unnumbered">
 <h2>Exercises</h2>
-<p>Upcoming…</p>
+<ol style="list-style-type: decimal">
+<li>Download the <a href="files/ontology_template.xlsx"><em>template</em></a> file that contains the data used in the example above ontology.</li>
+<li>Create a list of 10 to 20 individuals that cover the five classes.</li>
+<li>Create a list of 10 to 20 triples that cover the four types of relationships.</li>
+<li>Visualize your ontology with this <a href="https://pmongeon.shinyapps.io/Graph_viewer/">web application</a>.<br />
+<strong>Note:</strong> For the graph visualization tool to work, you <strong>must</strong> use the template and keep the names of the sheet and columns exactly as as they are.</li>
+</ol>
 
 </div>
 </div>

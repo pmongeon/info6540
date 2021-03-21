@@ -32,7 +32,7 @@
   
 <link rel="prev" href="document-oriented-databases.html"/>
 <link rel="next" href="linked-data.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -198,24 +198,37 @@
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#mongodb-demo"><i class="fa fa-check"></i>MongoDB demo</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#exercises-3"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#my-solution"><i class="fa fa-check"></i>My solution</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#additional-resources"><i class="fa fa-check"></i>Additional resources</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html"><i class="fa fa-check"></i>Graph databases</a>
 <ul>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#learning-objectives-7"><i class="fa fa-check"></i>Learning objectives</a></li>
-<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#content-1"><i class="fa fa-check"></i>Content</a></li>
+<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#graph-databases-1"><i class="fa fa-check"></i>Graph databases</a>
+<ul>
+<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#nodes"><i class="fa fa-check"></i>Nodes</a></li>
+<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#edges"><i class="fa fa-check"></i>Edges</a></li>
+<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#attributes"><i class="fa fa-check"></i>Attributes</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#creating-a-network-dataset"><i class="fa fa-check"></i>Creating a network dataset</a></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#exercises-4"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#additional-resources-1"><i class="fa fa-check"></i>Additional resources</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="linked-data.html"><a href="linked-data.html"><i class="fa fa-check"></i>Linked data</a>
 <ul>
 <li class="chapter" data-level="" data-path="linked-data.html"><a href="linked-data.html#learning-objectives-8"><i class="fa fa-check"></i>Learning objectives</a></li>
-<li class="chapter" data-level="" data-path="linked-data.html"><a href="linked-data.html#content-2"><i class="fa fa-check"></i>Content</a></li>
+<li class="chapter" data-level="" data-path="linked-data.html"><a href="linked-data.html#content-1"><i class="fa fa-check"></i>Content</a></li>
 <li class="chapter" data-level="" data-path="linked-data.html"><a href="linked-data.html#exercises-5"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html"><i class="fa fa-check"></i>Ontologies</a>
 <ul>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#learning-objectives-9"><i class="fa fa-check"></i>Learning objectives</a></li>
-<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#content-3"><i class="fa fa-check"></i>Content</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#what-are-ontologies"><i class="fa fa-check"></i>What are ontologies?</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#components-of-an-ontology"><i class="fa fa-check"></i>Components of an ontology</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#building-a-simple-ontology"><i class="fa fa-check"></i>Building a simple ontology</a>
+<ul>
+<li class="chapter" data-level="0.0.1" data-path="ontologies.html"><a href="ontologies.html#visualizing-our-graph"><i class="fa fa-check"></i><b>0.0.1</b> <strong>Visualizing our graph</strong></a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#exercises-6"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
@@ -245,22 +258,85 @@
 <li>Graphs (Networks)</li>
 <li>Nodes</li>
 <li>Edges</li>
-<li>Properties</li>
+<li>Attributes</li>
 </ul>
 <p><strong>Practical skills</strong></p>
 <ul>
-<li>Creating a network dataset</li>
+<li>Creating a network data set</li>
 <li>Visualizing a network</li>
-<li>Interpreting networks</li>
 </ul>
 </div>
-<div id="content-1" class="section level2 unnumbered">
-<h2>Content</h2>
-<p>Upcoming…</p>
+<div id="graph-databases-1" class="section level2 unnumbered">
+<h2>Graph databases</h2>
+<p>In graph databases, the data is stored as collections of <strong>edges</strong>, <strong>nodes</strong> to which we assign <strong>properties</strong>, and the priority is on the relationship between the different data elements. They are used to visualize data in graphs (networks)and are thus particularly useful to explore how people, processes, and objects are interrelated.</p>
+<p>Ontologies, which we will introduce in the next chapter, are essentially a form of graph with a semantic layer and a bunch of rules that formalize the types of entities and relationships that exist within a knowledge domain. For now, let us simply look at the most basic components that are found in every single graph: <strong>nodes</strong>, <strong>edges</strong>,and <strong>attributes</strong>.</p>
+<div id="nodes" class="section level3 unnumbered">
+<h3>Nodes</h3>
+<p>Nodes are simply entities of some kind, such as people, products, processes, event, concepts, etc. Depending on the purpose of the graph and the available data, nodes can be practically <strong>anything</strong>.</p>
+<p>This is a node :</p>
+<p><img src="images/node.png" width="108" /></p>
+<p>A graph that represents a single kind of entity (e.g., students) is called <strong>unimodal</strong>, and one representing different kinds of things (e.g., students and courses) is called <strong>multimodal</strong>.</p>
+</div>
+<div id="edges" class="section level3 unnumbered">
+<h3>Edges</h3>
+<p>And edge is a relationship that exists between two nodes. Like nodes, depending on the purpose of the graph, the edges can represent anything. An edge must have two nodes.</p>
+<p>This is an edge:</p>
+<p><img src="images/edge.png" width="378" /></p>
+<p>Note that an edge can relate a node to itself (that’s called a self-loop):</p>
+<p><img src="images/self-loop.png" width="136" /></p>
+<p>There are two types of edges: <strong>directed</strong> and <strong>undirected</strong> . The directed edge indicates that the relationship has a direction (e.g., I like ice cream, but ice cream doesn’t like me back):</p>
+<p><img src="images/directed-edge.png" /></p>
+<p>The undirected edge represent associations and co-occurences. For instance, we could form an undirected edge between two students (node) that are taking the same course:</p>
+<p><img src="images/edge.png" width="381" /></p>
+<p><strong>Note:</strong> While the direction of the edges is an attribute of nodes, the undirected and directed attributes are usually not used in combination in the same graph, so we will most often refer to an undirected or directed <strong>graphs</strong>.</p>
+</div>
+<div id="attributes" class="section level3 unnumbered">
+<h3>Attributes</h3>
+<p>Nodes and edges can have attributes that can be used to manipulate their appearance in the graph (e.g., size, shape, color, label). Here is a network where the nodes have label:</p>
+</div>
+</div>
+<div id="creating-a-network-dataset" class="section level2 unnumbered">
+<h2>Creating a network dataset</h2>
+<p>The most basic form of network can be constructed from a simple table of edges with two columns.</p>
+<p>Here is an example:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">From</th>
+<th align="center">To</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Student A</td>
+<td align="center">Student B</td>
+</tr>
+<tr class="even">
+<td align="center">Student A</td>
+<td align="center">Student C</td>
+</tr>
+<tr class="odd">
+<td align="center">Student B</td>
+<td align="center">Student C</td>
+</tr>
+<tr class="even">
+<td align="center">Student C</td>
+<td align="center">Student D</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note</strong>: There is no standard for the names of your columns. Some network analysis or visualization tools will use <em>from</em> and <em>to</em>, some will use <em>source</em> and <em>target</em>, and some others my not require headers at all. Please also note that if you are building an <strong>undirected</strong> graph, you only need to include the relationship between A and B once. In other words, once the relationship between Student A and Student B has been entered, there is no need to add another row to indicate that Student B is also related to Student A.</p>
 </div>
 <div id="exercises-4" class="section level2 unnumbered">
 <h2>Exercises</h2>
-<p>Upcoming…</p>
+<ol style="list-style-type: decimal">
+<li>Download the following Excel <a href="files/network_template.xlsx">template</a> and add data to build a <strong>unimodal</strong> graph, which can be directed <strong>or</strong> undirected (but not both).</li>
+<li>Use this web application developed specially for this exercise to visualize and play around with your network.</li>
+</ol>
+</div>
+<div id="additional-resources-1" class="section level2 unnumbered">
+<h2>Additional resources</h2>
+<p>Gephi (<a href="https://gephi.org/">www.gephi.org</a>) is an open source network analysis software that you can use to build, visualize and analyze networks of different complexity levels and sizes. It has a tiny bit of a learning curve, but it has the advantage of being free and able to support various kinds of network related tasks.</p>
 
 </div>
 </div>
