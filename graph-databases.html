@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="document-oriented-databases.html"/>
-<link rel="next" href="linked-data.html"/>
+<link rel="next" href="ontologies.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -214,22 +214,16 @@
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#exercises-4"><i class="fa fa-check"></i>Exercises</a></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#additional-resources-1"><i class="fa fa-check"></i>Additional resources</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linked-data.html"><a href="linked-data.html"><i class="fa fa-check"></i>Linked data</a>
-<ul>
-<li class="chapter" data-level="" data-path="linked-data.html"><a href="linked-data.html#learning-objectives-8"><i class="fa fa-check"></i>Learning objectives</a></li>
-<li class="chapter" data-level="" data-path="linked-data.html"><a href="linked-data.html#content-1"><i class="fa fa-check"></i>Content</a></li>
-<li class="chapter" data-level="" data-path="linked-data.html"><a href="linked-data.html#exercises-5"><i class="fa fa-check"></i>Exercises</a></li>
-</ul></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html"><i class="fa fa-check"></i>Ontologies</a>
 <ul>
-<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#learning-objectives-9"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#learning-objectives-8"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#what-are-ontologies"><i class="fa fa-check"></i>What are ontologies?</a></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#components-of-an-ontology"><i class="fa fa-check"></i>Components of an ontology</a></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#building-a-simple-ontology"><i class="fa fa-check"></i>Building a simple ontology</a>
 <ul>
 <li class="chapter" data-level="0.0.1" data-path="ontologies.html"><a href="ontologies.html#visualizing-our-graph"><i class="fa fa-check"></i><b>0.0.1</b> <strong>Visualizing our graph</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#exercises-6"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#exercises-5"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
 </ul>
@@ -274,20 +268,20 @@
 <h3>Nodes</h3>
 <p>Nodes are simply entities of some kind, such as people, products, processes, event, concepts, etc. Depending on the purpose of the graph and the available data, nodes can be practically <strong>anything</strong>.</p>
 <p>This is a node :</p>
-<p><img src="files/node.png" width="108" /></p>
+<p><img src="images/node.png" width="108" /></p>
 <p>A graph that represents a single kind of entity (e.g., students) is called <strong>unimodal</strong>, and one representing different kinds of things (e.g., students and courses) is called <strong>multimodal</strong>.</p>
 </div>
 <div id="edges" class="section level3 unnumbered">
 <h3>Edges</h3>
 <p>And edge is a relationship that exists between two nodes. Like nodes, depending on the purpose of the graph, the edges can represent anything. An edge must have two nodes.</p>
 <p>This is an edge:</p>
-<p><img src="files/edge.png" width="378" /></p>
+<p><img src="images/edge.png" width="378" /></p>
 <p>Note that an edge can relate a node to itself (that’s called a self-loop):</p>
-<p><img src="files/self-loop.png" width="136" /></p>
+<p><img src="images/self-loop.png" width="136" /></p>
 <p>There are two types of edges: <strong>directed</strong> and <strong>undirected</strong> . The directed edge indicates that the relationship has a direction (e.g., I like ice cream, but ice cream doesn’t like me back):</p>
-<p><img src="files/directed-edge.png" /></p>
+<p><img src="images/directed-edge.png" /></p>
 <p>The undirected edge represent associations and co-occurences. For instance, we could form an undirected edge between two students (node) that are taking the same course:</p>
-<p><img src="files/edge.png" width="381" /></p>
+<p><img src="images/edge.png" width="381" /></p>
 <p><strong>Note:</strong> While the direction of the edges is an attribute of nodes, the undirected and directed attributes are usually not used in combination in the same graph, so we will most often refer to an undirected or directed <strong>graphs</strong>.</p>
 </div>
 <div id="attributes" class="section level3 unnumbered">
@@ -346,7 +340,7 @@
         </div>
       </div>
 <a href="document-oriented-databases.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="linked-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="ontologies.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
