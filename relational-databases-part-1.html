@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Relational databases (Part 1) | INFO 6540 - Data Management</title>
   <meta name="description" content="Relational databases (Part 1) | INFO 6540 - Data Management" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Relational databases (Part 1) | INFO 6540 - Data Management" />
   <meta property="og:type" content="book" />
@@ -30,10 +30,11 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="github-and-version-control.html"/>
+<link rel="prev" href="thinking-about-data.html"/>
 <link rel="next" href="relational-databases-part-2.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 
@@ -67,7 +70,7 @@
 
 <ul class="summary">
 <li><center>INFO6540 - Data Management</center></li>
-<li><center>Winter 2021</center></li>
+<li><center>Winter 2022</center></li>
 <li><center>Philippe Mongeon</center></li>
 
 <li class="divider"></li>
@@ -75,40 +78,22 @@
 <ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i>Schedule</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#assignments"><i class="fa fa-check"></i>Assignments</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#download-all-course-materials-zip-file"><i class="fa fa-check"></i>Download all course materials (zip file)</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#official-syllabus"><i class="fa fa-check"></i>Official syllabus</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html"><i class="fa fa-check"></i>Data, Databases, Data Management</a>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html"><i class="fa fa-check"></i>Thinking about data</a>
 <ul>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#learning-objectives"><i class="fa fa-check"></i>Learning objectives</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#content"><i class="fa fa-check"></i>Content</a>
-<ul>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#what-is-data"><i class="fa fa-check"></i>What is data?</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#stuctured-vs-unstructured-data"><i class="fa fa-check"></i>Stuctured vs Unstructured data</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#databases"><i class="fa fa-check"></i>Databases</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#data-management"><i class="fa fa-check"></i>Data management</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#excercises"><i class="fa fa-check"></i>Excercises</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html"><i class="fa fa-check"></i>GitHub and version control</a>
-<ul>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#learning-objectives-1"><i class="fa fa-check"></i>Learning objectives</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#versioning-and-version-control"><i class="fa fa-check"></i>Versioning and version control</a>
-<ul>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#versioning"><i class="fa fa-check"></i>Versioning</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#version-control-systems"><i class="fa fa-check"></i>Version control systems</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#git-and-github"><i class="fa fa-check"></i>Git and GitHub</a>
-<ul>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#key-concepts"><i class="fa fa-check"></i>Key concepts</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#using-git-and-github-effectively"><i class="fa fa-check"></i>Using Git and GitHub effectively</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#github-demo"><i class="fa fa-check"></i>GitHub demo</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#references-and-additional-resources"><i class="fa fa-check"></i>References and additional resources</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#learning-objectives"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#what-is-data"><i class="fa fa-check"></i>What is data?</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#datasets"><i class="fa fa-check"></i>Datasets</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#databases"><i class="fa fa-check"></i>Databases</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#database-management-systems-dbms"><i class="fa fa-check"></i>Database management systems (DBMS)</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#data-management"><i class="fa fa-check"></i>Data management</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#from-unstructured-to-structured-data"><i class="fa fa-check"></i>From unstructured to structured data</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#practice"><i class="fa fa-check"></i>Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html"><i class="fa fa-check"></i>Relational databases (Part 1)</a>
 <ul>
-<li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#learning-objectives-2"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#learning-objectives-1"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#relational-databases"><i class="fa fa-check"></i>Relational databases</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#database-design"><i class="fa fa-check"></i>Database design</a>
 <ul>
@@ -118,7 +103,7 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html"><i class="fa fa-check"></i>Relational databases (Part 2)</a>
 <ul>
-<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#learning-objectives-3"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#learning-objectives-2"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#relationship-types"><i class="fa fa-check"></i>Relationship types</a>
 <ul>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#one-to-one-relationship"><i class="fa fa-check"></i>One-to-one relationship</a></li>
@@ -127,12 +112,12 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#table-types"><i class="fa fa-check"></i>Table types</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#entity-relationship-diagrams"><i class="fa fa-check"></i>Entity-relationship diagrams</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#getting-started-with-mysql-workbench"><i class="fa fa-check"></i>Getting started with MySQL workbench</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#exercises-1"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#getting-started-with-mysql-workbench"><i class="fa fa-check"></i>Getting started with MySQL Workbench</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html"><i class="fa fa-check"></i>Relational databases (Part 3)</a>
 <ul>
-<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#learning-objectives-4"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#learning-objectives-3"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#data-types"><i class="fa fa-check"></i>Data types</a>
 <ul>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#strings-data-types"><i class="fa fa-check"></i>Strings data types</a></li>
@@ -143,11 +128,11 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#constraints"><i class="fa fa-check"></i>Constraints</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#generating-your-database-documentation-automatically-with-mysql-workbench"><i class="fa fa-check"></i>Generating your database documentation automatically with MySQL workbench</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#exercises-2"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#exercises-1"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html"><i class="fa fa-check"></i>Structured Query Language (SQL)</a>
 <ul>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#learning-objectives-5"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#learning-objectives-4"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#what-is-sql"><i class="fa fa-check"></i>What is SQL?</a></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#syntax"><i class="fa fa-check"></i>Syntax</a></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#create-modify-and-delete-objects"><i class="fa fa-check"></i>Create, modify and delete objects</a>
@@ -187,7 +172,7 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html"><i class="fa fa-check"></i>Document-oriented databases</a>
 <ul>
-<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#learning-objectives-6"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#learning-objectives-5"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#nosql-databases"><i class="fa fa-check"></i>NoSQL databases</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#document-oriented-databases-1"><i class="fa fa-check"></i>Document-oriented databases</a>
 <ul>
@@ -197,13 +182,13 @@
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#implications-for-database-design"><i class="fa fa-check"></i>Implications for database design</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#mongodb-demo"><i class="fa fa-check"></i>MongoDB demo</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#exercises-3"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#exercises-2"><i class="fa fa-check"></i>Exercises</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#my-solution"><i class="fa fa-check"></i>My solution</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#additional-resources"><i class="fa fa-check"></i>Additional resources</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html"><i class="fa fa-check"></i>Graph databases</a>
 <ul>
-<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#learning-objectives-7"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#learning-objectives-6"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#graph-databases-1"><i class="fa fa-check"></i>Graph databases</a>
 <ul>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#nodes"><i class="fa fa-check"></i>Nodes</a></li>
@@ -211,19 +196,19 @@
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#attributes"><i class="fa fa-check"></i>Attributes</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#creating-a-network-dataset"><i class="fa fa-check"></i>Creating a network dataset</a></li>
-<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#exercises-4"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#exercises-3"><i class="fa fa-check"></i>Exercises</a></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#additional-resources-1"><i class="fa fa-check"></i>Additional resources</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html"><i class="fa fa-check"></i>Ontologies</a>
 <ul>
-<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#learning-objectives-8"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#learning-objectives-7"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#what-are-ontologies"><i class="fa fa-check"></i>What are ontologies?</a></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#components-of-an-ontology"><i class="fa fa-check"></i>Components of an ontology</a></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#building-a-simple-ontology"><i class="fa fa-check"></i>Building a simple ontology</a>
 <ul>
-<li class="chapter" data-level="0.0.1" data-path="ontologies.html"><a href="ontologies.html#visualizing-our-graph"><i class="fa fa-check"></i><b>0.0.1</b> <strong>Visualizing our graph</strong></a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#visualizing-our-graph"><i class="fa fa-check"></i>Visualizing our graph</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#exercises-5"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#exercises-4"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
 </ul>
@@ -245,7 +230,7 @@
             <section class="normal" id="section-">
 <div id="relational-databases-part-1" class="section level1 unnumbered">
 <h1>Relational databases (Part 1)</h1>
-<div id="learning-objectives-2" class="section level2 unnumbered">
+<div id="learning-objectives-1" class="section level2 unnumbered">
 <h2>Learning objectives</h2>
 <p><strong>Concepts</strong></p>
 <ul>
@@ -255,19 +240,19 @@
 </ul>
 <p><strong>Practical skills</strong></p>
 <ul>
-<li>Writing a mission and objectives statement for your database (team assignment #1)
-<!-- - Using a RDBMS to design a database (team assignment #2) --></li>
-<li>Creating database tables and fields (team assignment #2)
-<!-- - Building entity relationship diagrams (ERD) (team assignment #2) --></li>
+<li>Writing a mission and objectives statement for your database (team assignment #1) <!-- - Using a RDBMS to design a database (team assignment #2) --></li>
+<li>Creating database tables and fields (team assignment #2) <!-- - Building entity relationship diagrams (ERD) (team assignment #2) --></li>
 <li>Documenting databases (team assignment #2)</li>
 </ul>
 </div>
 <div id="relational-databases" class="section level2 unnumbered">
 <h2>Relational databases</h2>
-<p>Relational databases stores relations that are represented as tables. Each column of a table is an attribute (which I will call fields from now on), and tuples (or records) are set of attributes. Let’s consider the table below which is a set of relations representing students. Each record is a unique student, who is defined by 4 attributes: their student ID, first name, last name, and program. The subject being represented in this table are the students, and all the students are represented by the same set of limited features and no student can exist in this database with different features than the others. A relational database is a collection of tables linked to one another, each representing a different subject (courses, buildings, animals, concerts, orders, conversations, families, foods, games, or anything that we wish to capture in the database), and each with their own set of fields, and records.</p>
-<p><img src="files/ch3/relational_model.png" /><!-- --></p>
+<p>Relational databases stores relations that are represented as tables. Each column of a table is an attribute (which I will call fields from now on), and tuples (or records) are a set of attributes. For example, consider
+the table below, which is a set of relations representing students. Each record is a unique student defined by four attributes: their student ID, first name, last name, and program. The subject represented in this table are the students, and the same set of limited features represents all the students. No student
+can exist in this database with different features than the others. A relational database is a collection of tables linked to one another, each representing a different subject (courses, buildings, animals, concerts, orders, conversations, families, foods, games, or anything that we wish to capture in the database), and each with their own set of fields, and records.</p>
+<p><img src="files/ch3/relational_model.png" /></p>
 <p>The figure below shows how tables are linked to one another in the relational model.</p>
-<p><img src="files/ch3/linked_tables.png" /><!-- --></p>
+<p><img src="files/ch3/linked_tables.png" width="550" /></p>
 <p>In the next few weeks, you will learn how to design your own relational database, so let’s get started.</p>
 </div>
 <div id="database-design" class="section level2 unnumbered">
@@ -277,25 +262,28 @@
 <p>As I mentioned in the opening chapter of this book, databases are created for a specific purpose, and that purpose should be clearly defined before you start creating tables and fields and their relationships. This is the first step of the database design process that Hernandez (2013) proposes in his book, so let us start there are well.</p>
 <div id="database-mission-statement" class="section level4 unnumbered">
 <h4>Database mission statement</h4>
-<p>The database mission statement is a short text written in general and accessible language that states the specific purpose of your database. It is important to note that it is not the same as the mission statement of the organization for which the database will be designed. This statement refers specifically to the database and what the database will do for the organization. To keep that in mind as you formulate your database mission statement, you may want to start the text the following way:</p>
+<p>The database mission statement is a short text written in general and accessible language that states the specific purpose of your database. It is important to note that it is not the same as the organization’s
+mission statement for which the database will be designed. Instead, this statement refers specifically to the database and what the database will do for the organization. To keep that in mind as you formulate your database mission statement, you may want to start the text the following way:</p>
 <p align="center">
-<br><em>The purpose of the [name of organization] <strong>database</strong> is…</em><br><br>
+<p><br><em>The purpose of the <span class="math display">\[name of organization and/or organizational unit\]</span> <strong>database</strong> is…</em><br><br></p>
 </p>
 <p>This way you are less likely to forget that the database is what matters here.</p>
-<p>Ideally, your database mission statement would be aligned with the mission of the organization for which it is intended, so having a good understanding of what the mission of the organization is essential. In real life, this part of the database design process would likely involve conducting interviews with the key actors of the organizations, and across its different departments, to ensure that you have a good idea of the needs that your database will be addressing. In the context of this course, you will not be conducting interviews and will have to use your best judgment in ensuring that your database mission statement is related to the mission of the organization. Also, since organizations usually state their missions on their website, you can certainly use that information to help you.</p>
-<p>It should also be noted that the database that you will be proposing, and its mission statement, do not necessarily have to cover everything that an organization does. You could for instance, choose to develop a database that would support the teaching mission of a university, without considering or mentioning the other missions of the university such as research.</p>
-<p>Some other constraints that are present in the context of the course, but not in real life, are the minimum number of specific tasks that your database should be supporting (5) and the minimum number of required tables in your database design (10). You can use these requirements to try to gauge whether your mission statement is too narrow or too broad.</p>
+<p>Ideally, your database mission statement would be aligned with the organization’s mission for which it is intended, so having a good understanding of the organization’s mission is essential. In real life, this part of the database design process would likely involve conducting interviews with the key actors of the organization and across its different departments to ensure that you have a good idea of the needs that your database will be addressing. However, in the context of this course, you will not be conducting interviews. You will have to use your best judgment to ensure that your database mission statement is related to the organization’s mission. Also, since organizations usually state their missions on their website, you can certainly use that information to help you.</p>
+<p>It should also be noted that the database that you will be proposing, and its mission statement, do not necessarily have to cover everything that an organization does. You could, for instance, choose to develop a database that would support the teaching mission of a university without considering or mentioning the other missions of the university, such as research.</p>
+<p>Other constraints present in the context of the course, but not in real life, are the minimum number of specific tasks that your database should be supporting (5) and the minimum number of required tables in your database design (10). You can use these requirements to gauge whether your mission statement is too narrow or too broad.</p>
 <div id="a-database-for-gummybox" class="section level5 unnumbered">
 <h5>A database for GummyBox</h5>
-<p>GummyBox is a new store that specializes in the sale and delivery of gummy assortments, and which is in need of a database to support it’s operations. The mission for this database could be formulated as follows:</p>
+<p>GummyBox is a new online store specializing in the sale and delivery of gummies and gummy assortments. The organization needs a database to support its operations. The company has multiple divisions with their own data needs. The HR department deals with employee records and data on pay and benefits, the purchasing department deals with orders to the suppliers, and the sales team handles customers’ orders. We decide to design a database that will support the operations of the sales department, and so we decide to name the database gummybox_sales and to formulate its mission as follows:</p>
 <blockquote>
-<p>The purpose of the GummyBox database is to maintain the data the company uses to best serve the sweet tooth of their customers.</p>
+<p>The purpose of the gummybox_sales database is to manage the data needed by the sales department to attend to the customers’ sweet tooth.</p>
 </blockquote>
+<p>While it may seem a bit vague at first glance, this statement aligns with the organization’s mission and the operations of the sales department. The statement will thus provide some guidance as we get further
+in the database design process.</p>
 </div>
 </div>
 <div id="database-objectives-statement" class="section level4 unnumbered">
 <h4>Database objectives statement</h4>
-<p>The database objectives are general <em>tasks</em> supported by the database. One way to distinguish them from the database mission is to remember that the mission statement relates to what the <em>organization</em> does, while the database objectives relates to the specific <em>tasks</em> or <em>needs</em> of <em>people</em> within the organization (e.g. employees) or outside the organizaion (e.g. clients or users). Here are some example:</p>
+<p>The database objectives are general tasks supported by the database. One way to distinguish them from the database mission is to remember that the mission statement relates to what the organization does. In contrast, the database objectives relate to the specific tasks or needs of people inside the organization (e.g., employees) or outside the organization (e.g., clients or users). Here are some examples:</p>
 <ul>
 <li>Keep track of students progress in their programs</li>
 <li>Maintain vehicle inventory</li>
@@ -310,8 +298,8 @@
 <li>It does not contain unessential details.</li>
 <li>It states <em>what</em> the task is, but does <em>not</em> indicate <em>how</em> it will be done by the database.</li>
 </ul>
-<div id="objectives-for-the-gummybox-database" class="section level5 unnumbered">
-<h5>Objectives for the GummyBox database</h5>
+<div id="objectives-for-the-gummybox_sales-database" class="section level5 unnumbered">
+<h5>Objectives for the gummybox_sales database</h5>
 <p>It was decided, after consultation with the GummyBox team, that their database will have the following objectives:</p>
 <ul>
 <li>Maintain customer information</li>
@@ -328,12 +316,13 @@
 <p>Now that we have established the mission and objectives that the database will be supporting, we are ready to start working on the structure of the database itself.</p>
 <div id="tables" class="section level4 unnumbered">
 <h4>Tables</h4>
-<p>The first step is to create the preliminary of tables that your database will contain. Tables are central to relational databases as they are representations of relations (that’s where the name “relational database” comes from). The tables are made of records (rows) and fields (columns), that represent a <em>single</em> subject, which can be an <strong>object</strong> (users, employees, equipment, rooms, address) or an <strong>event</strong> (e.g, concerts, conferences, meetings). So at this point of the process, the question to ask yourself is:</p>
+<p>The first step is to create the preliminary tables your database will contain. Tables are central to relational databases as they are representations of relations (that’s where the name “relational database” comes from). The tables are made of records (rows) and fields (columns) that represent a <em>single</em> subject, which can be an <strong>object</strong> (users, employees, equipment, rooms, address) or an <strong>event</strong> (e.g., concerts, conferences,
+meetings). So at this point of the process, the question to ask yourself is:</p>
 <p align="center">
-<br><em>What are the objects and events that need to be stored in the database in order to fulfill its mission and objectives?</em><br><br>
+<p><br><em>What are the objects and events that need to be stored in the database in order to fulfill its mission and objectives?</em><br><br></p>
 </p>
-<p>If your building a database for a job placement agency, for example, your database would likely need to include jobs, job-seekers and employers, and agents. For a University, you might have students, courses, instructors, departments, etc.</p>
-<p><strong>All tables should :</strong></p>
+<p>If you build a database for a job placement agency, your database would likely need to include jobs, job-seekers and employers, and agents. For a University, you might have students, courses, instructors, departments, etc.</p>
+<p><strong>All tables should:</strong></p>
 <ul>
 <li>Represent a single subject (object or event).</li>
 <li>have a primary key.</li>
@@ -347,8 +336,8 @@
 </div>
 <div id="fields" class="section level4 unnumbered">
 <h4>Fields</h4>
-<p>Now that you have identified the different subjects (tables) that your database is dealing with, the next part of the process is to ask what <strong>characteristics</strong> of these subjects should be recorded in the database. This will determine what <strong>fields</strong> (also called columns, variables, features) are required for each of your tables.</p>
-<p><strong>Every</strong> table needs to have at least one field that is going to be the <strong>primary key</strong>. The primary key is a unique identifier for each record that will be stored in the table, which means that it cannot appear twice in the table. The primary key is also what you will use to link tables together. When the primary key of a table is used in another table to form such a link between the tables, it is called a <strong>foreign key</strong>.</p>
+<p>Now that you have identified the different subjects (tables) that your database is dealing with, the next part of the process is to ask yourself what <strong>characteristics</strong> should be recorded in the database. That will determine what <strong>fields</strong> (also called columns, variables, features) are required for each of your tables.</p>
+<p><strong>Every</strong> table needs to have at least one field that will be the <strong>primary key</strong>. The primary key is a unique identifier for each record stored in the table, which means that it cannot appear twice in the table. The primary key is also what you will use to link tables together. When the primary key is used in another table to form such a link between the tables, it is called a <strong>foreign key</strong>.</p>
 <p><strong>All fields should</strong>:</p>
 <ul>
 <li>Be unique in the entire database.</li>
@@ -367,6 +356,11 @@
 <p>There are also some guidelines to follow when naming your tables and fields to make your database easier to understand and navigate.</p>
 <p><strong>Characteristics of a good table and field names (Hernandez, 2013)</strong></p>
 <table>
+<colgroup>
+<col width="56%" />
+<col width="18%" />
+<col width="25%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Rule</th>
@@ -420,13 +414,13 @@
 </div>
 <div id="describing-tables-and-fields" class="section level4 unnumbered">
 <h4>Describing tables and fields</h4>
-<p>Another important aspect of database management and design is <strong>documentation</strong>. A properly documented database ensures that the users understand what tables of the database contain and why they exist. Having good names to for your tables and fields might reduce the need for your database users to refer to the documentation all the time, but it certainly does not eliminate the need for it.</p>
-<p>Describing your tables and fields also help ensuring they are needed and well-designed. If you cannot describe the purpose of a table, it may be that it has, in fact, no puprose.</p>
+<p>Another important aspect of database management and design is <strong>documentation</strong>. An adequately documented database ensures that the users understand what tables contain and why they exist. Having good names for your tables and fields might reduce the need for your database users to refer to the documentation all the time, but it certainly does not eliminate the need for it.</p>
+<p>Describing your tables and fields also helps ensure they are needed and well-designed. If you cannot describe the purpose of a table, it may be that it has, in fact, no purpose.</p>
 <p>Here are a few simple rules to follow:</p>
 <ul>
-<li>Clearly and concisely describe the table and field.</li>
-<li>For tables only, your description should also indicate <strong>why</strong> the table is necessary.</li>
-<li>Focus on what the table or fields contain rather than how they will specifically be used or accessed.</li>
+<li>Clearly and concisely describe the tables and fields.</li>
+<li>For <strong>tables only</strong>, your description should indicate <strong>why</strong> it is necessary.</li>
+<li>Focus on the content of the tables or fields rather than how they will specifically be used or accessed.</li>
 <li>Do not use examples in your descriptions.</li>
 </ul>
 
@@ -439,12 +433,11 @@
           </div>
         </div>
       </div>
-<a href="github-and-version-control.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="thinking-about-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="relational-databases-part-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -463,6 +456,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": false
 },
 "fontsettings": {
@@ -480,6 +474,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section",
 "scroll_highlight": true
@@ -488,6 +486,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

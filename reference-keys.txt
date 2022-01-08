@@ -196,3 +196,10 @@ visualizing-our-graph
 attributes
 creating-a-network-dataset
 additional-resources-1
+official-syllabus
+datasets
+databases
+what-is-data
+from-unstructured-to-structured-data
+database-management-systems-dbms
+data-management

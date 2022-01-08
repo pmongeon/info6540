@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Graph databases | INFO 6540 - Data Management</title>
   <meta name="description" content="Graph databases | INFO 6540 - Data Management" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Graph databases | INFO 6540 - Data Management" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="document-oriented-databases.html"/>
 <link rel="next" href="ontologies.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 
@@ -67,7 +70,7 @@
 
 <ul class="summary">
 <li><center>INFO6540 - Data Management</center></li>
-<li><center>Winter 2021</center></li>
+<li><center>Winter 2022</center></li>
 <li><center>Philippe Mongeon</center></li>
 
 <li class="divider"></li>
@@ -75,40 +78,22 @@
 <ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i>Schedule</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#assignments"><i class="fa fa-check"></i>Assignments</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#download-all-course-materials-zip-file"><i class="fa fa-check"></i>Download all course materials (zip file)</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#official-syllabus"><i class="fa fa-check"></i>Official syllabus</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html"><i class="fa fa-check"></i>Data, Databases, Data Management</a>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html"><i class="fa fa-check"></i>Thinking about data</a>
 <ul>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#learning-objectives"><i class="fa fa-check"></i>Learning objectives</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#content"><i class="fa fa-check"></i>Content</a>
-<ul>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#what-is-data"><i class="fa fa-check"></i>What is data?</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#stuctured-vs-unstructured-data"><i class="fa fa-check"></i>Stuctured vs Unstructured data</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#databases"><i class="fa fa-check"></i>Databases</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#data-management"><i class="fa fa-check"></i>Data management</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#excercises"><i class="fa fa-check"></i>Excercises</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html"><i class="fa fa-check"></i>GitHub and version control</a>
-<ul>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#learning-objectives-1"><i class="fa fa-check"></i>Learning objectives</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#versioning-and-version-control"><i class="fa fa-check"></i>Versioning and version control</a>
-<ul>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#versioning"><i class="fa fa-check"></i>Versioning</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#version-control-systems"><i class="fa fa-check"></i>Version control systems</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#git-and-github"><i class="fa fa-check"></i>Git and GitHub</a>
-<ul>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#key-concepts"><i class="fa fa-check"></i>Key concepts</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#using-git-and-github-effectively"><i class="fa fa-check"></i>Using Git and GitHub effectively</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#github-demo"><i class="fa fa-check"></i>GitHub demo</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#references-and-additional-resources"><i class="fa fa-check"></i>References and additional resources</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#learning-objectives"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#what-is-data"><i class="fa fa-check"></i>What is data?</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#datasets"><i class="fa fa-check"></i>Datasets</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#databases"><i class="fa fa-check"></i>Databases</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#database-management-systems-dbms"><i class="fa fa-check"></i>Database management systems (DBMS)</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#data-management"><i class="fa fa-check"></i>Data management</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#from-unstructured-to-structured-data"><i class="fa fa-check"></i>From unstructured to structured data</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#practice"><i class="fa fa-check"></i>Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html"><i class="fa fa-check"></i>Relational databases (Part 1)</a>
 <ul>
-<li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#learning-objectives-2"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#learning-objectives-1"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#relational-databases"><i class="fa fa-check"></i>Relational databases</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#database-design"><i class="fa fa-check"></i>Database design</a>
 <ul>
@@ -118,7 +103,7 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html"><i class="fa fa-check"></i>Relational databases (Part 2)</a>
 <ul>
-<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#learning-objectives-3"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#learning-objectives-2"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#relationship-types"><i class="fa fa-check"></i>Relationship types</a>
 <ul>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#one-to-one-relationship"><i class="fa fa-check"></i>One-to-one relationship</a></li>
@@ -127,12 +112,12 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#table-types"><i class="fa fa-check"></i>Table types</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#entity-relationship-diagrams"><i class="fa fa-check"></i>Entity-relationship diagrams</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#getting-started-with-mysql-workbench"><i class="fa fa-check"></i>Getting started with MySQL workbench</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#exercises-1"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#getting-started-with-mysql-workbench"><i class="fa fa-check"></i>Getting started with MySQL Workbench</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html"><i class="fa fa-check"></i>Relational databases (Part 3)</a>
 <ul>
-<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#learning-objectives-4"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#learning-objectives-3"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#data-types"><i class="fa fa-check"></i>Data types</a>
 <ul>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#strings-data-types"><i class="fa fa-check"></i>Strings data types</a></li>
@@ -143,11 +128,11 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#constraints"><i class="fa fa-check"></i>Constraints</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#generating-your-database-documentation-automatically-with-mysql-workbench"><i class="fa fa-check"></i>Generating your database documentation automatically with MySQL workbench</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#exercises-2"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#exercises-1"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html"><i class="fa fa-check"></i>Structured Query Language (SQL)</a>
 <ul>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#learning-objectives-5"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#learning-objectives-4"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#what-is-sql"><i class="fa fa-check"></i>What is SQL?</a></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#syntax"><i class="fa fa-check"></i>Syntax</a></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#create-modify-and-delete-objects"><i class="fa fa-check"></i>Create, modify and delete objects</a>
@@ -187,7 +172,7 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html"><i class="fa fa-check"></i>Document-oriented databases</a>
 <ul>
-<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#learning-objectives-6"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#learning-objectives-5"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#nosql-databases"><i class="fa fa-check"></i>NoSQL databases</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#document-oriented-databases-1"><i class="fa fa-check"></i>Document-oriented databases</a>
 <ul>
@@ -197,13 +182,13 @@
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#implications-for-database-design"><i class="fa fa-check"></i>Implications for database design</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#mongodb-demo"><i class="fa fa-check"></i>MongoDB demo</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#exercises-3"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#exercises-2"><i class="fa fa-check"></i>Exercises</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#my-solution"><i class="fa fa-check"></i>My solution</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#additional-resources"><i class="fa fa-check"></i>Additional resources</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html"><i class="fa fa-check"></i>Graph databases</a>
 <ul>
-<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#learning-objectives-7"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#learning-objectives-6"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#graph-databases-1"><i class="fa fa-check"></i>Graph databases</a>
 <ul>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#nodes"><i class="fa fa-check"></i>Nodes</a></li>
@@ -211,19 +196,19 @@
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#attributes"><i class="fa fa-check"></i>Attributes</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#creating-a-network-dataset"><i class="fa fa-check"></i>Creating a network dataset</a></li>
-<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#exercises-4"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#exercises-3"><i class="fa fa-check"></i>Exercises</a></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#additional-resources-1"><i class="fa fa-check"></i>Additional resources</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html"><i class="fa fa-check"></i>Ontologies</a>
 <ul>
-<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#learning-objectives-8"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#learning-objectives-7"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#what-are-ontologies"><i class="fa fa-check"></i>What are ontologies?</a></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#components-of-an-ontology"><i class="fa fa-check"></i>Components of an ontology</a></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#building-a-simple-ontology"><i class="fa fa-check"></i>Building a simple ontology</a>
 <ul>
-<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#visualizing-our-graph"><i class="fa fa-check"></i><strong>Visualizing our graph</strong></a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#visualizing-our-graph"><i class="fa fa-check"></i>Visualizing our graph</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#exercises-5"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#exercises-4"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
 </ul>
@@ -245,7 +230,7 @@
             <section class="normal" id="section-">
 <div id="graph-databases" class="section level1 unnumbered">
 <h1>Graph databases</h1>
-<div id="learning-objectives-7" class="section level2 unnumbered">
+<div id="learning-objectives-6" class="section level2 unnumbered">
 <h2>Learning objectives</h2>
 <p><strong>Concepts</strong></p>
 <ul>
@@ -268,20 +253,20 @@
 <h3>Nodes</h3>
 <p>Nodes are simply entities of some kind, such as people, products, processes, event, concepts, etc. Depending on the purpose of the graph and the available data, nodes can be practically <strong>anything</strong>.</p>
 <p>This is a node :</p>
-<p><img src="files/node.png" width="108" /></p>
+<p><img src="images/node.png" width="108" /></p>
 <p>A graph that represents a single kind of entity (e.g., students) is called <strong>unimodal</strong>, and one representing different kinds of things (e.g., students and courses) is called <strong>multimodal</strong>.</p>
 </div>
 <div id="edges" class="section level3 unnumbered">
 <h3>Edges</h3>
 <p>And edge is a relationship that exists between two nodes. Like nodes, depending on the purpose of the graph, the edges can represent anything. An edge must have two nodes.</p>
 <p>This is an edge:</p>
-<p><img src="files/edge.png" width="378" /></p>
+<p><img src="images/edge.png" width="378" /></p>
 <p>Note that an edge can relate a node to itself (that’s called a self-loop):</p>
-<p><img src="files/self-loop.png" width="136" /></p>
+<p><img src="images/self-loop.png" width="136" /></p>
 <p>There are two types of edges: <strong>directed</strong> and <strong>undirected</strong> . The directed edge indicates that the relationship has a direction (e.g., I like ice cream, but ice cream doesn’t like me back):</p>
-<p><img src="files/directed-edge.png" /></p>
+<p><img src="images/directed-edge.png" /></p>
 <p>The undirected edge represent associations and co-occurences. For instance, we could form an undirected edge between two students (node) that are taking the same course:</p>
-<p><img src="files/edge.png" width="381" /></p>
+<p><img src="images/edge.png" width="381" /></p>
 <p><strong>Note:</strong> While the direction of the edges is an attribute of nodes, the undirected and directed attributes are usually not used in combination in the same graph, so we will most often refer to an undirected or directed <strong>graphs</strong>.</p>
 </div>
 <div id="attributes" class="section level3 unnumbered">
@@ -321,7 +306,7 @@
 </table>
 <p><strong>Note</strong>: There is no standard for the names of your columns. Some network analysis or visualization tools will use <em>from</em> and <em>to</em>, some will use <em>source</em> and <em>target</em>, and some others my not require headers at all. Please also note that if you are building an <strong>undirected</strong> graph, you only need to include the relationship between A and B once. In other words, once the relationship between Student A and Student B has been entered, there is no need to add another row to indicate that Student B is also related to Student A.</p>
 </div>
-<div id="exercises-4" class="section level2 unnumbered">
+<div id="exercises-3" class="section level2 unnumbered">
 <h2>Exercises</h2>
 <ol style="list-style-type: decimal">
 <li>Download the following Excel <a href="files/network_template.xlsx">template</a> and add data to build a <strong>unimodal</strong> graph, which can be directed <strong>or</strong> undirected (but not both).</li>
@@ -344,7 +329,6 @@
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -363,6 +347,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": false
 },
 "fontsettings": {
@@ -380,6 +365,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

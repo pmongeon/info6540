@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>INFO 6540 - Data Management</title>
   <meta name="description" content="INFO 6540 - Data Management" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="INFO 6540 - Data Management" />
   <meta property="og:type" content="book" />
@@ -31,9 +31,10 @@
   
   
 
-<link rel="next" href="data-databases-data-management.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link rel="next" href="thinking-about-data.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,11 +50,13 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
 <script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
 
 
 
@@ -71,7 +74,7 @@
 
 <ul class="summary">
 <li><center>INFO6540 - Data Management</center></li>
-<li><center>Winter 2021</center></li>
+<li><center>Winter 2022</center></li>
 <li><center>Philippe Mongeon</center></li>
 
 <li class="divider"></li>
@@ -79,40 +82,22 @@
 <ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i>Schedule</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#assignments"><i class="fa fa-check"></i>Assignments</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#download-all-course-materials-zip-file"><i class="fa fa-check"></i>Download all course materials (zip file)</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#official-syllabus"><i class="fa fa-check"></i>Official syllabus</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html"><i class="fa fa-check"></i>Data, Databases, Data Management</a>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html"><i class="fa fa-check"></i>Thinking about data</a>
 <ul>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#learning-objectives"><i class="fa fa-check"></i>Learning objectives</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#content"><i class="fa fa-check"></i>Content</a>
-<ul>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#what-is-data"><i class="fa fa-check"></i>What is data?</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#stuctured-vs-unstructured-data"><i class="fa fa-check"></i>Stuctured vs Unstructured data</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#databases"><i class="fa fa-check"></i>Databases</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#data-management"><i class="fa fa-check"></i>Data management</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#excercises"><i class="fa fa-check"></i>Excercises</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html"><i class="fa fa-check"></i>GitHub and version control</a>
-<ul>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#learning-objectives-1"><i class="fa fa-check"></i>Learning objectives</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#versioning-and-version-control"><i class="fa fa-check"></i>Versioning and version control</a>
-<ul>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#versioning"><i class="fa fa-check"></i>Versioning</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#version-control-systems"><i class="fa fa-check"></i>Version control systems</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#git-and-github"><i class="fa fa-check"></i>Git and GitHub</a>
-<ul>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#key-concepts"><i class="fa fa-check"></i>Key concepts</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#using-git-and-github-effectively"><i class="fa fa-check"></i>Using Git and GitHub effectively</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#github-demo"><i class="fa fa-check"></i>GitHub demo</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#references-and-additional-resources"><i class="fa fa-check"></i>References and additional resources</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#learning-objectives"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#what-is-data"><i class="fa fa-check"></i>What is data?</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#datasets"><i class="fa fa-check"></i>Datasets</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#databases"><i class="fa fa-check"></i>Databases</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#database-management-systems-dbms"><i class="fa fa-check"></i>Database management systems (DBMS)</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#data-management"><i class="fa fa-check"></i>Data management</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#from-unstructured-to-structured-data"><i class="fa fa-check"></i>From unstructured to structured data</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#practice"><i class="fa fa-check"></i>Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html"><i class="fa fa-check"></i>Relational databases (Part 1)</a>
 <ul>
-<li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#learning-objectives-2"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#learning-objectives-1"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#relational-databases"><i class="fa fa-check"></i>Relational databases</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#database-design"><i class="fa fa-check"></i>Database design</a>
 <ul>
@@ -122,7 +107,7 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html"><i class="fa fa-check"></i>Relational databases (Part 2)</a>
 <ul>
-<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#learning-objectives-3"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#learning-objectives-2"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#relationship-types"><i class="fa fa-check"></i>Relationship types</a>
 <ul>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#one-to-one-relationship"><i class="fa fa-check"></i>One-to-one relationship</a></li>
@@ -131,12 +116,12 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#table-types"><i class="fa fa-check"></i>Table types</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#entity-relationship-diagrams"><i class="fa fa-check"></i>Entity-relationship diagrams</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#getting-started-with-mysql-workbench"><i class="fa fa-check"></i>Getting started with MySQL workbench</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#exercises-1"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#getting-started-with-mysql-workbench"><i class="fa fa-check"></i>Getting started with MySQL Workbench</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html"><i class="fa fa-check"></i>Relational databases (Part 3)</a>
 <ul>
-<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#learning-objectives-4"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#learning-objectives-3"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#data-types"><i class="fa fa-check"></i>Data types</a>
 <ul>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#strings-data-types"><i class="fa fa-check"></i>Strings data types</a></li>
@@ -147,51 +132,15 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#constraints"><i class="fa fa-check"></i>Constraints</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#generating-your-database-documentation-automatically-with-mysql-workbench"><i class="fa fa-check"></i>Generating your database documentation automatically with MySQL workbench</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#exercises-2"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#exercises-1"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html"><i class="fa fa-check"></i>Structured Query Language (SQL)</a>
 <ul>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#learning-objectives-5"><i class="fa fa-check"></i>Learning objectives</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#what-is-sql"><i class="fa fa-check"></i>What is SQL?</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#syntax"><i class="fa fa-check"></i>Syntax</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#create-modify-and-delete-objects"><i class="fa fa-check"></i>Create, modify and delete objects</a>
-<ul>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#create"><i class="fa fa-check"></i>CREATE</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#alter"><i class="fa fa-check"></i>ALTER</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#drop"><i class="fa fa-check"></i>DROP</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#insert-data-in-a-table"><i class="fa fa-check"></i>Insert data in a table</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#retrieve-data"><i class="fa fa-check"></i>Retrieve data</a>
-<ul>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#select"><i class="fa fa-check"></i>SELECT</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#select-distinct"><i class="fa fa-check"></i>SELECT DISTINCT</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#where"><i class="fa fa-check"></i>WHERE</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#order-by"><i class="fa fa-check"></i>ORDER BY</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#operators"><i class="fa fa-check"></i>Operators</a>
-<ul>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#arithmetic-operators"><i class="fa fa-check"></i>Arithmetic operators</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#comparison-operators"><i class="fa fa-check"></i>Comparison operators</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#logical-boolean-operators"><i class="fa fa-check"></i>Logical (boolean) operators</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#aggregate-functions"><i class="fa fa-check"></i>aggregate functions</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#combining-joining-tables"><i class="fa fa-check"></i>Combining (joining) tables</a>
-<ul>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#join-inner-join"><i class="fa fa-check"></i>JOIN (INNER JOIN)</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#left-join"><i class="fa fa-check"></i>LEFT JOIN</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#right-join"><i class="fa fa-check"></i>RIGHT JOIN</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#union"><i class="fa fa-check"></i>UNION</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#full-join"><i class="fa fa-check"></i>FULL JOIN</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#aliases-as"><i class="fa fa-check"></i>Aliases (AS)</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#database-views"><i class="fa fa-check"></i>Database views</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#putting-it-all-together"><i class="fa fa-check"></i>Putting it all together</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#solutions"><i class="fa fa-check"></i>Solutions</a></li>
+<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#learning-objectives-4"><i class="fa fa-check"></i>Learning objectives</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html"><i class="fa fa-check"></i>Document-oriented databases</a>
 <ul>
-<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#learning-objectives-6"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#learning-objectives-5"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#nosql-databases"><i class="fa fa-check"></i>NoSQL databases</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#document-oriented-databases-1"><i class="fa fa-check"></i>Document-oriented databases</a>
 <ul>
@@ -201,13 +150,12 @@
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#implications-for-database-design"><i class="fa fa-check"></i>Implications for database design</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#mongodb-demo"><i class="fa fa-check"></i>MongoDB demo</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#exercises-3"><i class="fa fa-check"></i>Exercises</a></li>
-<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#my-solution"><i class="fa fa-check"></i>My solution</a></li>
+<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#exercises-2"><i class="fa fa-check"></i>Exercises</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#additional-resources"><i class="fa fa-check"></i>Additional resources</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html"><i class="fa fa-check"></i>Graph databases</a>
 <ul>
-<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#learning-objectives-7"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#learning-objectives-6"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#graph-databases-1"><i class="fa fa-check"></i>Graph databases</a>
 <ul>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#nodes"><i class="fa fa-check"></i>Nodes</a></li>
@@ -215,19 +163,19 @@
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#attributes"><i class="fa fa-check"></i>Attributes</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#creating-a-network-dataset"><i class="fa fa-check"></i>Creating a network dataset</a></li>
-<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#exercises-4"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#exercises-3"><i class="fa fa-check"></i>Exercises</a></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#additional-resources-1"><i class="fa fa-check"></i>Additional resources</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html"><i class="fa fa-check"></i>Ontologies</a>
 <ul>
-<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#learning-objectives-8"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#learning-objectives-7"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#what-are-ontologies"><i class="fa fa-check"></i>What are ontologies?</a></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#components-of-an-ontology"><i class="fa fa-check"></i>Components of an ontology</a></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#building-a-simple-ontology"><i class="fa fa-check"></i>Building a simple ontology</a>
 <ul>
-<li class="chapter" data-level="0.0.1" data-path="ontologies.html"><a href="ontologies.html#visualizing-our-graph"><i class="fa fa-check"></i><b>0.0.1</b> <strong>Visualizing our graph</strong></a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#visualizing-our-graph"><i class="fa fa-check"></i>Visualizing our graph</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#exercises-5"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#exercises-4"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
 </ul>
@@ -250,14 +198,20 @@
 <div id="header">
 <h1 class="title">INFO 6540 - Data Management</h1>
 <p class="author"><em>Philippe Mongeon</em></p>
-<p class="date"><em>Winter 2021</em></p>
+<p class="date"><em>Winter 2022</em></p>
 </div>
 <div id="course-overview" class="section level1 unnumbered">
 <h1>Course overview</h1>
-<p>This course (and this accompanying book) are designed to provide you with a practical and non-technical introduction to data management. It is a hands-on course in which you will get comfortable working with data, databases, and GitHub. After completing this course, you hopefully will have a better understanding of how databases work on the backend of the websites and applications that we use everyday, and feel confident in your ability to work with data and design effective databases that meet the needs of your users.</p>
+<p>This course (and this accompanying website) are designed to provide you with a practical introduction to data management. It is a hands-on course in which you will get comfortable working with data, with a focus on data structures and database design. After completing this course, you hopefully will have a better understanding of how data infrastructures support the organizations, websites and applications that we use everyday, and feel confident in your ability to work with data and design effective databases that meet the needs of your users.</p>
 <div id="schedule" class="section level2 unnumbered">
 <h2>Schedule</h2>
-<table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<p>The class time will be divided as follows:</p>
+<ul>
+<li><p><strong>5:35 pm to 6:25 pm</strong>: lecture &amp; Q&amp;A in-person and on Teams (<strong>only on teams for January</strong>).</p></li>
+<li><p><strong>5:35 am to 8:25 am</strong>: Lab time with in-person and Teams support (<strong>only teams support for January</strong>)</p></li>
+</ul>
+<p><strong>In-person attendance will remain optional for the entire semester</strong>. When in-person teaching resumes, the lectures will be hybrid (in-person, with a recorded Teams broadcast). The labs will be in person, with virtual support available via Teams. Of course, I am always available for support outside of class hours and you can book a meeting with me <a href="https://calendly.com/pmongeon/">here</a>.</p>
+<table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -266,146 +220,109 @@ Date of Class
 <th style="text-align:left;">
 Topics
 </th>
-<th style="text-align:left;">
-Assignments
-</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-Week 1 (Jan 6-8)
+Week 1 (Jan 11)
 </td>
 <td style="text-align:left;">
-Course overview (no content)
-</td>
-<td style="text-align:left;">
+Course overview
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Week 2 (Jan 11-15)
+Week 2 (Jan 18)
 </td>
 <td style="text-align:left;">
-Data, big data, databases, data management
-</td>
-<td style="text-align:left;">
+Thinking about data
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Week 3 (Jan 18-22)
-</td>
-<td style="text-align:left;">
-Version control and GitHub
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Week 4 (Jan 25-29)
+Week 3 (Jan 25)
 </td>
 <td style="text-align:left;">
 Relational databases
 </td>
-<td style="text-align:left;">
-Assignment #1 (Jan 29)
-</td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Week 5 (Feb 1-5)
+Week 4 (Feb 1)
 </td>
 <td style="text-align:left;">
 Relational databases
 </td>
-<td style="text-align:left;">
-Last week to make team roster adjustments
-</td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Week 6 (Feb 8-12)
+Week 5 (Feb 8)
 </td>
 <td style="text-align:left;">
 Relational databases
 </td>
-<td style="text-align:left;">
-Group project part #1 (Feb 12)
-</td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Reading week (Feb 15-19)
-</td>
-<td style="text-align:left;">
+Week 6 (Feb 15) Structured Query Language (SQL)
 </td>
 <td style="text-align:left;">
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Week 7 (Feb 22-26)
+Reading week (Feb 22)
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Week 7 (Mar 1)
 </td>
 <td style="text-align:left;">
 Structured Query Language (SQL)
 </td>
+</tr>
+<tr>
 <td style="text-align:left;">
+Week 8 (Mar 8)
+</td>
+<td style="text-align:left;">
+Free lab time
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Week 8 (Mar 1-5)
-</td>
-<td style="text-align:left;">
-Structured Query Language (SQL)
-</td>
-<td style="text-align:left;">
-Group project part #2 (Mar 5)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Week 9 (Mar 8-12)
+Week 9 (Mar 15)
 </td>
 <td style="text-align:left;">
 Document-oriented databases
 </td>
+</tr>
+<tr>
 <td style="text-align:left;">
+Week 10 (Mar 22)
+</td>
+<td style="text-align:left;">
+Graph databases
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Week 10 (Mar 15-19)
-</td>
-<td style="text-align:left;">
-Graph databases and linked data
-</td>
-<td style="text-align:left;">
-Group project part #3 (Mar 19)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Week 11 (Mar 22-26)
+Week 11 (Mar 29)
 </td>
 <td style="text-align:left;">
 Ontologies
 </td>
-<td style="text-align:left;">
-Submit peer-assessment for group members (Mar 26)
-</td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Week 12 (Mar 29-Apr 2)
+Week 12 (Apr 5)
 </td>
 <td style="text-align:left;">
-Ontologies
-</td>
-<td style="text-align:left;">
-Assignment #2 due the following Friday (Apr 16)
+Conclusion
 </td>
 </tr>
 </tbody>
@@ -428,21 +345,44 @@ Due date
 <th style="text-align:left;">
 Value
 </th>
+<th style="text-align:left;">
+File
+</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-Assignment 1
+Lab 1
 </td>
 <td style="text-align:left;">
-Excel + GitHub
+Excel
 </td>
 <td style="text-align:left;">
-2021-01-29
+2022-01-24
 </td>
 <td style="text-align:left;">
-20%
+5%
+</td>
+<td style="text-align:left;">
+coming soon
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lab 2
+</td>
+<td style="text-align:left;">
+Tables and fields
+</td>
+<td style="text-align:left;">
+2022-01-31
+</td>
+<td style="text-align:left;">
+5%
+</td>
+<td style="text-align:left;">
+coming soon
 </td>
 </tr>
 <tr>
@@ -453,10 +393,30 @@ Group project part 1
 Mission statement and objectives
 </td>
 <td style="text-align:left;">
-2021-02-12
+2022-02-04
 </td>
 <td style="text-align:left;">
-15%
+5%
+</td>
+<td style="text-align:left;">
+<a href="files/assignments/info6540_group1_objectives.pdf">info6540_group1_objectives.pdf</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lab 3
+</td>
+<td style="text-align:left;">
+Relationships
+</td>
+<td style="text-align:left;">
+2022-02-07
+</td>
+<td style="text-align:left;">
+5%
+</td>
+<td style="text-align:left;">
+coming soon
 </td>
 </tr>
 <tr>
@@ -467,10 +427,30 @@ Group project part 2
 Database design
 </td>
 <td style="text-align:left;">
-2021-03-05
+2022-02-25
 </td>
 <td style="text-align:left;">
-20%
+25%
+</td>
+<td style="text-align:left;">
+<a href="files/assignments/info6540_group2_design.pdf">info6540_group2_design.pdf</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lab 4
+</td>
+<td style="text-align:left;">
+SQL
+</td>
+<td style="text-align:left;">
+2022-03-07
+</td>
+<td style="text-align:left;">
+5%
+</td>
+<td style="text-align:left;">
+coming soon
 </td>
 </tr>
 <tr>
@@ -481,10 +461,30 @@ Group project part 3
 SQL and database views
 </td>
 <td style="text-align:left;">
-2021-03-21
+2021-03-11
 </td>
 <td style="text-align:left;">
-15%
+10%
+</td>
+<td style="text-align:left;">
+<a href="files/assignments/info6540_group3_views.pdf">info6540_group3_views.pdf</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lab 5
+</td>
+<td style="text-align:left;">
+JSON
+</td>
+<td style="text-align:left;">
+2022-03-21
+</td>
+<td style="text-align:left;">
+5%
+</td>
+<td style="text-align:left;">
+coming soon
 </td>
 </tr>
 <tr>
@@ -495,10 +495,13 @@ Participation
 Team assessment
 </td>
 <td style="text-align:left;">
-2021-03-26
+2022-03-26
 </td>
 <td style="text-align:left;">
 10%
+</td>
+<td style="text-align:left;">
+<a href="files/assignments/info6540_group_participation.xlsx">info6540_group_participation.xlsx</a>
 </td>
 </tr>
 <tr>
@@ -509,24 +512,27 @@ Assignment 2
 Build your own ontology
 </td>
 <td style="text-align:left;">
-2021-04-16
+2022-04-15
 </td>
 <td style="text-align:left;">
-20%
+25%
+</td>
+<td style="text-align:left;">
+<a href="files/assignments/info6540_individual_ontology.pdf">info6540_individual_ontology.pdf</a>
 </td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="download-all-course-materials-zip-file" class="section level2 unnumbered">
-<h2>Download all course materials (zip file)</h2>
-<p>You can download all the course materials <a href="files/INFO6540-Data-Management.zip">here</a>.</p>
-<ul>
-<li>The syllabus.</li>
-<li>The assignments.</li>
-<li>The Excel sheet for the peer-assessment.</li>
-<li>iCalendar file with the assignment delivery dates.</li>
-</ul>
+<div id="official-syllabus" class="section level2 unnumbered">
+<h2>Official syllabus</h2>
+<object data="files/syllabus/INFO6540_Syllabus.pdf" type="application/pdf" width="700px" height="500">
+<embed src="files/syllabus/INFO6540_Syllabus.pdf">
+<p>
+<p>This browser does not support PDFs. Please download the PDF to view it: &lt;a href=“files/syllabus/INFO6540_Syllabus.pdf”&gt;Download PDF&lt;/a&gt;.</p>
+</p>
+</embed>
+</object>
 
 </div>
 </div>
@@ -536,11 +542,10 @@ Build your own ontology
         </div>
       </div>
 
-<a href="data-databases-data-management.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="thinking-about-data.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -559,6 +564,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": false
 },
 "fontsettings": {
@@ -576,6 +582,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

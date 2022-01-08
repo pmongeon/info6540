@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Relational databases (Part 3) | INFO 6540 - Data Management</title>
   <meta name="description" content="Relational databases (Part 3) | INFO 6540 - Data Management" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Relational databases (Part 3) | INFO 6540 - Data Management" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="relational-databases-part-2.html"/>
 <link rel="next" href="structured-query-language-sql.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 
@@ -67,7 +70,7 @@
 
 <ul class="summary">
 <li><center>INFO6540 - Data Management</center></li>
-<li><center>Winter 2021</center></li>
+<li><center>Winter 2022</center></li>
 <li><center>Philippe Mongeon</center></li>
 
 <li class="divider"></li>
@@ -75,40 +78,22 @@
 <ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i>Schedule</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#assignments"><i class="fa fa-check"></i>Assignments</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#download-all-course-materials-zip-file"><i class="fa fa-check"></i>Download all course materials (zip file)</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#official-syllabus"><i class="fa fa-check"></i>Official syllabus</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html"><i class="fa fa-check"></i>Data, Databases, Data Management</a>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html"><i class="fa fa-check"></i>Thinking about data</a>
 <ul>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#learning-objectives"><i class="fa fa-check"></i>Learning objectives</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#content"><i class="fa fa-check"></i>Content</a>
-<ul>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#what-is-data"><i class="fa fa-check"></i>What is data?</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#stuctured-vs-unstructured-data"><i class="fa fa-check"></i>Stuctured vs Unstructured data</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#databases"><i class="fa fa-check"></i>Databases</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#data-management"><i class="fa fa-check"></i>Data management</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#excercises"><i class="fa fa-check"></i>Excercises</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html"><i class="fa fa-check"></i>GitHub and version control</a>
-<ul>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#learning-objectives-1"><i class="fa fa-check"></i>Learning objectives</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#versioning-and-version-control"><i class="fa fa-check"></i>Versioning and version control</a>
-<ul>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#versioning"><i class="fa fa-check"></i>Versioning</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#version-control-systems"><i class="fa fa-check"></i>Version control systems</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#git-and-github"><i class="fa fa-check"></i>Git and GitHub</a>
-<ul>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#key-concepts"><i class="fa fa-check"></i>Key concepts</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#using-git-and-github-effectively"><i class="fa fa-check"></i>Using Git and GitHub effectively</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#github-demo"><i class="fa fa-check"></i>GitHub demo</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#references-and-additional-resources"><i class="fa fa-check"></i>References and additional resources</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#learning-objectives"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#what-is-data"><i class="fa fa-check"></i>What is data?</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#datasets"><i class="fa fa-check"></i>Datasets</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#databases"><i class="fa fa-check"></i>Databases</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#database-management-systems-dbms"><i class="fa fa-check"></i>Database management systems (DBMS)</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#data-management"><i class="fa fa-check"></i>Data management</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#from-unstructured-to-structured-data"><i class="fa fa-check"></i>From unstructured to structured data</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#practice"><i class="fa fa-check"></i>Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html"><i class="fa fa-check"></i>Relational databases (Part 1)</a>
 <ul>
-<li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#learning-objectives-2"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#learning-objectives-1"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#relational-databases"><i class="fa fa-check"></i>Relational databases</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#database-design"><i class="fa fa-check"></i>Database design</a>
 <ul>
@@ -118,7 +103,7 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html"><i class="fa fa-check"></i>Relational databases (Part 2)</a>
 <ul>
-<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#learning-objectives-3"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#learning-objectives-2"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#relationship-types"><i class="fa fa-check"></i>Relationship types</a>
 <ul>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#one-to-one-relationship"><i class="fa fa-check"></i>One-to-one relationship</a></li>
@@ -127,12 +112,12 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#table-types"><i class="fa fa-check"></i>Table types</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#entity-relationship-diagrams"><i class="fa fa-check"></i>Entity-relationship diagrams</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#getting-started-with-mysql-workbench"><i class="fa fa-check"></i>Getting started with MySQL workbench</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#exercises-1"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#getting-started-with-mysql-workbench"><i class="fa fa-check"></i>Getting started with MySQL Workbench</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html"><i class="fa fa-check"></i>Relational databases (Part 3)</a>
 <ul>
-<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#learning-objectives-4"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#learning-objectives-3"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#data-types"><i class="fa fa-check"></i>Data types</a>
 <ul>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#strings-data-types"><i class="fa fa-check"></i>Strings data types</a></li>
@@ -143,11 +128,11 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#constraints"><i class="fa fa-check"></i>Constraints</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#generating-your-database-documentation-automatically-with-mysql-workbench"><i class="fa fa-check"></i>Generating your database documentation automatically with MySQL workbench</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#exercises-2"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#exercises-1"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html"><i class="fa fa-check"></i>Structured Query Language (SQL)</a>
 <ul>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#learning-objectives-5"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#learning-objectives-4"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#what-is-sql"><i class="fa fa-check"></i>What is SQL?</a></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#syntax"><i class="fa fa-check"></i>Syntax</a></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#create-modify-and-delete-objects"><i class="fa fa-check"></i>Create, modify and delete objects</a>
@@ -187,7 +172,7 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html"><i class="fa fa-check"></i>Document-oriented databases</a>
 <ul>
-<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#learning-objectives-6"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#learning-objectives-5"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#nosql-databases"><i class="fa fa-check"></i>NoSQL databases</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#document-oriented-databases-1"><i class="fa fa-check"></i>Document-oriented databases</a>
 <ul>
@@ -197,13 +182,13 @@
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#implications-for-database-design"><i class="fa fa-check"></i>Implications for database design</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#mongodb-demo"><i class="fa fa-check"></i>MongoDB demo</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#exercises-3"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#exercises-2"><i class="fa fa-check"></i>Exercises</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#my-solution"><i class="fa fa-check"></i>My solution</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#additional-resources"><i class="fa fa-check"></i>Additional resources</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html"><i class="fa fa-check"></i>Graph databases</a>
 <ul>
-<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#learning-objectives-7"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#learning-objectives-6"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#graph-databases-1"><i class="fa fa-check"></i>Graph databases</a>
 <ul>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#nodes"><i class="fa fa-check"></i>Nodes</a></li>
@@ -211,19 +196,19 @@
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#attributes"><i class="fa fa-check"></i>Attributes</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#creating-a-network-dataset"><i class="fa fa-check"></i>Creating a network dataset</a></li>
-<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#exercises-4"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#exercises-3"><i class="fa fa-check"></i>Exercises</a></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#additional-resources-1"><i class="fa fa-check"></i>Additional resources</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html"><i class="fa fa-check"></i>Ontologies</a>
 <ul>
-<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#learning-objectives-8"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#learning-objectives-7"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#what-are-ontologies"><i class="fa fa-check"></i>What are ontologies?</a></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#components-of-an-ontology"><i class="fa fa-check"></i>Components of an ontology</a></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#building-a-simple-ontology"><i class="fa fa-check"></i>Building a simple ontology</a>
 <ul>
-<li class="chapter" data-level="0.0.1" data-path="ontologies.html"><a href="ontologies.html#visualizing-our-graph"><i class="fa fa-check"></i><b>0.0.1</b> <strong>Visualizing our graph</strong></a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#visualizing-our-graph"><i class="fa fa-check"></i>Visualizing our graph</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#exercises-5"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#exercises-4"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
 </ul>
@@ -245,7 +230,7 @@
             <section class="normal" id="section-">
 <div id="relational-databases-part-3" class="section level1 unnumbered">
 <h1>Relational databases (Part 3)</h1>
-<div id="learning-objectives-4" class="section level2 unnumbered">
+<div id="learning-objectives-3" class="section level2 unnumbered">
 <h2>Learning objectives</h2>
 <p><strong>Concepts</strong></p>
 <ul>
@@ -261,17 +246,17 @@
 </div>
 <div id="data-types" class="section level2 unnumbered">
 <h2>Data types</h2>
-<p>Every field that you include in a table needs to have a data type. The data type is extremely important as it determines how the RDBMS will interpret, store, and potentially transform the data that will be inserted in the tables. The data type also determines the types of operations that can be performed with the data in contains. The three basic types of data types are <strong>strings</strong>, <strong>numbers,</strong> and <strong>dates and times</strong>.</p>
+<p>Every field you include in a table needs to have a data type. The data type is extremely important as it determines how the RDBMS will interpret, store, and potentially transform the data inserted in the tables. The data type also determines the types of operations that can be performed with the data it contains. The three basic data types are <strong>strings</strong>, <strong>numbers,</strong> and <strong>dates and times</strong>.</p>
 <div id="strings-data-types" class="section level3 unnumbered">
 <h3>Strings data types</h3>
-<p>Characters data types are very flexible because they can contain any combination of letters, numbers or symbols. The most common data types are CHAR, VARCHAR, NCHAR and NVARCHAR. the VAR prefix stands for <em>variable</em> and the N prefix means <em>national</em>. You should use the CHAR data type when the length of the strings that you will store will not vary (ex. country codes, phone numbers, postal codes). The VARCHAR data type should be used when the length of the strings is expected to vary. The NCHAR and NVARCHAR should be used when the field is intended to store strings in multiple languages.</p>
-<p>When declaring a string variable type you also have to specify the maximum length of the strings the database will store. For example, if you create a field called gummy_name with a variable type CHAR(10) it will not be able to store the gummy names that have more than 10 characters.</p>
-<p>You shouldn’t simply declare very large CHAR types just to be safe and never have to worry about your data being to large for the field, because that will either inflate the size of your table for no reason (which can matter a lot if it stores millions or billions or records), or will decrease the performance of your queries.</p>
+<p>Character data types are very flexible because they can contain any combination of letters, numbers or symbols. The most common data types are CHAR, VARCHAR, NCHAR and NVARCHAR. The VAR prefix stands for <em>variable,</em> and the N prefix means <em>national</em>. You should use the CHAR data type when the length of the strings that you will store will not vary (ex., country codes, phone numbers, postal codes). The VARCHAR data type should be used when the length of the strings is expected to vary. Finally, the NCHAR and NVARCHAR should be used when the field is intended to store strings in multiple languages.</p>
+<p>When declaring a string variable type, you must specify the maximum length of the strings the database will store. For example, a field called gummy_name with a variable type CHAR(10) will not store the gummy names with more than ten characters.</p>
+<p>You shouldn’t simply declare very large CHAR types to be safe and never have to worry about your data is too large for the field because that will either inflate the size of your table for no reason (which can matter a lot if it stores millions or billions of records) or will decrease the performance of your queries.</p>
 <p>More information on the string data types can be found in the <a href="https://dev.mysql.com/doc/refman/8.0/en/string-types.html">MySQL documentation</a>.</p>
 </div>
 <div id="numeric-data-types" class="section level3 unnumbered">
 <h3>Numeric data types</h3>
-<p>The numeric data types store… you guessed it: numbers. For values that don’t require decimals, you can use INT (for integer) or its variants. The only difference is the storage space they occupy and the range of value they can hold (see the summary in the table below). As for string data types, you want to use the smallest possible data type that can accommodate your data.</p>
+<p>The numeric data types store… you guessed it: numbers. You can use INT (for integer) or its variants for values that don’t require decimals. The only difference is the storage space they occupy and the range of value they can hold (see the summary in the table below). As for string data types, you want to use the smallest possible data type that can accommodate your data.</p>
 <table>
 <colgroup>
 <col width="8%" />
@@ -334,15 +319,15 @@
 </tr>
 </tbody>
 </table>
-<p>For values with decimals, you should use the FLOAT data type. However, for financial data or other cases where having more than a certain number of decimal makes no sense (e.g., 2.3333$) , the DECIMAL data type is preferred. The DECIMAL data type lets you specify the total number of digits and the value can have, and how many of these digits are decimals. For instance, DECIMAL(5,2) data type indicate that the field can contain values ranging from -999.99 to 999.99.</p>
+<p>For values with decimals, you should use the FLOAT data type. However, the DECIMAL data type is preferred for financial data or other cases where having more than a certain number of decimals makes no sense (e.g., 2.3333$). The DECIMAL data type lets you specify the number of digits a value can have and how many of these digits are decimals. For instance, the DECIMAL(5,2) data type indicates that the field can contain values ranging from -999.99 to 999.99.</p>
 <p>More information on the numeric data types can be found in the <a href="https://dev.mysql.com/doc/refman/8.0/en/string-types.html">MySQL documentation</a>.</p>
 </div>
 <div id="date-and-time-data-types" class="section level3 unnumbered">
 <h3>Date and time data types</h3>
 <table>
 <colgroup>
-<col width="21%" />
-<col width="32%" />
+<col width="22%" />
+<col width="31%" />
 <col width="46%" />
 </colgroup>
 <thead>
@@ -382,48 +367,51 @@
 </tr>
 </tbody>
 </table>
-<p>As you might notice from the table, no double quotes are used for the year format. That is because years are actually stored as numbers. It has also a very narrow range of possible values that allows the year to be very memory efficient since only one byte is necessary to store a range of 255 numerical values (see the TINYINT specifications in the previous table.</p>
+<p>As you might notice from the table, no double quotes are used for the year format. That is because years are stored as numbers. It also has a very narrow range of possible values that allows the year to be very memory efficient since only one byte is necessary to store a range of 255 numerical values (see the
+TINYINT specifications in the previous table.</p>
 <p>The difference between DATETIME and TIMESTAMP is that the TIMESTAMP converts the value to UTC and is converted back into local time when retrieved. With the DATETIME format, values are stored and retrieved as is.</p>
 <p>More details on the date and time formats can be found in the <a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html">MySQL documentation</a>.</p>
 </div>
 <div id="other-data-types" class="section level3 unnumbered">
 <h3>Other data types</h3>
-<p>The supported data types vary for different RDBMS, but these systems are constantly evolving and expanding the types of data they can handle. For example, possibly in response to the growing popularity of the JSON file format, MySQL now supports the JSON data type. More information on this data type and how to use it can be found in the <a href="https://dev.mysql.com/doc/refman/8.0/en/json.html">MySQL documentation</a>. You might remember that we played with the JSON format a little bit at the beginning of the course. However, please note that knowing how to use the JSON data type in MySQL is beyond the scope of the course. For our current purpose, it is enough to be aware of the fact that while MySQL databases are usually used for structured data, they are flexible tools that can deal with all kinds of semi-structured data formats (like JSON) and unstructured data (like plain text, and binary files like images, videos, etc.).</p>
+<p>The supported data types vary for different RDBMS, but these systems are constantly evolving and expanding the data types they can handle. For example, possibly in response to the growing popularity of the JSON file format, MySQL now supports the JSON data type. More information on this data type and how to use it can be found in the <a href="https://dev.mysql.com/doc/refman/8.0/en/json.html">MySQL documentation</a>. You might remember that we played with the JSON format a little bit at the beginning of the course. However, please note that knowing how to use the JSON data type in MySQL is beyond the scope of the course. For our current purpose, it is enough to be aware of the fact that while MySQL databases are usually used for structured data, they are flexible tools that can deal with all kinds of semi-structured data formats (like JSON) and unstructured data (like plain text, and binary files like images, videos, etc.).</p>
 </div>
 <div id="how-mysql-handles-data-types" class="section level3 unnumbered">
 <h3>How MySQL handles data types</h3>
-<p>In this video, I show you how to connect to my server using the connection details that have been provided to you by email, and how you can create tables, put data into them, and retrieve data from them. We will dig deeper into MySQL operations after the winter break so don’t worry if at this point you are a bit overwhelmed with the code. The main point of the video is to show you what happens when you put insert different values in fields with different data types.</p>
+<p>In this video, I show you how to connect to my server using the connection details that have been provided to you by email and how you can create tables, put data into them, and retrieve data from them. We will dig deeper into MySQL operations after the winter break, so don’t worry if, at this point, you are a bit overwhelmed with the code. The video’s main point is to show you what happens when you put different values in fields with different data types.</p>
 <iframe src="https://dal.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=feea18f4-92fc-4602-a5e4-acca0002c313&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay">
 </iframe>
 </div>
 </div>
 <div id="constraints" class="section level2 unnumbered">
 <h2>Constraints</h2>
-<p>SQL constraints are used to specify rules for data in a table. They are used to preserve the integrity of the database, insure data quality, and prevent data loss. While you do not need to use constraints other than the PRIMARY KEY and the FOREIGN KEY ones for this course, it is useful to know about constraints and what they do. Here is a list of constraints that are available in MySQL databases.</p>
+<p>SQL constraints are used to specify rules for data in a table. They are used to preserve the integrity of the database, ensure data quality, and prevent data loss. While you do not need to use constraints other than the PRIMARY KEY and the FOREIGN KEY ones for this course, it is helpful to know about constraints and what they do. Here is a list of constraints that are available in MySQL databases.</p>
 <ul>
-<li><strong>PRIMARY KEY</strong>: As you already know, the PRIMARY KEY must be unique and cannot be empty. the RDBMS also automatically creates an index (index are explained below) on this field.</li>
+<li><strong>PRIMARY KEY</strong>: As you already know, the PRIMARY KEY must be unique and cannot be empty. The RDBMS also automatically creates an index (explained below) on this field.</li>
 <li><strong>NOT NULL</strong>: Specifies that this field must always contain a value and cannot be empty (NULL).</li>
 <li><strong>UNIQUE</strong>: A field with a UNIQUE constraint cannot contain duplicate values.</li>
-<li><strong>AUTO INCREMENT</strong>: This constraints can be used with numeric data types, and is particularly useful for your primary keys. It basically means that whenever a new record is created, this field will automatically contain a value 1+the highest value contained in that field. This way, you don’t need to provide a value for the field, and you don’t have to worry about duplication.</li>
-<li><strong>GENERATED</strong>: This constraint allows you to automatically generate a value for the field upon creation of a new record. It is similar to AUTO INCREMENT, except that you can decide how the value is generated, for instance by concatenating the first_name and last_name column to generate a full_name value.</li>
-<li><strong>FOREIGN KEY</strong>: the value inserted into a FOREIGN KEY must exist into the PRIMARY KEY field of the parent table. NULL values are allowed in FOREIGN KEY fields.</li>
-<li><strong>CHECK</strong>: the check constraint is a very flexible constraint that allows you to specify the specific values that a field can contain. For example, you could set a CHECK constraint on the quantity of gummies in an order specifying that the value must be greater than 0.</li>
-<li><strong>DEFAULT</strong>: This constraint defines a default value to be inserted in the field when a new record is created and no value is provided for that specific field.</li>
-<li><strong>INDEX</strong>: This constraint is used to create an index for the values of that field, which can dramatically increase the speed of your queries. Just like a index at the end of a book telling you on what page(s) you can find information about a certain concept or topic instead of having to look at each page to find those sections, the MySQL INDEX creates a list of records where each of the different values of that field can be found and stores that list into its memory, so that those records can be retrieved much faster. For example, if you have have 50 different gummy records in your gummies table, 12 of which are red, 25 are blue, and 13 are green, you could create an index on the gummy_color table. The index would have 1 record for each color (red. blue, green), each containing a list of the gummy_id that have that color. The following video is me trying to explain explain how indexes work on a whiteboard:</li>
+<li><strong>AUTO INCREMENT</strong>: These constraints can be used with numeric data types and are particularly useful for your primary keys. It means that whenever a new record is created, this field will automatically contain a value 1+the highest value contained in that field. This way, you don’t need to provide value for the field, and you don’t have to worry about duplication.</li>
+<li><strong>GENERATED</strong>: This constraint allows you to automatically generate a value for the field upon creating a new record. It is similar to AUTO INCREMENT, except that you can decide how the value is generated, for instance, by concatenating the first_name and last_name column to generate a full_name value.</li>
+<li><strong>FOREIGN KEY</strong>: the value inserted into a FOREIGN KEY must exist in the PRIMARY KEY field of the parent table. NULL values are allowed in FOREIGN KEY fields.</li>
+<li><strong>CHECK</strong>: the check constraint is a very flexible constraint that allows you to specify the specific values that a field can contain. For example, you could set a CHECK constraint on the number of gummies in an order specifying that the value must be greater than 0.</li>
+<li><strong>DEFAULT</strong>: This constraint defines a default value to be inserted in the field when a new record is
+created, and no value is provided for that specific field.</li>
+<li><strong>INDEX</strong>: This constraint is used to create an index for the values of that field, which can dramatically increase the speed of your queries. Just like an index at the end of a book telling you on what page(s) you can find information about a particular concept or topic instead of having to look at each page to find those sections, the MySQL INDEX creates a list of records where each of the different values of that field can be found and stores that list into its memory, so that those records can be retrieved much faster. So, for example, if you have 50 different gummy records in your gummies table, 12 of which are red, 25 are blue, and 13 are green, you could create an index on the gummy_color table. The index would have one record for each colour (red., blue, green), each containing a list of the gummy_id that has that colour. The following video is me trying to explain how indexes
+work on a whiteboard:</li>
 </ul>
 <iframe src="https://dal.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=6d15c4c6-b6ff-4e7b-9a59-acc901730e94&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay">
 </iframe>
 </div>
 <div id="generating-your-database-documentation-automatically-with-mysql-workbench" class="section level2 unnumbered">
 <h2>Generating your database documentation automatically with MySQL workbench</h2>
-<p>There is a very powerful plugin for MySQL workbench that allows you to generate a Markdown document (just like the readme.MD file in your GitHub repository) with all the descriptions of your tables, fields, indexes, primary keys, foreign keys, etc.</p>
+<p>A very powerful plugin for MySQL workbench allows you to generate a Markdown document with all the descriptions of your tables, fields, indexes, primary keys, foreign keys, etc.</p>
 <p>Instructions on how to install and use the plugin can be found <a href="https://github.com/letrunghieu/mysql-workbench-plugin-doc-generating">here</a>. And in the following video I show you go through the installation process and show you how to use the plugin to easily generate beautiful documentation for your database.</p>
 <iframe src="https://dal.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=b74a7eef-ea47-4f42-841a-acca000fd416&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay">
 </iframe>
 </div>
-<div id="exercises-2" class="section level2 unnumbered">
+<div id="exercises-1" class="section level2 unnumbered">
 <h2>Exercises</h2>
-<p>As an exercise for this week, I invite you to connect to your team’s database on the QSS mySQL server (using the connection information that you received by email) and to experiment with data types and constraints by creating your own tables, inserting data into those tables, and then retrieving the content of the tables to see how your data was stored. Because you cannot break the database and the worst thing that can happen is that your queries return an error, don’t be afraid to try crazy queries that you know should not work (for instance, storing the string “abcd” in a DATETIME field), just to see how SQL reacts. That said, please limit your queries to CREATE, INSERT, SELECT and DROP statements at this point.</p>
+<p>As an exercise for this week, I invite you to connect to your team’s database on the qsslab MySQL server (using the connection information that you received by email) and to experiment with data types and constraints by creating your tables, inserting data into those tables, and then retrieving the content of the tables to see how your data was stored. Because you cannot break the database and the worst thing that can happen is that your queries return an error, don’t be afraid to try crazy queries that you know should not work (for instance, storing the string “abcd” in a DATETIME field), just to see how SQL reacts. That said, please limit your queries to CREATE, INSERT, SELECT and DROP statements at this point.</p>
 
 </div>
 </div>
@@ -437,7 +425,6 @@
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -456,6 +443,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": false
 },
 "fontsettings": {
@@ -473,6 +461,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

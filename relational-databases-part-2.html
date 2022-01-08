@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Relational databases (Part 2) | INFO 6540 - Data Management</title>
   <meta name="description" content="Relational databases (Part 2) | INFO 6540 - Data Management" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Relational databases (Part 2) | INFO 6540 - Data Management" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="relational-databases-part-1.html"/>
 <link rel="next" href="relational-databases-part-3.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 
@@ -67,7 +70,7 @@
 
 <ul class="summary">
 <li><center>INFO6540 - Data Management</center></li>
-<li><center>Winter 2021</center></li>
+<li><center>Winter 2022</center></li>
 <li><center>Philippe Mongeon</center></li>
 
 <li class="divider"></li>
@@ -75,40 +78,22 @@
 <ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i>Schedule</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#assignments"><i class="fa fa-check"></i>Assignments</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#download-all-course-materials-zip-file"><i class="fa fa-check"></i>Download all course materials (zip file)</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#official-syllabus"><i class="fa fa-check"></i>Official syllabus</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html"><i class="fa fa-check"></i>Data, Databases, Data Management</a>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html"><i class="fa fa-check"></i>Thinking about data</a>
 <ul>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#learning-objectives"><i class="fa fa-check"></i>Learning objectives</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#content"><i class="fa fa-check"></i>Content</a>
-<ul>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#what-is-data"><i class="fa fa-check"></i>What is data?</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#stuctured-vs-unstructured-data"><i class="fa fa-check"></i>Stuctured vs Unstructured data</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#databases"><i class="fa fa-check"></i>Databases</a></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#data-management"><i class="fa fa-check"></i>Data management</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="data-databases-data-management.html"><a href="data-databases-data-management.html#excercises"><i class="fa fa-check"></i>Excercises</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html"><i class="fa fa-check"></i>GitHub and version control</a>
-<ul>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#learning-objectives-1"><i class="fa fa-check"></i>Learning objectives</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#versioning-and-version-control"><i class="fa fa-check"></i>Versioning and version control</a>
-<ul>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#versioning"><i class="fa fa-check"></i>Versioning</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#version-control-systems"><i class="fa fa-check"></i>Version control systems</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#git-and-github"><i class="fa fa-check"></i>Git and GitHub</a>
-<ul>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#key-concepts"><i class="fa fa-check"></i>Key concepts</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#using-git-and-github-effectively"><i class="fa fa-check"></i>Using Git and GitHub effectively</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#github-demo"><i class="fa fa-check"></i>GitHub demo</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
-<li class="chapter" data-level="" data-path="github-and-version-control.html"><a href="github-and-version-control.html#references-and-additional-resources"><i class="fa fa-check"></i>References and additional resources</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#learning-objectives"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#what-is-data"><i class="fa fa-check"></i>What is data?</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#datasets"><i class="fa fa-check"></i>Datasets</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#databases"><i class="fa fa-check"></i>Databases</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#database-management-systems-dbms"><i class="fa fa-check"></i>Database management systems (DBMS)</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#data-management"><i class="fa fa-check"></i>Data management</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#from-unstructured-to-structured-data"><i class="fa fa-check"></i>From unstructured to structured data</a></li>
+<li class="chapter" data-level="" data-path="thinking-about-data.html"><a href="thinking-about-data.html#practice"><i class="fa fa-check"></i>Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html"><i class="fa fa-check"></i>Relational databases (Part 1)</a>
 <ul>
-<li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#learning-objectives-2"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#learning-objectives-1"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#relational-databases"><i class="fa fa-check"></i>Relational databases</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-1.html"><a href="relational-databases-part-1.html#database-design"><i class="fa fa-check"></i>Database design</a>
 <ul>
@@ -118,7 +103,7 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html"><i class="fa fa-check"></i>Relational databases (Part 2)</a>
 <ul>
-<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#learning-objectives-3"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#learning-objectives-2"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#relationship-types"><i class="fa fa-check"></i>Relationship types</a>
 <ul>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#one-to-one-relationship"><i class="fa fa-check"></i>One-to-one relationship</a></li>
@@ -127,12 +112,12 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#table-types"><i class="fa fa-check"></i>Table types</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#entity-relationship-diagrams"><i class="fa fa-check"></i>Entity-relationship diagrams</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#getting-started-with-mysql-workbench"><i class="fa fa-check"></i>Getting started with MySQL workbench</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#exercises-1"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#getting-started-with-mysql-workbench"><i class="fa fa-check"></i>Getting started with MySQL Workbench</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html"><i class="fa fa-check"></i>Relational databases (Part 3)</a>
 <ul>
-<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#learning-objectives-4"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#learning-objectives-3"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#data-types"><i class="fa fa-check"></i>Data types</a>
 <ul>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#strings-data-types"><i class="fa fa-check"></i>Strings data types</a></li>
@@ -143,11 +128,11 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#constraints"><i class="fa fa-check"></i>Constraints</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#generating-your-database-documentation-automatically-with-mysql-workbench"><i class="fa fa-check"></i>Generating your database documentation automatically with MySQL workbench</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#exercises-2"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#exercises-1"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html"><i class="fa fa-check"></i>Structured Query Language (SQL)</a>
 <ul>
-<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#learning-objectives-5"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#learning-objectives-4"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#what-is-sql"><i class="fa fa-check"></i>What is SQL?</a></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#syntax"><i class="fa fa-check"></i>Syntax</a></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#create-modify-and-delete-objects"><i class="fa fa-check"></i>Create, modify and delete objects</a>
@@ -187,7 +172,7 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html"><i class="fa fa-check"></i>Document-oriented databases</a>
 <ul>
-<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#learning-objectives-6"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#learning-objectives-5"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#nosql-databases"><i class="fa fa-check"></i>NoSQL databases</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#document-oriented-databases-1"><i class="fa fa-check"></i>Document-oriented databases</a>
 <ul>
@@ -197,13 +182,13 @@
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#implications-for-database-design"><i class="fa fa-check"></i>Implications for database design</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#mongodb-demo"><i class="fa fa-check"></i>MongoDB demo</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#exercises-3"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#exercises-2"><i class="fa fa-check"></i>Exercises</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#my-solution"><i class="fa fa-check"></i>My solution</a></li>
 <li class="chapter" data-level="" data-path="document-oriented-databases.html"><a href="document-oriented-databases.html#additional-resources"><i class="fa fa-check"></i>Additional resources</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html"><i class="fa fa-check"></i>Graph databases</a>
 <ul>
-<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#learning-objectives-7"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#learning-objectives-6"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#graph-databases-1"><i class="fa fa-check"></i>Graph databases</a>
 <ul>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#nodes"><i class="fa fa-check"></i>Nodes</a></li>
@@ -211,19 +196,19 @@
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#attributes"><i class="fa fa-check"></i>Attributes</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#creating-a-network-dataset"><i class="fa fa-check"></i>Creating a network dataset</a></li>
-<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#exercises-4"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#exercises-3"><i class="fa fa-check"></i>Exercises</a></li>
 <li class="chapter" data-level="" data-path="graph-databases.html"><a href="graph-databases.html#additional-resources-1"><i class="fa fa-check"></i>Additional resources</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html"><i class="fa fa-check"></i>Ontologies</a>
 <ul>
-<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#learning-objectives-8"><i class="fa fa-check"></i>Learning objectives</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#learning-objectives-7"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#what-are-ontologies"><i class="fa fa-check"></i>What are ontologies?</a></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#components-of-an-ontology"><i class="fa fa-check"></i>Components of an ontology</a></li>
 <li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#building-a-simple-ontology"><i class="fa fa-check"></i>Building a simple ontology</a>
 <ul>
-<li class="chapter" data-level="0.0.1" data-path="ontologies.html"><a href="ontologies.html#visualizing-our-graph"><i class="fa fa-check"></i><b>0.0.1</b> <strong>Visualizing our graph</strong></a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#visualizing-our-graph"><i class="fa fa-check"></i>Visualizing our graph</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#exercises-5"><i class="fa fa-check"></i>Exercises</a></li>
+<li class="chapter" data-level="" data-path="ontologies.html"><a href="ontologies.html#exercises-4"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
 </ul>
@@ -245,7 +230,7 @@
             <section class="normal" id="section-">
 <div id="relational-databases-part-2" class="section level1 unnumbered">
 <h1>Relational databases (Part 2)</h1>
-<div id="learning-objectives-3" class="section level2 unnumbered">
+<div id="learning-objectives-2" class="section level2 unnumbered">
 <h2>Learning objectives</h2>
 <p><strong>Concepts</strong></p>
 <ul>
@@ -260,32 +245,34 @@
 </div>
 <div id="relationship-types" class="section level2 unnumbered">
 <h2>Relationship types</h2>
-<p>Relationships are the key determinants of the structure of your database and are represented by foreign keys in some of your tables that are linked to primary keys of other tables. Luckily, relationships are a relatively simple concept that is easy to implement in your database design process. There are only three basic kinds of relationship, so let’s take a quick look at them.</p>
+<p>Relationships are critical determinants of the structure of your database. They are represented by foreign keys in some of your tables linked to other tables’ primary keys. Luckily, relationships are a relatively simple concept that is easy to implement in your database design process. There are only three basic kinds of relationships, so let’s take a quick look at them.</p>
 <div id="one-to-one-relationship" class="section level3 unnumbered">
 <h3>One-to-one relationship</h3>
-<p>This relationship exist when one record in a table can only assiciated with <strong>only one</strong> record in another table, and <strong>vice versa</strong>. A one-to-one relationship may exist, for instance, between the office space and the personnel of an organization, as long as nobody is allowed to share and office, or to have two offices. These relationships are quite rare in reality, since it often makes more sense to bring back to combine tables with one to one relationships in a unique table. However, there are situations where the use of one-to-one relationships can be required or appropriate, for example:</p>
+<p>This relationship exists when one record in a table can only be assiciated with one record in another table and <strong>vice versa.</strong> A one-to-one relationship may exist, for instance, between the office space and the
+personnel of an organization, as long as nobody is allowed to share an office or to have two offices. These relationships are rare in reality since it often makes more sense to bring back to combine tables with one-to-one relationships in a unique table. However, there are situations where the use of one-to-one relationships can be required or appropriate, for example:</p>
 <ul>
 <li><strong>Security</strong>: you may want to store sensitive information about an individual in a different table that only some authorized users can access.</li>
-<li><strong>Semantics</strong>: even though you could include information about the office space in your employees table, you might not want to store information about your offices with your <em>employees</em> table. <em>first_name</em>, <em>last_name</em>, <em>eye color</em> are characteristics of people, but <em>building</em> or <em>room_number</em> are not.</li>
+<li><strong>Semantics</strong>: even though you could include information about the office space in your employees table, you might not want to store information about your offices with your employees table. first_name, last_name, eye colour are characteristics of people, but building or room_number are not.</li>
 </ul>
 </div>
 <div id="one-to-many-relationship" class="section level3 unnumbered">
 <h3>One-to-many relationship</h3>
-<p>One-to-many relationship exists when one record in a table can be associated with <strong>one or more</strong> records in another table. This is the most frequent type of relationship in properly designed databases. A typical example is the customers table and the orders table, a single customer record can be associated with multiple orders, but only one customer can be associated with a specific order.</p>
+<p>A one-to-many relationship exists when one record in a table can be associated with one or more records in another table. It is the most frequent type of relationship in properly designed databases. A typical example is the customers table and the orders table. A single customer record can be associated with multiple orders, but only one customer can be associated with a specific order.</p>
 </div>
 <div id="many-to-many-relationship" class="section level3 unnumbered">
 <h3>Many-to-many relationship</h3>
-<p>Many-to-many relationship exists when one record in a table can be associated with <strong>multiple</strong> records in another table and <strong>vice versa</strong>. A typical example is a product that can be part of multiple orders and an order than can contain multiple products. Another example is the relationship between university courses and students. In the <em>courses</em> table, the record for “Data Management” has an association with 54 records from the <em>students</em> table. Inversely, a single recordin the <em>students</em> table can be associated to multiple records in teh <em>courses</em> table.</p>
-<div id="some-isssue-with-many-to-many-relationship" class="section level4 unnumbered">
-<h4>Some isssue with many-to-many relationship</h4>
-<p>These relationships are very frequent in the world, and they are great. But they also rise potential issues that needs to be resolved in your database design. By definition, these relationship imply that the <strong>non-duplication of the primary key</strong> rule will be violated, so that something that your RDBMS will not allow.</p>
-<p><img src="files/ch4/duplicated_primary_key.png" /><!-- --></p>
-<p>One solution for that is to use a <strong>composite primary key</strong>, this simply means that your table as 2 or more primary keys instead of a single one. In practice, this means that each primary key is allowed to be repeated in the table, as long as the combination of primary key values does not repeat.</p>
-<p><img src="files/ch4/composite_primary_key.png" /><!-- --></p>
-<p>However the composite key solution by itself is often not optimal, since it can create a lot of <strong>redundancy</strong> in your table which is something that you want to minimize as much as possible.</p>
-<p><img src="files/ch4/redundancy.png" /><!-- --></p>
-<p>This is what <strong>associative tables</strong> are for. They are basically tables create with the specific purpose of linking your subjects together to prevent primary key duplication and minimize redundancy.</p>
-<p><img src="files/ch4/associative_table.png" /><!-- --></p>
+<p>Many-to-many relationships exist when one record in a table can be associated with multiple records in another table and <strong>vice versa</strong>. A typical example is a product that can be part of multiple orders and an order that can contain multiple products. Another example is the relationship between university courses and students. In the courses table, the record for “Data Management” is associated with 54 records from the students table. Inversely, a single recording of the students table can be associated with multiple records in the courses table.</p>
+<div id="some-isssues-with-many-to-many-relationships" class="section level4 unnumbered">
+<h4>Some isssues with many-to-many relationships</h4>
+<p>These relationships are widespread in the world, and they are great. However, they also raise potential issues that need to be resolved in your database design. By definition, these relationships imply that the
+non-duplication of the primary key rule will be violated so that something that your RDBMS will not allow.</p>
+<p><img src="files/ch4/duplicated_primary_key.png" /></p>
+<p>One solution for that is to use a composite primary key. This means that your table has two or more primary keys instead of one. In practice, this means that each primary key is allowed to be repeated in the table, as long as the combination of primary key values does not repeat.</p>
+<p><img src="files/ch4/composite_primary_key.png" /></p>
+<p>However, the composite key solution is often not optimal since it can create a lot of redundancy in your table, which you want to minimize as much as possible.</p>
+<p><img src="files/ch4/redundancy.png" /></p>
+<p>That is the purpose of <strong>associative tables</strong>. They are tables created with the specific purpose of linking your subjects together to prevent primary key duplication and minimize redundancy.</p>
+<p><img src="files/ch4/associative_table.png" /></p>
 </div>
 </div>
 </div>
@@ -293,24 +280,26 @@
 <h2>Table types</h2>
 <p>Since the associative table was just introduced, this is probably a good time to go over the three basic types of tables that you will encounter in your database.</p>
 <ul>
-<li><strong>Data tables</strong> typically represent the main subjects of your database (e.g., objects, people, events). They usually have a single primary key and they gather data that provides information about the subject represented in the table.</li>
-<li><strong>Associative tables</strong> are use to create associations between the subjects in your database (e.g., students-courses, products-orders, customers-orders). They have typically have multiple foreign keys that together will form the composite primary key.</li>
-<li><strong>Validation (or lookup) tables</strong> are used for data quality and validation purposed. They contain the list of possible values that a field can take. For instance, your grade for this class have a limited set of possible values (A+, A, A-, B+, B, B-, F, AUD, ILL, INC, IP, P). A validation table <em>can but does not have to</em> be used to store these possible values in order to ensure that a user cannot enter the grade “G” or “Banana” in the <em>grade</em> field of the database.</li>
+<li><strong>Data tables</strong> typically represent the main subjects of your database (e.g., objects, people, events). They usually have a single primary key, and they gather data that provides information about the subject
+represented in the table.</li>
+<li><strong>Associative tables</strong> create associations between the subjects in your database (e.g., students-courses, products-orders, customers-orders). They have typically had multiple foreign keys that together will form the composite primary key.</li>
+<li><strong>Validation (or lookup) tables</strong> are used for data quality and validation purposes. They contain the list of possible values that a field can take. For instance, your grade for this class has a limited set of possible values (A+, A, A-, B+, B, B-, F, AUD, ILL, INC, IP, P). A validation table can but does not have to be used to store these possible values to ensure that a user cannot enter the grade “G” or “Banana” in the grade field of the database.</li>
 </ul>
-<p>You will see some of these tables in action in the video below where we will work on the entity-relationship diagram of our GummyBox database.</p>
+<p>You will see some of these tables in action in the video below, where we will work on the entity-relationship diagram of our gummybox_sales database.</p>
 </div>
 <div id="entity-relationship-diagrams" class="section level2 unnumbered">
 <h2>Entity-relationship diagrams</h2>
-<p>An entity-relationship diagram (ERD) is simply a visual representation of your database that typically includes every table along with their fields and the relationship between them. The ERD is a useful tool for designing your database because it helps you visualize your table and fields and the relationship between them, which makes it easier to spot mistakes and inconsistencies. It is also a useful tool to include in the database documentation as it can provide users with a good understanding of the data so that they can more effectively use it. There are many tools that you can use to create ERDs (including MySQL workbench). In the video below, I use <a href="https://app.diagrams.net/">diagrams.net</a> (formerly draw.io) to draw the following ERD in order to improve and expand the design of my GummyBox database</p>
-<p><img src="files/ch4/gummybox_erd.png" /><!-- --></p>
+<p>An entity-relationship diagram (ERD) is simply a visual representation of your database that typically includes every table along with their fields and the relationship between them. The ERD is a helpful tool for designing your database because it helps you visualize your table and fields and their relationship, making it easier to spot mistakes and inconsistencies. It is also a valuable part of your database documentation as it can provide users with a good understanding of the data to use it more effectively. You can use many tools to create ERDs (including MySQL workbench). In the video below, I use <a href="https://app.diagrams.net/">diagrams.net</a> (formerly draw.io) ) to draw the following ERD to improve and expand the design of my
+gummybox_sales database.</p>
+<p><img src="files/ch4/gummybox_erd.png" /></p>
 <iframe src="https://dal.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=f3c055af-72fc-4e1d-99c9-acc10184cc04&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay">
 </iframe>
 </div>
 <div id="getting-started-with-mysql-workbench" class="section level2 unnumbered">
-<h2>Getting started with MySQL workbench</h2>
-<p>MySQL workbench is an open source RDBMS that offers all the features that you will need to design and manage your databases. To install it on your computer:</p>
+<h2>Getting started with MySQL Workbench</h2>
+<p>MySQL Workbench is an open-source RDBMS that offers all the features that you will need to design and manage your databases. To install it on your computer:</p>
 <ol style="list-style-type: decimal">
-<li><p>Go to <a href="https://dev.mysql.com/downloads/workbench/">https://dev.mysql.com/downloads/workbench/</a></p></li>
+<li><p>Go to <a href="https://dev.mysql.com/downloads/workbench/" class="uri">https://dev.mysql.com/downloads/workbench/</a></p></li>
 <li><p>If your computer’s operating system is Microsoft Windows, choose any of the two <em>recommended Download</em> options.</p>
 <ul>
 <li>If you have an online connection while running the MySQL Installer, choose the mysql-installer-web-community file.</li>
@@ -318,16 +307,14 @@
 </ul></li>
 <li><p>You will be asked if you want to sign up for an Oracle web account. <strong>You do not need to sign up</strong>. Simply click on “No thanks, just start my download” (as show in the image below).</p></li>
 </ol>
-<p><img src="files/ch4/no_need_to_sign_up.png" /><!-- --></p>
-<p>In this next video, I provide a very brief introduction to MySQL workbench, and show you how to get started with creating your database model, making tables, declaring primary and foreign keys, and automatically generate your ERD.</p>
+<p><img src="files/ch4/no_need_to_sign_up.png" /></p>
+<p>In this next video, I provide a very brief introduction to MySQL Workbench and show you how to get started with creating your database model, making tables, declaring primary and foreign keys, and automatically generating your ERD.</p>
 <iframe src="https://dal.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=68a72e0b-6361-4a9a-9eec-acc2002d20d6&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay">
 </iframe>
 </div>
-<div id="exercises-1" class="section level2 unnumbered">
+<div id="exercises" class="section level2 unnumbered">
 <h2>Exercises</h2>
-<p>As an exercise for this week, you can download the GummyBox ERD that I created with diagrams.net <a href="files/GummyBox.drawio">here</a>.
-Once you downloaded the file, you can open it by going to <a href="https://app.diagrams.net/">https://app.diagrams.net</a>, click on <strong>File</strong>, then <strong>Open from…</strong> and then select the file you just downloaded.
-and then:</p>
+<p>As an exercise for this week, you can download the gummybox_sales ERD that I created with diagrams.net <a href="files/GummyBox.drawio">here</a>. Once you downloaded the file, you can open it by going to <a href="https://app.diagrams.net/">https://app.diagrams.net</a>, click on <strong>File</strong>, then <strong>Open from…</strong> and then select the file you just downloaded. and then:</p>
 <ol style="list-style-type: decimal">
 <li>See if you can spot the error. (Tip: it is not a critical error as the database would still work fine as it is, but there is at least one unnecessary table in there)</li>
 <li>Try adding the gummy_reviews to the design.</li>
@@ -346,7 +333,6 @@ and then:</p>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -365,6 +351,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": false
 },
 "fontsettings": {
@@ -382,6 +369,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section",
 "scroll_highlight": true
