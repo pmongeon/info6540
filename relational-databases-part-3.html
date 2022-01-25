@@ -143,7 +143,7 @@
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#constraints"><i class="fa fa-check"></i>Constraints</a>
 <ul>
-<li class="chapter" data-level="0.0.1" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#index-example"><i class="fa fa-check"></i><b>0.0.1</b> Index example</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#index-example"><i class="fa fa-check"></i>Index example</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#documenting-your-database"><i class="fa fa-check"></i>Documenting your database</a>
 <ul>
@@ -381,8 +381,8 @@
 <li><strong>DEFAULT</strong>: This constraint defines a default value to be inserted in the field when a new record is created, and no value is provided for that specific field.</li>
 <li><strong>INDEX</strong>: This constraint is used to create an index for the values of that field, which can dramatically increase the speed of your queries. Just like an index at the end of a book telling you on what page(s) you can find information about a particular concept or topic instead of having to look at each page to find those sections, the MySQL INDEX creates a list of records where each of the different values of that field can be found and stores that list into its memory, so that those records can be retrieved much faster. So, for example, if you have 50 different gummy records in your <em>gummy</em> table, 12 of which are red, 25 are blue, and 13 are green, you could create an index on the gummy_color table. The index would have one record for each colour (red., blue, green), each containing a list of the gummy_id that has that colour.</li>
 </ul>
-<div id="index-example" class="section level3" number="0.0.1">
-<h3><span class="header-section-number">0.0.1</span> Index example</h3>
+<div id="index-example" class="section level3 unnumbered">
+<h3>Index example</h3>
 <p>If you ask the database to retrieve the blue gummies from the <em>gummy</em> table and you do not have an inde on the <em>colour</em> column, it has to scan each row, to see the colour is “blue,” if the table as 1 million rows, then this verification has to be done 1 million times.</p>
 <p><strong>No index on the <em>colour</em> field of the <em>gummy</em> table</strong></p>
 <p><img src="files/index1.jpg" /></p>

@@ -114,7 +114,6 @@
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#tables-and-fields"><i class="fa fa-check"></i>Tables and fields</a>
 <ul>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#naming-tables-and-fields"><i class="fa fa-check"></i>Naming tables and fields</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#describing-tables-and-fields"><i class="fa fa-check"></i>Describing tables and fields</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#table-types"><i class="fa fa-check"></i>Table types</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#relationship-types"><i class="fa fa-check"></i>Relationship types</a>
@@ -136,14 +135,20 @@
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#learning-objectives-3"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#data-types"><i class="fa fa-check"></i>Data types</a>
 <ul>
-<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#strings-data-types"><i class="fa fa-check"></i>Strings data types</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#character-data-types"><i class="fa fa-check"></i>Character data types</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#numeric-data-types"><i class="fa fa-check"></i>Numeric data types</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#date-and-time-data-types"><i class="fa fa-check"></i>Date and time data types</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#date-and-time"><i class="fa fa-check"></i>Date and time</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#other-data-types"><i class="fa fa-check"></i>Other data types</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#how-mysql-handles-data-types"><i class="fa fa-check"></i>How MySQL handles data types</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#constraints"><i class="fa fa-check"></i>Constraints</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#constraints"><i class="fa fa-check"></i>Constraints</a>
+<ul>
+<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#index-example"><i class="fa fa-check"></i>Index example</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#documenting-your-database"><i class="fa fa-check"></i>Documenting your database</a>
+<ul>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#generating-your-database-documentation-automatically-with-mysql-workbench"><i class="fa fa-check"></i>Generating your database documentation automatically with MySQL workbench</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html"><i class="fa fa-check"></i>Structured Query Language (SQL)</a>
@@ -294,8 +299,8 @@
 <li><strong><em>What attributes of the subjects are needed to fulfill the mission and objectives of the database?</em></strong> This is where you list, for each of the subjects identified with the first question, the attributes that your database requires. one of the subjects of your database is customers, you would likely want to include their name, and possibly their email or phone number. But do you need their address? their social insurance number? the name of their first pet? There is no universal answer, and so you need to ask yourself this question for every table in your database, and answer it based on your judgement and the mission and objectives of the database.</li>
 </ol>
 <p>Relational databases don’t impose rules on the subjects and attributes that you can include in your database. It does however, impose rules on how these subjects and attributes must be captured in the form of tables (subjects) and fields (attributes).</p>
-<div id="subjects-and-attributes-of-the-gummybox_sales-database" class="section level4" number="0.0.0.1">
-<h4><span class="header-section-number">0.0.0.1</span> Subjects and attributes of the gummybox_sales database</h4>
+<div id="subjects-and-attributes-of-the-gummybox_sales-database" class="section level4 unnumbered">
+<h4>Subjects and attributes of the gummybox_sales database</h4>
 <p>If the objectives of your database are well formulated, they may already provide you with all the subjects that you need for your database. Here are the objectives of the gummybox_sales database in which I highlighted the subjects.</p>
 <ul>
 <li>Maintain <strong>customer</strong> information.</li>
