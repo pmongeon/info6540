@@ -136,7 +136,6 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#tables-and-fields"><i class="fa fa-check"></i>Tables and fields</a>
 <ul>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#naming-tables-and-fields"><i class="fa fa-check"></i>Naming tables and fields</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#describing-tables-and-fields"><i class="fa fa-check"></i>Describing tables and fields</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#table-types"><i class="fa fa-check"></i>Table types</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-2.html"><a href="relational-databases-part-2.html#relationship-types"><i class="fa fa-check"></i>Relationship types</a>
@@ -158,14 +157,17 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#learning-objectives-3"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#data-types"><i class="fa fa-check"></i>Data types</a>
 <ul>
-<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#strings-data-types"><i class="fa fa-check"></i>Strings data types</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#character-data-types"><i class="fa fa-check"></i>Character data types</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#numeric-data-types"><i class="fa fa-check"></i>Numeric data types</a></li>
-<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#date-and-time-data-types"><i class="fa fa-check"></i>Date and time data types</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#date-and-time"><i class="fa fa-check"></i>Date and time</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#other-data-types"><i class="fa fa-check"></i>Other data types</a></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#how-mysql-handles-data-types"><i class="fa fa-check"></i>How MySQL handles data types</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#constraints"><i class="fa fa-check"></i>Constraints</a></li>
+<li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#documenting-your-database"><i class="fa fa-check"></i>Documenting your database</a>
+<ul>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#generating-your-database-documentation-automatically-with-mysql-workbench"><i class="fa fa-check"></i>Generating your database documentation automatically with MySQL workbench</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="relational-databases-part-3.html"><a href="relational-databases-part-3.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html"><i class="fa fa-check"></i>Structured Query Language (SQL)</a>
@@ -321,18 +323,6 @@ div.csl-indent {
 </tbody>
 </table>
 </div>
-<div id="describing-tables-and-fields" class="section level3 unnumbered">
-<h3>Describing tables and fields</h3>
-<p>Another important aspect of database management and design is <strong>documentation</strong>. An adequately documented database ensures that the users understand what tables contain and why they exist. Having good names for your tables and fields might reduce the need for your database users to refer to the documentation all the time, but it certainly does not eliminate the need for it.</p>
-<p>Describing your tables and fields also helps ensure they are needed and well-designed. If you cannot describe the purpose of a table, it may be that it has, in fact, no purpose.</p>
-<p>Here are a few simple rules to follow:</p>
-<ul>
-<li><p>Clearly and concisely describe the tables and fields.</p></li>
-<li><p>For <strong>tables only</strong>, your description should indicate <strong>why</strong> it is necessary.</p></li>
-<li><p>Focus on the content of the tables or fields rather than how they will specifically be used or accessed.</p></li>
-<li><p>Do not use examples in your descriptions.</p></li>
-</ul>
-</div>
 <div id="table-types" class="section level3 unnumbered">
 <h3>Table types</h3>
 <p>There are three basic <strong>table types</strong> that you will encounter in your database:</p>
@@ -397,7 +387,7 @@ div.csl-indent {
 </div>
 <div id="homework-1" class="section level2 unnumbered">
 <h2>Homework</h2>
-<p>The homework for this week is to complete the lab #2.</p>
+<p>The homework for this week is to start designing your database with your teammates and to begin working on the individual lab #2.</p>
 </div>
 <div id="appendix-a---installing-mysql-workbench" class="section level2 unnumbered">
 <h2>Appendix A - Installing MySQL Workbench</h2>
