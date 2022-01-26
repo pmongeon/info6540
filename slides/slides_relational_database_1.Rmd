@@ -1,0 +1,75 @@
+---
+title: "<strong>Thinking about your database</strong>"
+author: "INFO6540<br>Philippe Mongeon"
+date: "2022-01-25"
+output: 
+  revealjs::revealjs_presentation:
+    theme: simple
+    highlight: pygments
+    center: true
+    self_contained: false
+    reveal_plugins: ["chalkboard", "menu"]
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+      chalkboard:
+        theme: default
+        toggleNotesButton: true
+      menu:
+        side: right
+---
+
+# Plan
+
+-   Mission and objectives
+
+-   Subjects
+
+-   Attributes
+
+-   Rules
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(lubridate)
+library(kableExtra)
+```
+
+```{=html}
+<style>
+    .reveal section img { 
+        background:none; 
+        border:none; 
+        box-shadow:none; 
+</style>
+```
+# Mission and objectives
+
+## Mission
+
+*The purpose of the name of organization and/or organizational unit **database** is...*
+
+The purpose of the *gummybox_sales* database is to manage the data needed by the sales department to attend to the customers' sweet tooth.
+
+## Objectives
+
+The objectives relate to the specific tasks or needs of people inside the organization (e.g., employees) or outside the organization (e.g., clients or users). Here are the objectives of the *gummybox_sales* database:
+
+-   Maintain customer information.
+-   Keep track of orders.
+-   Maintain information on gummies.
+-   Maintain information on gummy assortments.
+-   Collect product reviews.
+
+
+# Subjects
+
+What kind of things need to exist in the universe of my database?
+
+### The *gummybox_sales* subjects
+
+-   Maintain **customer** information.
+-   Keep track of **orders**.
+-   Maintain information on **gummies**.
+-   Maintain information on **gummy assortments**.
+-   Collect product **reviews**.
