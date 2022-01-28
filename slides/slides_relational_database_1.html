@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="author" content="INFO6540 Philippe Mongeon" />
   <meta name="dcterms.date" content="2022-01-25" />
-  <title>Thinking about your database</title>
+  <title>First steps of database design</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -456,7 +456,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <div class="slides">
 
 <section>
-    <h1 class="title"><strong>Thinking about your database</strong></h1>
+    <h1 class="title"><strong>First steps of database design</strong></h1>
     <h2 class="author">INFO6540<br>Philippe Mongeon</h2>
     <h3 class="date">2022-01-25</h3>
 </section>
@@ -464,10 +464,11 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section id="plan" class="title-slide slide level1">
 <h1>Plan</h1>
 <ul>
-<li><p>Mission and objectives</p></li>
+<li><p>Database mission statement</p></li>
+<li><p>Database objectives statement</p></li>
 <li><p>Subjects</p></li>
-<li><p>Attributes</p></li>
-<li><p>Rules</p></li>
+<li><p>Subject attributes</p></li>
+<li><p>Database rules</p></li>
 </ul>
 <style>
     .reveal section img { 
@@ -478,18 +479,81 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section>
 
 <section>
-<section id="mission-and-objectives" class="title-slide slide level1">
-<h1>Mission and objectives</h1>
+<section id="mission-statement" class="title-slide slide level1">
+<h1>Mission statement</h1>
 
 </section>
-<section id="mission" class="slide level2">
-<h2>Mission</h2>
-<p><em>The purpose of the name of organization and/or organizational unit <strong>database</strong> is…</em></p>
-<p>The purpose of the <em>gummybox_sales</em> database is to manage the data needed by the sales department to attend to the customers’ sweet tooth.</p>
+<section id="what-is-a-mission-statement" class="slide level2">
+<h2><strong>What is a mission statement?</strong></h2>
+<p>The database mission statement states its purpose. It answers the questions “why do we need a database?”</p>
 </section>
-<section id="objectives" class="slide level2">
-<h2>Objectives</h2>
-<p>The objectives relate to the specific tasks or needs of people inside the organization (e.g., employees) or outside the organization (e.g., clients or users). Here are the objectives of the <em>gummybox_sales</em> database:</p>
+<section id="why-do-we-need-a-mission-statement" class="slide level2">
+<h2><strong>Why do we need a mission statement?</strong></h2>
+<p>The mission statement establishes the focus of the database and will acts as a guide during the entire design process.</p>
+</section>
+<section id="what-is-a-good-mission-statement" class="slide level2">
+<h2><strong>What is a good mission statement?</strong></h2>
+<div style="text-align:left">
+<p>A good mission statement:</p>
+<ul>
+<li><p>is clear</p></li>
+<li><p>is concise</p></li>
+<li><p>does not describe specific tasks that the users of the database will perform.</p></li>
+</ul>
+</div>
+</section>
+<section id="mission-statement-examples" class="slide level2">
+<h2><strong>Mission statement examples</strong></h2>
+<div style="text-align: left">
+<p><em>The purpose of the gummybox_sales database is to manage the data needed by the sales department to attend to the customers’ sweet tooth.</em></p>
+<p><em>The pupose of the Dalhousie University awards database is to support the operations of the awards committee and the celebration of student talents.</em></p>
+</div>
+</section>
+<section id="extra-tips-for-writing-your-mission-statements" class="slide level2">
+<h2><strong>Extra tips for writing your mission statements</strong></h2>
+<div style="text-align: left">
+<ul>
+<li><p>Do not overthink it</p></li>
+<li><p>Keep it simple</p></li>
+<li><p>Start with “<em>The purpose of the name of organization and/or organizational unit database is…“</em></p></li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="objective-statements" class="title-slide slide level1">
+<h1>Objective statements</h1>
+
+</section>
+<section id="what-are-objective-statements" class="slide level2">
+<h2>What are objective statements?</h2>
+<p>The objectives relate to the tasks or needs of people inside the organization (e.g., employees) or outside the organization (e.g., clients or users). Here are the objectives of the <em>gummybox_sales</em> database</p>
+</section>
+<section id="why-do-we-need-objective-statements" class="slide level2">
+<h2><strong>Why do we need objective statements?</strong></h2>
+<div style="text-align:left">
+<p>Objectives:</p>
+<ul>
+<li><p>Translate the mission (the why) into actions (the what).</p></li>
+<li><p>Clarify what tasks the database needs to support.</p></li>
+<li><p>Help the database designer identify the data needs.</p></li>
+</ul>
+</div>
+</section>
+<section id="what-are-a-good-objective-statements" class="slide level2">
+<h2><strong>What are a good objective statements?</strong></h2>
+<div style="text-align:left">
+<p>Good objective statements:</p>
+<ul>
+<li><p>Are <strong>clear</strong> and <strong>concise</strong>, and non-ambiguous.</p></li>
+<li><p>Contain a <strong>single</strong> task.</p></li>
+<li><p>Do not mention <strong>how</strong> a task is performed.</p></li>
+</ul>
+</div>
+</section>
+<section id="example-of-objective-statements" class="slide level2">
+<h2><strong>Example of objective statements</strong></h2>
+<div style="text-align:left">
+<p>The objectives of the gummybox_sales database are:</p>
 <ul>
 <li>Maintain customer information.</li>
 <li>Keep track of orders.</li>
@@ -497,20 +561,206 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>Maintain information on gummy assortments.</li>
 <li>Collect product reviews.</li>
 </ul>
+</div>
+</section>
+<section id="extra-tips-for-writing-objective-statements" class="slide level2">
+<h2><strong>Extra tips for writing objective statements</strong></h2>
+<div style="text-align:left">
+<ul>
+<li><p>Do not overthink it</p></li>
+<li><p>Keep them simple</p></li>
+<li><p>Keep them short (sometimes three words are enough)</p></li>
+</ul>
+</div>
 </section></section>
 <section>
-<section id="subjects" class="title-slide slide level1">
-<h1>Subjects</h1>
-<p>What kind of things need to exist in the universe of my database?</p>
+<section id="database-subjects" class="title-slide slide level1">
+<h1>Database subjects</h1>
+
 </section>
-<h3 id="the-gummybox_sales-subjects">The <em>gummybox_sales</em> subjects</h3>
+<section id="what-are-database-subjects" class="slide level2">
+<h2><strong>What are database subjects?</strong></h2>
+<p>Think of your database as a simplified representation of the universe.</p>
+<p>Subjects are the things (<strong>objects</strong> and <strong>events</strong>) that exist in that universe.</p>
+</section>
+<section id="why-do-we-need-to-identify-database-subjects" class="slide level2">
+<h2><strong>Why do we need to identify database subjects?</strong></h2>
+<div style="text-align:left">
 <ul>
-<li>Maintain <strong>customer</strong> information.</li>
-<li>Keep track of <strong>orders</strong>.</li>
-<li>Maintain information on <strong>gummies</strong>.</li>
-<li>Maintain information on <strong>gummy assortments</strong>.</li>
-<li>Collect product <strong>reviews</strong>.</li>
-</ul></section>
+<li><p>Subjects will become tables in the database. They are the central piece.</p></li>
+<li><p>A well-defined list of subjects ensures that we don’t forget anything or include things that are not necessary in our database design.</p></li>
+</ul>
+</div>
+</section>
+<section id="how-to-identify-database-subjects" class="slide level2">
+<h2><strong>How to identify database subjects?</strong></h2>
+<p>Ask yourself: <em>What <strong>kinds</strong> of things exist in my universe?</em></p>
+</section>
+<section id="example-of-database-subjects" class="slide level2">
+<h2><strong>Example of database subjects</strong></h2>
+<p>products, clients, employees, tansactions, orders, invoices, tweets, emails, courses, pets, furniture, equipment, instructors, locations, movies, books, stores, artists, etc.</p>
+</section>
+<section id="extra-tips-for-identifying-database-subjects" class="slide level2">
+<h2><strong>Extra tips for identifying database subjects</strong></h2>
+<div style="text-align:left">
+<ul>
+<li><p>Don’t be too specific (e.g., undergraduate students and graduate students)</p></li>
+<li><p>Don’t be to generic (e.g., people).</p></li>
+</ul>
+<p>Your subject are:</p>
+<ul>
+<li><p>too generic if they have subcategories with different attributes (see next slides).</p></li>
+<li><p>too specific if different subjects have the same attributes.</p></li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="subject-attributes" class="title-slide slide level1">
+<h1>Subject attributes</h1>
+
+</section>
+<section id="what-are-subject-attributes" class="slide level2">
+<h2><strong>What are subject attributes?</strong></h2>
+<p>The attributes are the characteristics that define your subjects in the context of your restricted database universe.</p>
+</section>
+<section id="why-do-we-need-to-identify-subject-attributes" class="slide level2">
+<h2><strong>Why do we need to identify subject attributes?</strong></h2>
+<div style="text-align:left">
+<ul>
+<li>They are the second central piece of your database. They will be columns in your tables.</li>
+</ul>
+<!-- -->
+<ul>
+<li>A well-defined list of attributes ensures that we don’t forget anything or include things that are not necessary in our database design.</li>
+</ul>
+</div>
+</section>
+<section id="how-do-we-identify-subject-attributes" class="slide level2">
+<h2><strong>How do we identify subject attributes?</strong></h2>
+<p>For each <strong>subject</strong>, ask yourself: <em>What <strong>characteristics</strong> definethat subject in the limited universe of my database?</em></p>
+</section>
+<section id="example-of-subject-attributes" class="slide level2">
+<h2><strong>Example of subject attributes</strong></h2>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 87%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Subjects</th>
+<th>Attributes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gummy</td>
+<td>name, description, consistency, colour, flavour, flavour_type, price, etc.</td>
+</tr>
+<tr class="even">
+<td>Customer</td>
+<td>first name, last name, email, phone number, address</td>
+</tr>
+<tr class="odd">
+<td>Address</td>
+<td>street name, civic number, apartment number, city, province, country, postal code</td>
+</tr>
+<tr class="even">
+<td>Order</td>
+<td>Customer, product, amount of product, delivery address, date</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="what-are-good-subject-attribute" class="slide level2">
+<h2><strong>What are good subject attribute?</strong></h2>
+<ul>
+<li><p>They are necessary to achieve the database objectives.</p></li>
+<li><p>They are related to the subject (e.g., The “cat” subject could have a “breed” attribute, but “cat breed” should not be an attribute of the person who owns that cat).</p></li>
+<li><p>They are non-ambiguous.</p></li>
+<li><p>They are atomic (a single attribute can’t be divided in multiple attributes).</p></li>
+</ul>
+</section></section>
+<section>
+<section id="database-rules" class="title-slide slide level1">
+<h1>Database rules</h1>
+
+</section>
+<section id="what-are-database-rules" class="slide level2">
+<h2><strong>What are database rules?</strong></h2>
+<p>Rules are statements that define or constrain the possibilities of your database.</p>
+</section>
+<section id="why-kind-of-rules-exist" class="slide level2">
+<h2><strong>Why kind of rules exist?</strong></h2>
+<ul>
+<li><p>Rules that specify <strong>the set</strong> of values a attribute can have. (e.g., the country attribute is limited to the set of existing countries).</p>
+<ul>
+<li>For this course, you don’t have to specify the set of values itself (you don’t need a list of countries).</li>
+</ul></li>
+<li><p>Rules that specify whether or not an attribute can have multiple values for the same entity (e.g. can a single gummy have multiple flavours?).</p>
+<ul>
+<li>For this course, it is sufficient to consider if an entity can have multiple values or not. It is not necessary to define the number of values that an attribute can have.</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-to-identify-database-rules" class="slide level2">
+<h2><strong>How to identify database rules?</strong></h2>
+<div style="text-align:left">
+<p>For each attribute, ask yourself:</p>
+<ol type="1">
+<li>Can this attribute take multiple value for a single entity?</li>
+<li>Is there a limited range of values for this attribute?</li>
+</ol>
+</div>
+</section>
+<section id="example-of-database-rules" class="slide level2">
+<h2><strong>Example of database rules</strong></h2>
+<table>
+<thead>
+<tr class="header">
+<th>Subject</th>
+<th>Attribute</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gummy</td>
+<td>Flavour</td>
+<td>A gummy can have multiple flavor</td>
+</tr>
+<tr class="even">
+<td>Gummy</td>
+<td>Flavour type</td>
+<td>A gummy can have multiple flavour type</td>
+</tr>
+<tr class="odd">
+<td>Gummy</td>
+<td>Flavour type</td>
+<td>Is limited to a set of five flavour types</td>
+</tr>
+<tr class="even">
+<td>Gummy</td>
+<td>Colour</td>
+<td>A gummy can have multiple colours</td>
+</tr>
+<tr class="odd">
+<td>Customer</td>
+<td>Address</td>
+<td>A customer can have multiple addresses</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="extra-tips-for-identifying-database-rules" class="slide level2">
+<h2><strong>Extra tips for identifying database rules</strong></h2>
+<div style="text-align:left">
+<ul>
+<li>Use rules parcimoniously</li>
+<li>Put more attention on values that scefify whether or not a single entity can have multiple values for the same attribute. Those have more implications for database designs.</li>
+</ul>
+</div>
+</section></section>
     </div>
   </div>
 
