@@ -87,7 +87,7 @@ A good mission statement:
 
 # Objective statements
 
-## What are objective statements?
+## **What are objective statements?**
 
 The objectives relate to the tasks or needs of people inside the organization (e.g., employees) or outside the organization (e.g., clients or users). Here are the objectives of the *gummybox_sales* database
 
@@ -197,17 +197,17 @@ For each **subject**, ask yourself: *What **characteristics** definethat subject
 
 ## **Example of subject attributes**
 
-+-----------+-----------------------------------------------------------------------------------+
-| Subjects  | Attributes                                                                        |
-+===========+===================================================================================+
-| Gummy     | name, description, consistency, colour, flavour, flavour_type, price, etc.        |
-+-----------+-----------------------------------------------------------------------------------+
-| Customer  | first name, last name, email, phone number, address                               |
-+-----------+-----------------------------------------------------------------------------------+
-| Address   | street name, civic number, apartment number, city, province, country, postal code |
-+-----------+-----------------------------------------------------------------------------------+
-| Order     | Customer, product, amount of product, delivery address, date                      |
-+-----------+-----------------------------------------------------------------------------------+
++------------+-----------------------------------------------------------------------------------+
+| Subjects   | Attributes                                                                        |
++============+===================================================================================+
+| Gummy      | name, description, consistency, colour, flavour, flavour_type, price, etc.        |
++------------+-----------------------------------------------------------------------------------+
+| Customer   | first name, last name, email, phone number, address                               |
++------------+-----------------------------------------------------------------------------------+
+| Address    | street name, civic number, apartment number, city, province, country, postal code |
++------------+-----------------------------------------------------------------------------------+
+| Order      | Customer, product, amount of product, delivery address, date                      |
++------------+-----------------------------------------------------------------------------------+
 
 ## **What are good subject attribute?**
 
