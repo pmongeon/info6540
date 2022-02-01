@@ -1,0 +1,123 @@
+---
+title: "<strong>Building your database</strong>"
+author: "INFO6540<br>Philippe Mongeon"
+date: "2022-02-01"
+output: 
+  revealjs::revealjs_presentation:
+    theme: simple
+    highlight: pygments
+    center: true
+    self_contained: false
+    reveal_plugins: ["chalkboard", "menu"]
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+      chalkboard:
+        theme: default
+        toggleNotesButton: true
+      menu:
+        side: right
+---
+
+# Plan
+
+-   Rules for tables
+
+-   Rules for fields
+
+-   Types of relationships
+
+-   Types of tables
+
+-   Entity-relationship diagram
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(lubridate)
+library(kableExtra)
+```
+
+```{=html}
+<style>
+    .reveal section img { 
+        background:none; 
+        border:none; 
+        box-shadow:none; 
+</style>
+```
+# Rules for tables
+
+-   Each table represents a single subject
+
+-   Each table as a primary key
+
+## What's wrong with this table
+
+::: {style="text-align:left"}
+**Table name:** musician
+:::
+
+| first_name | last_name | email             | name of band | number of albums | Role    |
+|------------|-----------|-------------------|--------------|------------------|---------|
+| Jon        | Bongiovi  | jbj\@jbj.net      | Bon Jovi     | 12               | Singer  |
+| Lars       | Ulrich    | lu\@metallica.edu | Metallica    | 15               | Drummer |
+
+# Rules for fields
+
+-   Each field should be unique in the entire database (except foreign keys)
+
+-   Each field represents a distinct attribute of the subject
+
+-   Each field contains a single value that can't be deconstructed
+
+-   Fields should not contain calculated value
+
+## What's wrong with this table?
+
+::: {style="text-align:left"}
+**Table name:** course
+:::
+
++----------------+----------------+--------------------+-------------------+
+| id             | course_code    | number_of_students | instructor        |
++================+================+====================+===================+
+| 1              | INFO6660_W22   | 25                 | Bertrum MacDonald |
++----------------+----------------+--------------------+-------------------+
+
+# Types of relationships
+
+-   One-to-One
+
+    -   A person can have one social insurance number and a social insurance number can only belong to one person.
+
+-   One-to-Many
+
+    -   A player can only be in one team but a team can have many players.
+
+-   Many-to-Many
+
+    -   A person can have many addresses and many people can live at the same address
+
+# **Types of tables**
+
+-   Data table (represent your subjects)
+
+-   Associative table (used to link fields with many-to-many relationships)
+
+-   Look-up tables (stores the set of possible values for a field)
+
+# Entity-relationship diagrams
+
+![](images/gummybox_sales_erd.jpg)
+
+## Tips
+
+-   Start with your data tables.
+
+-   Follow your database rules. They tell you what type of relationship exists between fields.
+
+-   Keep it simple.
+
+-   Remember that there is no rule that says you have to use look-up tables whenever you could.
+
+-   Remember that you can adjust your database objectives if necessary.
