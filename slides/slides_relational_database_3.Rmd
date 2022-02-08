@@ -98,7 +98,13 @@ source: <https://www.carlhansen.com/en/collection/dining-tables/ch327/table-190x
 
 ![](images/gummybox_sales_erd-01.jpg)
 
-# Data types and constraints
+# Today
+
+-   Data types
+
+-   Constraints
+
+# Data types
 
 ## Characters
 
