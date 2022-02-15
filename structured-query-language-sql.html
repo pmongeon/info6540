@@ -223,6 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#learning-objectives-4"><i class="fa fa-check"></i>Learning objectives</a></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#what-is-sql"><i class="fa fa-check"></i>What is SQL?</a></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#syntax"><i class="fa fa-check"></i>Syntax</a></li>
+<li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#the-gummybox_sales-erd"><i class="fa fa-check"></i>The gummybox_sales ERD</a></li>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#retrieve-data"><i class="fa fa-check"></i>Retrieve data</a>
 <ul>
 <li class="chapter" data-level="" data-path="structured-query-language-sql.html"><a href="structured-query-language-sql.html#select"><i class="fa fa-check"></i>SELECT</a></li>
@@ -339,6 +340,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Finally, keep in mind that SQL is not case sensitive, so “banana,” “BANANA,” and “BaNaNa” are the same. This also applies to the name of functions and operators. For my examples, I capitalize the functions and operators so that they can be more easily distinguished from the other elements of the statements.</p>
 <p>In the next section, I provide examples of the different functions and operators that you may need to use in your statements. These are far from exhaustive, but should cover 95% of the basic queries that users make when working with relational databases. Administrators of databases will typically use much more functions, but that is beyond the scope of this course.</p>
 </div>
+<div id="the-gummybox_sales-erd" class="section level2 unnumbered">
+<h2>The gummybox_sales ERD</h2>
+<p><img src="files/gummybox_sales_erd.jpg" /></p>
+</div>
 <div id="retrieve-data" class="section level2 unnumbered">
 <h2>Retrieve data</h2>
 <div id="select" class="section level3 unnumbered">
@@ -425,8 +430,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 </div>
-<div id="select-specific-fields-from-a-table" class="section level4" number="0.0.0.1">
-<h4><span class="header-section-number">0.0.0.1</span> Select specific fields from a table</h4>
+<div id="select-specific-fields-from-a-table" class="section level4 unnumbered">
+<h4>Select specific fields from a table</h4>
 <p>When you only want to retrieve a few fields from a table, you need to specify the names fo the fields. In the example above, I retrieve information about gummies, excluding a few field like their id, and their price.</p>
 <p><em>Note : when listing fields, the table name is only required when the same field name is ambiguous because it exists in more than one table included in your query.</em></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="structured-query-language-sql.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
@@ -517,8 +522,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 </div>
-<div id="print-values-that-are-not-in-a-table" class="section level4" number="0.0.0.2">
-<h4><span class="header-section-number">0.0.0.2</span> Print values that are not in a table</h4>
+<div id="print-values-that-are-not-in-a-table" class="section level4" number="0.0.0.1">
+<h4><span class="header-section-number">0.0.0.1</span> Print values that are not in a table</h4>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="structured-query-language-sql.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="ot">&quot;Banana&quot;</span></span></code></pre></div>
 <div class="knitsql-table">
 <table>
