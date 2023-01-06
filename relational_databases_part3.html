@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Management - 4&nbsp; Relational databases (Pt. 3)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./summary.html" rel="next">
+<link href="./relational_databases_part2.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 3)</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Management</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Course overview</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Thinking about data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./relational_databases_part1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 1)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./relational_databases_part2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./relational_databases_part3.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 3)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="toc-section-number">4.1</span>  Learning objectives</a></li>
+  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"><span class="toc-section-number">4.2</span>  Data types</a>
+  <ul class="collapse">
+  <li><a href="#character-data-types" id="toc-character-data-types" class="nav-link" data-scroll-target="#character-data-types"><span class="toc-section-number">4.2.1</span>  Character data types</a></li>
+  <li><a href="#numeric-data-types" id="toc-numeric-data-types" class="nav-link" data-scroll-target="#numeric-data-types"><span class="toc-section-number">4.2.2</span>  Numeric data types</a></li>
+  <li><a href="#date-and-time" id="toc-date-and-time" class="nav-link" data-scroll-target="#date-and-time"><span class="toc-section-number">4.2.3</span>  Date and time</a></li>
+  <li><a href="#other-data-types" id="toc-other-data-types" class="nav-link" data-scroll-target="#other-data-types"><span class="toc-section-number">4.2.4</span>  Other data types</a></li>
+  </ul></li>
+  <li><a href="#constraints" id="toc-constraints" class="nav-link" data-scroll-target="#constraints"><span class="toc-section-number">4.3</span>  Constraints</a>
+  <ul class="collapse">
+  <li><a href="#index-example" id="toc-index-example" class="nav-link" data-scroll-target="#index-example"><span class="toc-section-number">4.3.1</span>  Index example</a></li>
+  </ul></li>
+  <li><a href="#documenting-your-database" id="toc-documenting-your-database" class="nav-link" data-scroll-target="#documenting-your-database"><span class="toc-section-number">4.4</span>  Documenting your database</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 3)</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="learning-objectives" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">4.1</span> Learning objectives</h2>
+<p><strong>Concepts</strong></p>
+<ul>
+<li>Data types</li>
+<li>Constraints</li>
+</ul>
+<p><strong>Practical skills</strong></p>
+<ul>
+<li>Set data types and constraints for your fields.</li>
+</ul>
+<!-- ## Slides {.unnumbered} -->
+<!-- <iframe width="600" height="400" marginheight="0" marginwidth="0" src="https://pmongeon.github.io//info6540/slides/slides_relational_database_3.html#/"> -->
+<!-- </iframe> -->
+<!-- [Full screen slides](https://pmongeon.github.io/info6540/slides/slides_relational_database_3.html#/) -->
+</section>
+<section id="data-types" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="data-types"><span class="header-section-number">4.2</span> Data types</h2>
+<p>Every field you include in a table needs to have a data type. The data type is extremely important as it determines how the RDBMS will interpret, store, and potentially transform the data inserted in the tables. The data type also determines the types of operations that can be performed with the data it contains. The three basic data types are <strong>character,</strong> <strong>numeric,</strong> and <strong>dates and times</strong>.</p>
+<section id="character-data-types" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="character-data-types"><span class="header-section-number">4.2.1</span> Character data types</h3>
+<p>Character data types are very flexible because they can contain any combination of letters, numbers or symbols. The most common data types are CHAR, VARCHAR, NCHAR and NVARCHAR. The VAR prefix stands for <em>variable,</em> and the N prefix means <em>national</em>. You should use the CHAR data type when the length of the strings that you will store will not vary (ex., country codes, phone numbers, postal codes). The VARCHAR data type should be used when the length of the strings is expected to vary. Finally, the NCHAR and NVARCHAR should be used when the field is intended to store strings in multiple languages.</p>
+<p>When declaring a string variable type, you must specify the maximum length of the strings the database will store. For example, a field called gummy_name with a variable type VARCHAR(10) will not be able to store gummy names with more than ten characters.</p>
+<p>You shouldn’t simply declare very large CHAR types to be safe and never have to worry about your data is too large for the field because that will either inflate the size of your table for no reason (which can matter a lot if it stores millions or billions of records) or will decrease the performance of your queries.</p>
+<p>More information on the string data types can be found in the <a href="https://dev.mysql.com/doc/refman/8.0/en/string-types.html">MySQL documentation</a>.</p>
+</section>
+<section id="numeric-data-types" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="numeric-data-types"><span class="header-section-number">4.2.2</span> Numeric data types</h3>
+<p>The numeric data types store… you guessed it: numbers! You can use INT (for integer) or its variants for values that don’t require decimals. The only difference is the storage space they occupy and the range of value they can hold (see the summary in the table below). As for string data types, you want to use the smallest possible data type that can accommodate your data.</p>
+<table class="table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 15%">
+<col style="width: 18%">
+<col style="width: 20%">
+<col style="width: 18%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Type</strong></th>
+<th style="text-align: left;"><strong>Storage (Bytes)</strong></th>
+<th style="text-align: left;"><strong>Minimum Value Signed</strong></th>
+<th style="text-align: left;"><strong>Minimum Value Unsigned</strong></th>
+<th style="text-align: left;"><strong>Maximum Value Signed</strong></th>
+<th style="text-align: left;"><strong>Maximum Value Unsigned</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">TINYINT</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">-127</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">127</td>
+<td style="text-align: left;">255</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SMALLINT</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">-32768</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">32767</td>
+<td style="text-align: left;">65535</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MEDIUMINT</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">-8388608</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">8388607</td>
+<td style="text-align: left;">16777215</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">-2147483648</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">2147483647</td>
+<td style="text-align: left;">4294967295</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BIGINT</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">-2<sup>63</sup></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">2<sup>63</sup>-1</td>
+<td style="text-align: left;">2<sup>64</sup>-1</td>
+</tr>
+</tbody>
+</table>
+<p>For values with decimals, you should use the FLOAT data type. However, the DECIMAL data type is preferred for financial data or other cases where having more than a certain number of decimals makes no sense (e.g., 2.3333$). The DECIMAL data type lets you specify the number of digits a value can have and how many of these digits are decimals. For instance, the DECIMAL(5,2) data type indicates that the field can contain values ranging from -999.99 to 999.99.</p>
+<p>More information on the numeric data types can be found in the <a href="https://dev.mysql.com/doc/refman/8.0/en/string-types.html">MySQL documentation</a>.</p>
+</section>
+<section id="date-and-time" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="date-and-time"><span class="header-section-number">4.2.3</span> Date and time</h3>
+<p>The different date and time data types that you can use in MySQL are presented in the following table.</p>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 31%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Data Type</strong></th>
+<th style="text-align: left;"><strong>Format</strong></th>
+<th>Range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">DATE</td>
+<td style="text-align: left;">“0000-00-00”</td>
+<td>“1000-01-01” to “9999-12-31”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TIME</td>
+<td style="text-align: left;">“00:00:00”</td>
+<td>“-838:59:59” to “838:59:59”</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DATETIME</td>
+<td style="text-align: left;">“0000-00-00 00:00:00”</td>
+<td>“1000-01-01 00:00:00.000000” to<br>
+“9999-12-31 23:59:59.999999”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TIMESTAMP</td>
+<td style="text-align: left;">“0000-00-00 00:00:00”</td>
+<td>“1970-01-01 00:00:01.000000” to<br>
+“2038-01-19 03:14:07.999999”</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">YEAR</td>
+<td style="text-align: left;">0000</td>
+<td>1901 to 2155</td>
+</tr>
+</tbody>
+</table>
+<p>As you might notice from the table, no double quotes are used for the year format. That is because years are stored as numbers. It also has a very narrow range of possible values that allows the year to be very memory efficient since only one byte is necessary to store a range of 255 numerical values (see the TINYINT specifications in the previous table.</p>
+<p>The difference between DATETIME and TIMESTAMP is that the TIMESTAMP converts the value to UTC and is converted back into local time when retrieved. With the DATETIME format, values are stored and retrieved as is.</p>
+<p>More details on the date and time formats can be found in the <a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html">MySQL documentation</a>.</p>
+</section>
+<section id="other-data-types" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="other-data-types"><span class="header-section-number">4.2.4</span> Other data types</h3>
+<p>The supported data types vary for different RDBMS, but these systems are constantly evolving and expanding the data types they can handle. For example, possibly in response to the growing popularity of the JSON file format, MySQL now supports the JSON data type. More information on this data type and how to use it can be found in the <a href="https://dev.mysql.com/doc/refman/8.0/en/json.html">MySQL documentation</a>. You might remember that we played with the JSON format a little bit at the beginning of the course. However, please note that knowing how to use the JSON data type in MySQL is beyond the scope of the course. For our current purpose, it is enough to be aware of the fact that while MySQL databases are usually used for structured data, they are flexible tools that can deal with all kinds of semi-structured data formats (like JSON) and unstructured data (like plain text, and binary files like images, videos, etc.).</p>
+</section>
+</section>
+<section id="constraints" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="constraints"><span class="header-section-number">4.3</span> Constraints</h2>
+<p>SQL constraints are used to specify rules for data in a table. They are used to preserve the integrity of the database, ensure data quality, and prevent data loss. While you do not need to use constraints other than the PRIMARY KEY and the FOREIGN KEY ones for this course, it is helpful to know about constraints and what they do. Here is a list of constraints that are available in MySQL databases.</p>
+<ul>
+<li><strong>PRIMARY KEY</strong>: As you already know, the PRIMARY KEY must be unique and cannot be empty. The RDBMS also automatically creates an index (explained below) on this field.</li>
+<li><strong>NOT NULL</strong>: Specifies that this field must always contain a value and cannot be empty (NULL).</li>
+<li><strong>UNIQUE</strong>: A field with a UNIQUE constraint cannot contain duplicate values.</li>
+<li><strong>AUTO INCREMENT</strong>: These constraints can be used with numeric data types and are particularly useful for your primary keys. It means that whenever a new record is created, this field will automatically contain a value 1+the highest value contained in that field. This way, you don’t need to provide value for the field, and you don’t have to worry about duplication.</li>
+<li><strong>GENERATED</strong>: This constraint allows you to automatically generate a value for the field upon creating a new record. It is similar to AUTO INCREMENT, except that you can decide how the value is generated, for instance, by concatenating the first_name and last_name column to generate a full_name value.</li>
+<li><strong>FOREIGN KEY</strong>: the value inserted into a FOREIGN KEY must exist in the PRIMARY KEY field of the parent table. NULL values are allowed in FOREIGN KEY fields.</li>
+<li><strong>CHECK</strong>: the check constraint is a very flexible constraint that allows you to specify the specific values that a field can contain. For example, you could set a CHECK constraint on the number of gummies in an order specifying that the value must be greater than 0.</li>
+<li><strong>DEFAULT</strong>: This constraint defines a default value to be inserted in the field when a new record is created, and no value is provided for that specific field.</li>
+<li><strong>INDEX</strong>: This constraint is used to create an index for the values of that field, which can dramatically increase the speed of your queries. Just like an index at the end of a book telling you on what page(s) you can find information about a particular concept or topic instead of having to look at each page to find those sections, the MySQL INDEX creates a list of records where each of the different values of that field can be found and stores that list into its memory, so that those records can be retrieved much faster. So, for example, if you have 50 different gummy records in your <em>gummy</em> table, 12 of which are red, 25 are blue, and 13 are green, you could create an index on the gummy_color table. The index would have one record for each colour (red., blue, green), each containing a list of the gummy_id that has that colour.</li>
+</ul>
+<section id="index-example" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="index-example"><span class="header-section-number">4.3.1</span> Index example</h3>
+<p>If you ask the database to retrieve the blue gummies from the <em>gummy</em> table and you do not have an inde on the <em>colour</em> column, it has to scan each row, to see the colour is “blue”, if the table as 1 million rows, then this verification has to be done 1 million times.</p>
+<p><strong>No index on the <em>colour</em> field of the <em>gummy</em> table</strong></p>
+<p><img src="files/index1.jpg" class="img-fluid"></p>
+<p><strong>With an index on the <em>colour</em> field of the <em>gummy</em> table</strong></p>
+<p>If you ask the database to retrieve the blue gummies from the <em>gummy</em> table, <strong>and have an index on the <em>colour</em> column</strong>. The database scans the index until it finds the colour “blue” and and then fetches the rows of the <em>gummy</em> table with that are blue. If there are 50 possible colours, then the database has to scan between 1 and 50 rows (depending when it finds the value “blue”).</p>
+<p><img src="files/index2.jpg" class="img-fluid"></p>
+</section>
+</section>
+<section id="documenting-your-database" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="documenting-your-database"><span class="header-section-number">4.4</span> Documenting your database</h2>
+<p>Now that you have a complete database designed, with tables, fields with all the appropriate data types and constraints. You are ready to move to the next step: documentation.</p>
+<p>Adequately documenting your database is crucial because it ensures that the users will be able to understand what tables contain, why they exist, and how to use your database. You already know (and have applied) best practices for table and field names. That likely reduces the need for your database users to refer to the documentation all the time, but it does not eliminate the need for it. Describing your tables and fields also helps ensure they are needed and well-designed. If you cannot describe the purpose of a table, it may be that it has, in fact, no purpose.</p>
+<p>Here are a few simple rules to follow:</p>
+<ul>
+<li><p>Clearly and concisely describe the tables and fields.</p></li>
+<li><p>For <strong>tables only</strong>, your description should provide some indication of its purpose (why it is necessary).</p></li>
+<li><p>Focus on the <strong>content</strong> of the tables or fields rather than how they will specifically be used or accessed and by whom.</p></li>
+<li><p>Do not use examples in your descriptions.</p></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./relational_databases_part2.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 2)</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./summary.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

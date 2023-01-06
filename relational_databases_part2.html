@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Management - 3&nbsp; Relational databases (Pt. 2)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./relational_databases_part1.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 2)</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Management</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Course overview</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Thinking about data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./relational_databases_part1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 1)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./relational_databases_part2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="toc-section-number">3.1</span>  Learning objectives</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="toc-section-number">3.2</span>  Introduction</a></li>
+  <li><a href="#tables-and-fields" id="toc-tables-and-fields" class="nav-link" data-scroll-target="#tables-and-fields"><span class="toc-section-number">3.3</span>  Tables and fields</a>
+  <ul class="collapse">
+  <li><a href="#naming-tables-and-fields" id="toc-naming-tables-and-fields" class="nav-link" data-scroll-target="#naming-tables-and-fields"><span class="toc-section-number">3.3.1</span>  Naming tables and fields</a></li>
+  <li><a href="#table-types" id="toc-table-types" class="nav-link" data-scroll-target="#table-types"><span class="toc-section-number">3.3.2</span>  Table types</a></li>
+  </ul></li>
+  <li><a href="#relationship-types" id="toc-relationship-types" class="nav-link" data-scroll-target="#relationship-types"><span class="toc-section-number">3.4</span>  Relationship types</a>
+  <ul class="collapse">
+  <li><a href="#one-to-one-relationship" id="toc-one-to-one-relationship" class="nav-link" data-scroll-target="#one-to-one-relationship"><span class="toc-section-number">3.4.1</span>  One-to-one relationship</a></li>
+  <li><a href="#one-to-many-relationship" id="toc-one-to-many-relationship" class="nav-link" data-scroll-target="#one-to-many-relationship"><span class="toc-section-number">3.4.2</span>  One-to-many relationship</a></li>
+  <li><a href="#many-to-many-relationship" id="toc-many-to-many-relationship" class="nav-link" data-scroll-target="#many-to-many-relationship"><span class="toc-section-number">3.4.3</span>  Many-to-many relationship</a></li>
+  </ul></li>
+  <li><a href="#entity-relationship-diagrams" id="toc-entity-relationship-diagrams" class="nav-link" data-scroll-target="#entity-relationship-diagrams"><span class="toc-section-number">3.5</span>  Entity-relationship diagrams</a>
+  <ul class="collapse">
+  <li><a href="#other-tools-to-make-your-entity-relationship-diagram" id="toc-other-tools-to-make-your-entity-relationship-diagram" class="nav-link" data-scroll-target="#other-tools-to-make-your-entity-relationship-diagram"><span class="toc-section-number">3.5.1</span>  Other tools to make your entity-relationship diagram</a></li>
+  </ul></li>
+  <li><a href="#homework" id="toc-homework" class="nav-link" data-scroll-target="#homework"><span class="toc-section-number">3.6</span>  Homework</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="toc-section-number">3.7</span>  </a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 2)</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="learning-objectives" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">3.1</span> Learning objectives</h2>
+<p><strong>Concepts</strong></p>
+<ul>
+<li>Table and fields</li>
+<li>Table types</li>
+<li>Relationship types</li>
+<li>Entity-Relationship Diagrams</li>
+</ul>
+<p><strong>Practical skills</strong></p>
+<ul>
+<li>Create an Entity-Relationship Diagram (team assignment #2)</li>
+<li>Optimize the structure of your database (team assignment #2)</li>
+</ul>
+<!-- ## Slides {-} -->
+<!-- <iframe width="600" height="400" marginheight="0" marginwidth="0" src="https://pmongeon.github.io//info6540/slides/slides_relational_database_2.html#/"> -->
+<!-- </iframe> -->
+<!-- [Full screen slides](https://pmongeon.github.io/info6540/slides/slides_relational_database_2.html#/) -->
+</section>
+<section id="introduction" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="introduction"><span class="header-section-number">3.2</span> Introduction</h2>
+<p>Until now, we have been thinking about database and its subjects, attributes and rules without considering their implementation in an actual relational database and the additional rules that relational databases impose on our design. In this chapter, we will begin to transform our database subjects, attributes and rules into a database model with tables, fields and relationships.</p>
+</section>
+<section id="tables-and-fields" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="tables-and-fields"><span class="header-section-number">3.3</span> Tables and fields</h2>
+<p>We already know from the short introduction to relational databases in the previous chapter that our subjects are represented as tables and their attributes as fields (columns) in those tables. However, because of the rules of relational database design, converting subjects to tables and attributes to fields is not simply a matter of changing the labels in the design.</p>
+<p>Here are the two most important rules to follow when creating tables:</p>
+<ul>
+<li><p><strong>Each table represents a single subject</strong>. Gummies and their attributes are stored in one table, orders in another, customers in another, and so on. The set of fields in a table defines the subject, and it would make no sense for a subject to be defined by a gummy name, description, flavour, price as well as by a customer name, a delivery address and a phone number. When adding fields to a table, it is important to ask whether the fields are defining characteristics of the subject represented. Some associative tables (we explain what those are below) can be created for the specific purpose of capturing the relationship between two other tables or accommodate the possibility for an attribute to have multiple values for the same record. Such tables are exceptions as their function is not to represent subjects.</p></li>
+<li><p><strong>Each table has at least one field that will be the primary key</strong>. The primary key is a unique identifier for each record stored in the table (the same primary key cannot appear twice in the table). The primary key is also used to reference a record from one table in another table. The field that makes the reference is called a <strong>foreign key</strong>. For instance, in the <em>gummybox_sales</em> database, customers will be represented in a <em>customer</em> table that contains a primary key named <em>id</em>. Records in another table (e.g., the <em>order</em> table) might need to indicate which customer placed the order. Rather than repeating all the customer information in the order table, each record instead simply needs to includes the <em>id</em> of the customer. In the <em>order</em> table we would then have a field named <em>customer_id</em> that would be a foreign key (i.e., the primary key of another table).</p></li>
+</ul>
+<p>There are also several important principles that fields should follow:</p>
+<ul>
+<li><p><strong>Each field should be unique in the entire database (except foreign keys).</strong> You should avoid repeating the same fields in different tables. For instance, if <em>country</em> is an attribute of more than one subject in your database, you should consider using a validation table (we explain what those are below) called <em>country</em> and include in your other tables a foreign key referencing the <em>country</em> table.</p></li>
+<li><p><strong>Each field represents a distinct attribute of the subject.</strong> A field should not combine, for example, the birth date and the age, the height and weight and any other attributes of the subject. Each attribute has its field.</p></li>
+<li><p><strong>Each field contains a single value that cannot be deconstructed into smaller ones.</strong> The name of a person is an example of a field that can be deconstructed into smaller ones (e.g., first name and last name).</p></li>
+<li><p><strong>Fields should not contain calculated values.</strong> For instance, we could be tempted to include the total price for an order in an <em>order</em> table. However, this would most likely not be optimal if the total price of an order can be calculated by multiplying the number of units included in the order by their individual price.</p></li>
+</ul>
+<section id="naming-tables-and-fields" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="naming-tables-and-fields"><span class="header-section-number">3.3.1</span> Naming tables and fields</h3>
+<p><span class="citation" data-cites="hernandez2013">Hernandez (<a href="references.html#ref-hernandez2013" role="doc-biblioref">2013</a>)</span> proposes some guidelines for naming your tables and fields to make your database easier to understand and navigate. The table below includes all of Hernandez’s recommendations except that we should use the plural form for table names and the singular form for field names. Instead, I recommend using the singular for both table names and field names.</p>
+<p><strong>Characteristics of a good table and field names</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 56%">
+<col style="width: 18%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Rule</strong></th>
+<th><strong>Bad</strong></th>
+<th><strong>Good</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Accurate, unique, and meaningful to the organization</td>
+<td>TableA</td>
+<td>Employee</td>
+</tr>
+<tr class="even">
+<td>Refers to a single subject (unless it is an associative table)</td>
+<td>Faculties/Departments</td>
+<td>Make two tables</td>
+</tr>
+<tr class="odd">
+<td>As short as possible</td>
+<td>CoursesOffered</td>
+<td>Course</td>
+</tr>
+<tr class="even">
+<td>Do not use words like <em>list</em>, <em>records</em>, <em>data</em></td>
+<td>CoursesList</td>
+<td>Course</td>
+</tr>
+<tr class="odd">
+<td>Does not use acronyms</td>
+<td>SRI</td>
+<td>Student_Ratings_of_Instruction</td>
+</tr>
+<tr class="even">
+<td>Does not unduly restrict the data that can be entered into the table</td>
+<td>Fall_course</td>
+<td>Course</td>
+</tr>
+<tr class="odd">
+<td>Use the singular form</td>
+<td>Courses</td>
+<td>Course</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="table-types" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="table-types"><span class="header-section-number">3.3.2</span> Table types</h3>
+<p>There are three basic <strong>table types</strong> that you will encounter in your database:</p>
+<ul>
+<li><p><strong>Data tables</strong> typically represent the main subjects of your database (e.g., objects, people, events). They usually have a single primary key, and they gather data that provides information about the subject represented in the table.</p></li>
+<li><p><strong>Associative tables</strong> create associations between the subjects in your database (e.g., students-courses, products-orders, customers-orders). They have typically had multiple foreign keys that together will form the composite primary key. Some, but not all, of the main subjects of a database design can be associative tables.</p></li>
+<li><p><strong>Validation tables (lookup tables)</strong> are used for data quality and validation purposes. They contain the list of possible values that a field can take. For instance, your grade for this class has a limited set of possible values (A+, A, A-, B+, B, B-, F, AUD, ILL, INC, IP, P). A validation table can but does not have to be used to store these possible values to ensure that a user cannot enter the grade “G” or “Banana” in the grade field of the database. Validation tables are also useful for reducing the memory requirement of your database. You can replace large data types, such as character strings, with smaller data types, such as numbers. We will learn more about data types in the next chapter.</p></li>
+</ul>
+</section>
+</section>
+<section id="relationship-types" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="relationship-types"><span class="header-section-number">3.4</span> Relationship types</h2>
+<p>Relationships are critical determinants of the structure of your database. They are represented by foreign keys in some of your tables linked to other tables’ primary keys. Luckily, relationships are a relatively simple concept that is easy to implement in your database design process. There are only three basic kinds of relationships, so let’s take a quick look at them.</p>
+<section id="one-to-one-relationship" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="one-to-one-relationship"><span class="header-section-number">3.4.1</span> One-to-one relationship</h3>
+<p>This relationship exists when one record in a table can only be associated with one record in another table and <strong>vice versa.</strong> A one-to-one relationship may exist, for instance, between the office space and the personnel of an organization, as long as nobody is allowed to share an office or to have two offices. These relationships are rare in reality since it often makes more sense to bring back to combine tables with one-to-one relationships in a unique table. However, there are situations where the use of one-to-one relationships can be required or appropriate, for example:</p>
+<ul>
+<li><strong>Security</strong>: you may want to store sensitive information about an individual in a different table that only some authorized users can access.</li>
+<li><strong>Semantics</strong>: even though you could include information about the office space in your employees table, you might not want to store information about your offices with your employees table. First names, last names and birth dates are characteristics of people, but buildings and room numbers are not.</li>
+</ul>
+</section>
+<section id="one-to-many-relationship" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="one-to-many-relationship"><span class="header-section-number">3.4.2</span> One-to-many relationship</h3>
+<p>A one-to-many relationship exists when one record in a table can be associated with one or more records in another table. It is the most frequent type of relationship in properly designed databases. A typical example is the customers table and the orders table. A single customer record can be associated with multiple orders, but only one customer can be associated with a specific order.</p>
+</section>
+<section id="many-to-many-relationship" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="many-to-many-relationship"><span class="header-section-number">3.4.3</span> Many-to-many relationship</h3>
+<p>Many-to-many relationships exist when one record in a table can be associated with multiple records in another table and <strong>vice versa</strong>. A typical example is a product that can be part of multiple orders and an order that can contain multiple products. Another example is the relationship between university courses and students. A single course can have multiple students. Inversely, a single student can be enrolled in multiple courses.</p>
+<section id="issues-with-many-to-many-relationships" class="level4" data-number="3.4.3.1">
+<h4 data-number="3.4.3.1" class="anchored" data-anchor-id="issues-with-many-to-many-relationships"><span class="header-section-number">3.4.3.1</span> Issues with many-to-many relationships</h4>
+<p>These relationships are widespread in the world, and they are great. However, they also raise potential issues that need to be resolved in your database design. By definition, these relationships imply that the non-duplication of the primary key rule will be violated so that something that your RDBMS will not allow.</p>
+<p><img src="files/ch4/duplicated_primary_key.png" class="img-fluid"></p>
+<p>One solution for that is to use a composite primary key. This means your table has two or more primary keys instead of one. In practice, that means that every combination of the two fields forming the key are not allowed to be repeated in the table.</p>
+<p><img src="files/ch4/composite_primary_key.png" class="img-fluid"></p>
+<p>However, the composite key solution is often not optimal since it can create a lot of redundancy in your table, which you want to minimize as much as possible.</p>
+<p><img src="files/ch4/redundancy.png" class="img-fluid"></p>
+<p>That is the purpose of <strong>associative tables</strong>. They are tables created with the specific purpose of linking your subjects together to prevent primary key duplication and minimize redundancy.</p>
+<p><img src="files/ch4/associative_table.png" class="img-fluid"></p>
+<p>Now the Melvil Dewey information is not repeated in the database for every course they are registered for. In fact, none of the information is repeated other than the primary and foreign keys.</p>
+</section>
+</section>
+</section>
+<section id="entity-relationship-diagrams" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="entity-relationship-diagrams"><span class="header-section-number">3.5</span> Entity-relationship diagrams</h2>
+<p>An entity-relationship diagram (ERD) is a visual representation of your database that typically includes every table along with their fields and the relationship between them. The ERD is a helpful tool for designing your database because it helps you visualize your table and fields and their relationship, making it easier to spot mistakes and inconsistencies. It is also a valuable part of your database documentation as it can give users a good understanding of the data to use it more effectively. The video below demonstrates how to draw ERDs using <a href="https://app.diagrams.net/">diagrams.net</a> (formerly draw.io).</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You should watch the video even if you already know how to use diagrams.net or are not planning to use it for the course. It provides general guidance on ERD and database design.</p>
+</div>
+</div>
+<iframe src="https://dal.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=16ce4fdc-c66d-44fd-9851-ae26000ee7c7&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay">
+</iframe>
+<section id="other-tools-to-make-your-entity-relationship-diagram" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="other-tools-to-make-your-entity-relationship-diagram"><span class="header-section-number">3.5.1</span> Other tools to make your entity-relationship diagram</h3>
+<section id="whiteboard" class="level4" data-number="3.5.1.1">
+<h4 data-number="3.5.1.1" class="anchored" data-anchor-id="whiteboard"><span class="header-section-number">3.5.1.1</span> Whiteboard</h4>
+<p>When you are at the very early stages of your design and still very unclear about what your tables may look like, it can be a good idea to try things out on a whiteboard (or paper) to get a quick sense of what works and what doesn’t.</p>
+</section>
+</section>
+</section>
+<section id="homework" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="homework"><span class="header-section-number">3.6</span> Homework</h2>
+<p>The homework for this week is to start designing your database with your teammates and to begin working on the individual lab #2.</p>
+</section>
+<section id="section" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="section"><span class="header-section-number">3.7</span> </h2>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-hernandez2013" class="csl-entry" role="doc-biblioentry">
+Hernandez, Michael J. 2013. <em>Database Design for Mere Mortals: A Hands-on Guide to Relational Database Design</em>. Third edition. Upper Saddle River, NJ: Addison-Wesley.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./relational_databases_part1.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 1)</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

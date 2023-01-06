@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Management - 1&nbsp; Thinking about data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./relational_databases_part1.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Thinking about data</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Management</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Course overview</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introduction.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Thinking about data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./relational_databases_part1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 1)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./relational_databases_part2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="toc-section-number">1.1</span>  Learning objectives</a></li>
+  <li><a href="#what-is-data" id="toc-what-is-data" class="nav-link" data-scroll-target="#what-is-data"><span class="toc-section-number">1.2</span>  What is data?</a></li>
+  <li><a href="#datasets" id="toc-datasets" class="nav-link" data-scroll-target="#datasets"><span class="toc-section-number">1.3</span>  Datasets</a></li>
+  <li><a href="#databases" id="toc-databases" class="nav-link" data-scroll-target="#databases"><span class="toc-section-number">1.4</span>  Databases</a></li>
+  <li><a href="#database-management-systems-dbms" id="toc-database-management-systems-dbms" class="nav-link" data-scroll-target="#database-management-systems-dbms"><span class="toc-section-number">1.5</span>  Database management systems (DBMS)</a></li>
+  <li><a href="#data-management" id="toc-data-management" class="nav-link" data-scroll-target="#data-management"><span class="toc-section-number">1.6</span>  Data management</a></li>
+  <li><a href="#from-unstructured-to-structured-data" id="toc-from-unstructured-to-structured-data" class="nav-link" data-scroll-target="#from-unstructured-to-structured-data"><span class="toc-section-number">1.7</span>  From unstructured to structured data</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="toc-section-number">1.8</span>  Practice</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Thinking about data</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<section id="learning-objectives" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1.1</span> Learning objectives</h2>
+<ul>
+<li><p>Understanding the concepts of data, dataset, database, data management, and data management systems.</p></li>
+<li><p>Understanding the difference between unstructured, semi-structured, and structured data.</p></li>
+</ul>
+</section>
+<section id="what-is-data" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="what-is-data"><span class="header-section-number">1.2</span> What is data?</h2>
+<p>The Merriam-Webster online dictionary provides three definitions of the word data:</p>
+<blockquote class="blockquote">
+<p><em>factual information (such as measurements or statistics) used as a basis for reasoning, discussion, or calculation.</em></p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em>information in digital form that can be transmitted or processed</em></p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em>information output by a sensing device or organ that includes both useful and irrelevant or redundant information and must be processed to be meaningful</em></p>
+<p align="right">
+</p><p>— Merriam-Webster dictionary</p>
+<p></p>
+</blockquote>
+<p>Together, these definitions offer us a set of key elements from which we can build a broad understanding of the concept of data. The first key term is factual information or fact suggesting that data is objective and, like the rest of the definition shows, is used for a given purpose, such as discussing reasoning or decision-making.</p>
+<p>The second definition is related to using the word data in a computational or communicational sense, where data is the “thing” that is being stored, transmitted, received, processed, etc.</p>
+<p>While the first definition suggests that humans and machines use data for processes such as decisions and calculations, the third definition highlights that data does not only exist in nature but can also be created by humans and machines, either purposefully or not.</p>
+<p>While we often think of data as things found in spreadsheets and stored in computers or filing cabinets, data is much more than that. Data is everywhere around us all the time in the form of energy and sound or light waves, for instance. Our sensory organs are data captors that pick up data from our environment. Our brains process, structure, and possibly store the data so we can consciously or unconsciously use it now or later as a basis for decisions and actions. That said, in this course, we will not concern ourselves with this kind of data and process. Instead, we will focus on digitally recorded data, the kind that we can store in a computer.</p>
+</section>
+<section id="datasets" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="datasets"><span class="header-section-number">1.3</span> Datasets</h2>
+<p>We often encounter the term “dataset” on the web or in our workplaces, and I think it is worth writing a few lines to relate the terms to the other terms we will use in this course. The terms data and dataset will often be used interchangeably since dataset literally means a set of data, and data is the plural of datum. One difference, in principle, is that datasets are usually assembled for a given purpose. In research, for instance, a dataset will be the exact collection of data collected for the analysis. In supervised machine learning, we distinguish between training and testing datasets. When a professor sends you an excel file with data to work with for an assignment, that’s a dataset. You find datasets when you browse websites like kaggle.com, zenodo.org, or dataverse.org. Datasets are also static, whereas databases can be dynamic.</p>
+</section>
+<section id="databases" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="databases"><span class="header-section-number">1.4</span> Databases</h2>
+<p>What is a database? According to the Merriam-Webster dictionary, a database is “a usually large collection of data organized especially for rapid search and retrieval (as by a computer)”. The keyword here is organized, highlighting that databases are both products and tools for data management.</p>
+<p>Databases are usually created and managed for some purposes. These purposes may be specific (e.g.&nbsp;keeping track of a store’s inventory) or broad (tracking socioeconomic trends). Depending on their purposes, databases can vary in size and complexity. Any organized data collection could be considered a database, even if it is as basic as an Excel spreadsheet with the names and addresses of your friends or your to-do list.</p>
+<p>A database can contain or be used to create multiple datasets, but a dataset would typically not contain multiple databases. Of course, this does not mean that datasets are always drawn from databases. For example, datasets can be created by surveying or interviewing people or recording observations of natural phenomena.</p>
+<p>Note, however, that those differences are not hard truths, as some datasets may serve a greater variety of users and purposes than some databases.</p>
+</section>
+<section id="database-management-systems-dbms" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="database-management-systems-dbms"><span class="header-section-number">1.5</span> Database management systems (DBMS)</h2>
+<p>A <strong>D</strong>ata<strong>b</strong>ase <strong>M</strong>anagement <strong>S</strong>ystem (DBMS) is software that supports the development, maintenance, security, and use of databases. You will often come across the DBMS acronym with different suffixes attached to it, such as RDBMS (Relational DBMS), OODBMS (Object-Oriented DBMS), or ORDBMS (Object-Relational DBMS). Note that all these DBMS generally offer the same basic features. The main difference is that they work with different data types and structures. In this course you will use one RDBMS called pgAdmin to put implement your database design on a live server. You will also be introduced to the two popular DBMSs: MongoDB and Neo4j for document databases and graph databases, respectively.</p>
+<p>Most DBMS are pretty easy to get started with, and some will provide standard templates for tables and data structures. But as <span class="citation" data-cites="hernandez2013">Hernandez (<a href="references.html#ref-hernandez2013" role="doc-biblioref">2013</a>)</span> writes in the introduction of their popular database design book, diving in without proper preparation and relying too much on templates is an easy way to end up with a design that is inefficient or does not work. A bad database design will lead to data problems such as missing, incorrect, or mismatched data. It will fail to play its role in supporting the organization or serving the users.</p>
+</section>
+<section id="data-management" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="data-management"><span class="header-section-number">1.6</span> Data management</h2>
+<p>So far in this chapter, we explored the concepts of data and its different levels of structure, datasets, databases and data management systems. Aside from related to data, what do all these concepts have in common? They are what data managers work with. Data managers unlock the potential of data for a given purpose, individual, group or organization, by developing and implementing data strategies and processes such as data retrieval, processing, cleaning, storage and analysis.</p>
+<p>The value of data depends on the purpose it serves. Thus, good data management requires a good understanding of both the data and the needs of its users so that optimal data strategies can be developed and implemented. In this course, you will get familiar with several tools to manage data and data-related processes and design a database that addresses the needs of an organization or group.</p>
+</section>
+<section id="from-unstructured-to-structured-data" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="from-unstructured-to-structured-data"><span class="header-section-number">1.7</span> From unstructured to structured data</h2>
+<p>Data can take many forms that we can situate along a continuum with unstructured data at one extreme, structured data at the other, and semi-structured data in between. Let us consider a simple example to better grasp the difference between structured and unstructured data and, at the same time, to get a sense of the process of structuring data so that it can be more effectively strored and analyzed.</p>
+<p>Here is a brilliant piece of writing:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>A data story</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Philippe Mongeon</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Chapter 1</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Once upon a time, a random internet user created a short text and abandoned it in a sea of unstructured data.</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Chapter 2</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>An algorithm passed by and decided to add XML tags to the text.</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Chapter 3</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>A data manager stumbled upon the data and thought it would be relevant for the database users. So they decided to add it to their relational database.</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>The end.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>That’s unstructured data (not entirely, the line breaks are a very basic structure). We humans who have read a book before can see the structure, but for a computer, this is just text. So now, let us give this text a little bit more structure by applying XML tags.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">book</span>&gt;</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">title</span>&gt;A data story&lt;/<span class="kw">title</span>&gt;</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">author</span>&gt;Philippe Mongeon&lt;/<span class="kw">author</span>&gt;</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">h1</span>&gt;Chapter 1&lt;/<span class="kw">h1</span>&gt;</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">p</span>&gt;Once upon a time a short text was created by a random internet user and abandoned in a sea of unstructured data.&lt;/<span class="kw">p</span>&gt;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">h1</span>&gt;Chapter 2&lt;/<span class="kw">h1</span>&gt;</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">p</span>&gt;An algorithm passed by and decided to add xml tags to the text.&lt;/<span class="kw">p</span>&gt;</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">h1</span>&gt;Chapter 3&lt;/<span class="kw">h1</span>&gt;</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">p</span>&gt;A data manager stumbled upon the data, thought it would be relevant for the database users, and so she decided to add it to include it in her relational database.&lt;/<span class="kw">p</span>&gt;</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">p</span>&gt;The end.&lt;/<span class="kw">p</span>&gt;</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">book</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The XML tags already help us (and the computer) identify different text components, such as the title, the author, headers and paragraphs. XML documents are a typical example of semi-structured data.</p>
+<p>Another frequently used semi-structured format is JSON, which in this case would look like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"A data story"</span><span class="fu">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"author"</span><span class="fu">:</span> <span class="st">"Philippe Mongeon"</span><span class="fu">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"Chapter 1"</span><span class="fu">:</span> <span class="st">"Once upon a time a short text was created by a random internet user and abandoned in a sea of unstructured data."</span><span class="fu">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"Chapter 2"</span><span class="fu">:</span> <span class="st">"An algorithm passed by and decided to add xml tags to the text."</span><span class="fu">,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"Chapter 3"</span><span class="fu">:</span> <span class="st">"A data manager stumbled upon the data, thought it would be relevant for the database users, and so she decided to add it to her relational database. The end."</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Notice how I included the Chapter number in the tags here in this example? That was an arbitrary choice, and I could have chosen another structure for my file, such as this one:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"A data story"</span><span class="fu">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"author"</span><span class="fu">:</span> <span class="st">"Philippe Mongeon"</span><span class="fu">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"Chapters"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"Chapter 1"</span><span class="fu">,</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"content"</span><span class="fu">:</span> <span class="st">"Once upon a time a short text was created by a random internet user and abandoned in a sea of unstructured data."</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"Chapter 2"</span><span class="fu">,</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"content"</span><span class="fu">:</span> <span class="st">"An algorithm passed by and decided to add xml tags to the text."</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"Chapter 3"</span><span class="fu">,</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"content"</span><span class="fu">:</span> <span class="st">"A data manager stumbled upon the data, thought it would be relevant for the database users, and so she decided to add it to her relational database. The end."</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This structure (or semi-structure) is just as good as the previous one. That flexibility is one of the reasons why semi-structured data formats and databases are growing in popularity. Because the data structure is included directly in the document, the users do not need to follow a predefined structure and use predefined tags to store their data in the database. This means that, theoretically, every record could have a different structure, which would be fine, but most likely not optimal. We will explore this type of structure and a popular DBMSs that uses it (MongoDB) later in the course.</p>
+<p>Structured data and databases are typically tabular (like an Excel spreadsheet). Each row is a record or entry, and each column is a field, feature, variable, etc. The structure is part of the database design (and not each database entry, as in the semi-structured format), and so every new record has to follow that same format. For example, here is the same work of art in a structured format.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>Example of structured data</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Title </th>
+   <th style="text-align:left;"> Author </th>
+   <th style="text-align:left;"> Section </th>
+   <th style="text-align:left;"> Content </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> A data story </td>
+   <td style="text-align:left;"> Philippe Mongeon </td>
+   <td style="text-align:left;"> Chapter 1 </td>
+   <td style="text-align:left;"> Once upon a time a data was created by a random internet user and abandoned in a see of unstructured data. </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> A data story </td>
+   <td style="text-align:left;"> Philippe Mongeon </td>
+   <td style="text-align:left;"> Chapter 2 </td>
+   <td style="text-align:left;"> An algorithm passed by and decided to add xml tags to the text. </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> A data story </td>
+   <td style="text-align:left;"> Philippe Mongeon </td>
+   <td style="text-align:left;"> Chapter 3 </td>
+   <td style="text-align:left;"> A data manager stumbled upon the data, thought it would be relevant for the database users, and so she decided to add it to include it in her relational database. The end. </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>Here, the structure is determined by the columns I chose for my table (title, author, section, and content). But, again, this was an arbitrary choice, and I could have chosen a completely different structure (although the realm of possibilities is somewhat limited by the data and by common sense). The point is that there is rarely an absolute best way of structuring data, and the best structure is the one that best suits the needs of the users. Sometimes the same data may be duplicated and structured differently to suit different users and uses.</p>
+<p>Perhaps you noticed that the title and author information is repeated in this last example, which is not a great database design. This course will teach you how to avoid such redundancies and design sound and efficient relational databases. We will talk about the relational model later in the course, but for now, note that relational databases are types of databases that follow a set of rules and principles that make them best suited for structured data.</p>
+</section>
+<section id="practice" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="practice"><span class="header-section-number">1.8</span> Practice</h2>
+<p>Over the next few weeks of the course, you will design a relational database, store data into it, and write SQL queries to retrieve data. But since this course is intended to be accessible to students with little to no experience working with data, this week is dedicated to developing or polishing your Microsoft Excel skills.</p>
+<p>While Excel has some data management capabilities, that’s not what it is designed and most commonly used for. You can still think of it as a very rudimentary form of DBMS. However, Excel is a flexible tool that you can use to quickly explore, manipulate and structure data before creating those structures in an actual DBMS. Excel will also always be relevant in your data management workflow because it remains one of the most accessible ways to work with data for downstream processes (before data gets stored in a DMBS) and upstream processes (after the data is retrieved from the DBMS).</p>
+<section id="formatting-exercise" class="level4" data-number="1.8.0.1">
+<h4 data-number="1.8.0.1" class="anchored" data-anchor-id="formatting-exercise"><span class="header-section-number">1.8.0.1</span> Formatting exercise</h4>
+<ol type="1">
+<li>Download the <a href="files/exercises/Easy_Excel.xlsx">Easy_Excel.xlsx</a> file (provided by Julie Marcoux, a data librarian at the Killam Library)</li>
+<li>Follow the instructions in the <em>instructions</em> sheet.</li>
+<li>The <em>exercise</em> sheet contains the data to format.</li>
+<li>At the end of the exercise, your table should look similar to the one found in the <em>Results</em> sheet.</li>
+<li>The <em>Useful functions</em> sheet contains tips on using some Excel formatting functions.</li>
+</ol>
+</section>
+<section id="analyzing-exercise" class="level4" data-number="1.8.0.2">
+<h4 data-number="1.8.0.2" class="anchored" data-anchor-id="analyzing-exercise"><span class="header-section-number">1.8.0.2</span> Analyzing exercise</h4>
+<ol type="1">
+<li>Watch the demo on pivot tables in Excel below.</li>
+<li>Create a pivot table to explore the data in the _The <em>exercise</em> sheet of the Easy_Excel.xlsx used for the first exercise.</li>
+<li>Explore ways of structuring your pivot table and combining and filtering columns.</li>
+<li>Which publisher has the most books in the dataset?</li>
+<li>On average, are cloth-bound books more or less expensive than paper-bound books?</li>
+</ol>
+<iframe src="https://dal.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=03ac68f1-3fa5-4c82-a81a-acad0178f803&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay">
+</iframe>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-hernandez2013" class="csl-entry" role="doc-biblioentry">
+Hernandez, Michael J. 2013. <em>Database Design for Mere Mortals: A Hands-on Guide to Relational Database Design</em>. Third edition. Upper Saddle River, NJ: Addison-Wesley.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Course overview</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./relational_databases_part1.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 1)</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
