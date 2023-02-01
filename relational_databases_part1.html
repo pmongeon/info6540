@@ -115,6 +115,11 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./relational_databases_part3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 3)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
   </div>
 </li>
@@ -247,13 +252,13 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="2.4" class="anchored" data-anchor-id="subjects-and-attributes"><span class="header-section-number">2.4</span> Subjects and attributes</h2>
 <p>Now that we have established the mission and objectives that the database will be supporting, we need to ask ourselves two questions:</p>
 <ol type="1">
-<li><strong><em>What subjects (objects and events) are needed to fulfill the mission and objectives of the database?</em></strong> These objects and events constitute the subjects (or entities). If the mission is to support the activities of a job placement agency, your subject would likely include jobs, job-seekers, employers, and agents. For a university, you might want to include things like students, courses, instructors, and departments.</li>
-<li><strong><em>What attributes of the subjects are needed to fulfill the mission and objectives of the database?</em></strong> This is where you list, for each of the subjects identified with the first question, the attributes that your database requires. one of the subjects of your database is customers, you would likely want to include their name, and possibly their email or phone number. But do you need their address? their social insurance number? the name of their first pet? There is no universal answer, and so you need to ask yourself this question for every table in your database, and answer it based on your judgement and the mission and objectives of the database.</li>
+<li><strong><em>What entities (objects and events) are needed to fulfill the mission and objectives of the database?</em></strong> These objects and events constitute the subjects (or <strong>entities</strong>). If the mission is to support the activities of a job placement agency, your subjects would likely include jobs, job-seekers, employers, and agents. For a university, you might want to include things like students, courses, instructors, and departments.</li>
+<li><strong><em>What attributes of the subjects are needed to fulfill the mission and objectives of the database?</em></strong> This is where you list, for each of the subjects identified with the first question, the attributes that your database requires. If one of the subjects of your database is customers, you would likely want to include their name, and possibly their email or phone number. But do you need their address? their social insurance number? the name of their first pet? There is no universal answer, so you need to ask yourself this question for every table in your database, and answer it based on your judgement and the mission and objectives of the database.</li>
 </ol>
-<p>Relational databases don’t impose rules on the subjects and attributes that you can include in your database. It does however, impose rules on how these subjects and attributes must be captured in the form of tables (subjects) and fields (attributes).</p>
+<p>Relational databases don’t impose rules on the subjects and attributes that you can include in your database. It does, however, impose rules on how these subjects and attributes must be captured in tables (subjects) and fields (attributes).</p>
 <section id="subjects-and-attributes-of-the-gummybox_sales-database" class="level4" data-number="2.4.0.1">
 <h4 data-number="2.4.0.1" class="anchored" data-anchor-id="subjects-and-attributes-of-the-gummybox_sales-database"><span class="header-section-number">2.4.0.1</span> Subjects and attributes of the gummybox_sales database</h4>
-<p>If the objectives of your database are well formulated, they may already provide you with all the subjects that you need for your database. Here are the objectives of the gummybox_sales database in which I highlighted the subjects.</p>
+<p>If the objectives of your database are well formulated, they may already provide you with all the subjects you need for your database. Here are the objectives of the gummybox_sales database in which I highlighted the subjects.</p>
 <ul>
 <li>Maintain <strong>customer</strong> information.</li>
 <li>Keep track of <strong>orders</strong>.</li>
@@ -266,13 +271,13 @@ ul.task-list li input[type="checkbox"] {
 <section id="database-rules" class="level3" data-number="2.4.1">
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="database-rules"><span class="header-section-number">2.4.1</span> Database rules</h3>
 <p>Before we start building our database, it is important to identify or set rules that might constrain the values that an attribute can have for a single record or the relationships that can exist between two subjects.</p>
-<p>O important question to ask when conceptualizing your database is whether a single instance of a subject (e.g., a specific customer, a specific gummy, or a specific order) <strong>can have multiple values</strong> for the same attribute. Consider for instance, the <em>customer</em> subject of the <em>gummybox_sales</em> database. The attributes that we identified are the customer name, email and address. We may want to consider whether or not a customer should be able to have multiple addresses. We can also consider whether the database should be able to attribute multiple colours of flavours to the same gummy. These decisions are database rules that we can make specify like this:</p>
+<p>An important question to ask when conceptualizing your database is whether a single instance of a subject (e.g., a specific customer, a specific gummy, or a specific order) <strong>can have multiple values</strong> for the same attribute. Consider, for instance, the <em>customer</em> subject of the <em>gummybox_sales</em> database. The attributes we identified are the customer’s name, email and address. We may want to consider whether or not a customer should be able to have multiple addresses. We can also consider whether the database should be able to attribute multiple colours of flavours to the same gummy. These decisions are database rules that we can make specify like this:</p>
 <ul>
-<li><p>An individual customer can have more than one addresses.</p></li>
-<li><p>An individual gummy can have multiple colours</p></li>
+<li><p>An individual customer can have more than one address.</p></li>
+<li><p>An individual gummy can have multiple colours.</p></li>
 <li><p>An individual gummy can have multiple flavours.</p></li>
 </ul>
-<p>When conceptualizing your database, it is also important to consider rules that apply to the <strong>relationship between subjects</strong>. For example, one of the subject in the <em>gummybox_sales</em> database is reviews. There are several decisions to make about reviews that may have an impact on the database design. Some relevant questions might be:</p>
+<p>When conceptualizing your database, it is also important to consider rules that apply to the <strong>relationship between subjects</strong>. For example, one of the subjects in the <em>gummybox_sales</em> database is reviews. There are several decisions to make about reviews that may have an impact on the database design. Some relevant questions might be:</p>
 <ul>
 <li><p>Do we accept reviews from everyone or do we only accept reviews from registered customers?</p></li>
 <li><p>Can both individual gummies and gummy assortments be reviewed?</p></li>

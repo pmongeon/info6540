@@ -49,7 +49,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./relational_databases_part3.html" rel="next">
 <link href="./relational_databases_part1.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -134,6 +134,11 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./relational_databases_part3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 3)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
   </div>
 </li>
@@ -159,10 +164,7 @@ div.csl-indent {
   <li><a href="#one-to-many-relationship" id="toc-one-to-many-relationship" class="nav-link" data-scroll-target="#one-to-many-relationship"><span class="toc-section-number">3.4.2</span>  One-to-many relationship</a></li>
   <li><a href="#many-to-many-relationship" id="toc-many-to-many-relationship" class="nav-link" data-scroll-target="#many-to-many-relationship"><span class="toc-section-number">3.4.3</span>  Many-to-many relationship</a></li>
   </ul></li>
-  <li><a href="#entity-relationship-diagrams" id="toc-entity-relationship-diagrams" class="nav-link" data-scroll-target="#entity-relationship-diagrams"><span class="toc-section-number">3.5</span>  Entity-relationship diagrams</a>
-  <ul class="collapse">
-  <li><a href="#other-tools-to-make-your-entity-relationship-diagram" id="toc-other-tools-to-make-your-entity-relationship-diagram" class="nav-link" data-scroll-target="#other-tools-to-make-your-entity-relationship-diagram"><span class="toc-section-number">3.5.1</span>  Other tools to make your entity-relationship diagram</a></li>
-  </ul></li>
+  <li><a href="#entity-relationship-diagrams" id="toc-entity-relationship-diagrams" class="nav-link" data-scroll-target="#entity-relationship-diagrams"><span class="toc-section-number">3.5</span>  Entity-relationship diagrams</a></li>
   <li><a href="#homework" id="toc-homework" class="nav-link" data-scroll-target="#homework"><span class="toc-section-number">3.6</span>  Homework</a></li>
   </ul>
 </nav>
@@ -227,13 +229,13 @@ div.csl-indent {
 </ul>
 <section id="naming-tables-and-fields" class="level3" data-number="3.3.1">
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="naming-tables-and-fields"><span class="header-section-number">3.3.1</span> Naming tables and fields</h3>
-<p><span class="citation" data-cites="hernandez2013">Hernandez (<a href="references.html#ref-hernandez2013" role="doc-biblioref">2013</a>)</span> proposes some guidelines for naming your tables and fields to make your database easier to understand and navigate. The table below includes all of Hernandez’s recommendations except that we should use the plural form for table names and the singular form for field names. Instead, I recommend using the singular for both table names and field names.</p>
+<p><span class="citation" data-cites="hernandez2013">Hernandez (<a href="references.html#ref-hernandez2013" role="doc-biblioref">2013</a>)</span> proposes some guidelines for naming your tables and fields to make your database easier to understand and navigate. The table below includes all of Hernandez’s recommendations.</p>
 <p><strong>Characteristics of a good table and field names</strong></p>
 <table class="table">
 <colgroup>
-<col style="width: 52%">
-<col style="width: 23%">
-<col style="width: 23%">
+<col style="width: 50%">
+<col style="width: 24%">
+<col style="width: 24%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -246,7 +248,7 @@ div.csl-indent {
 <tr class="odd">
 <td>Accurate, unique, and meaningful to the organization</td>
 <td>TableA</td>
-<td>Employee</td>
+<td>Orders</td>
 </tr>
 <tr class="even">
 <td>Refers to a single subject (unless it is an associative table)</td>
@@ -256,27 +258,22 @@ div.csl-indent {
 <tr class="odd">
 <td>As short as possible</td>
 <td>CoursesOffered</td>
-<td>Course</td>
+<td>Courses</td>
 </tr>
 <tr class="even">
 <td>Do not use words like <em>list</em>, <em>records</em>, <em>data</em></td>
 <td>CoursesList</td>
-<td>Course</td>
+<td>Courses</td>
 </tr>
 <tr class="odd">
 <td>Does not use acronyms</td>
-<td>SRI</td>
+<td>SRIs</td>
 <td>Student_Ratings_of_Instruction</td>
 </tr>
 <tr class="even">
 <td>Does not unduly restrict the data that can be entered into the table</td>
-<td>Fall_course</td>
-<td>Course</td>
-</tr>
-<tr class="odd">
-<td>Use the singular form</td>
+<td>Fall_courses</td>
 <td>Courses</td>
-<td>Course</td>
 </tr>
 </tbody>
 </table>
@@ -287,7 +284,7 @@ div.csl-indent {
 <ul>
 <li><p><strong>Data tables</strong> typically represent the main subjects of your database (e.g., objects, people, events). They usually have a single primary key, and they gather data that provides information about the subject represented in the table.</p></li>
 <li><p><strong>Associative tables</strong> create associations between the subjects in your database (e.g., students-courses, products-orders, customers-orders). They have typically had multiple foreign keys that together will form the composite primary key. Some, but not all, of the main subjects of a database design can be associative tables.</p></li>
-<li><p><strong>Validation tables (lookup tables)</strong> are used for data quality and validation purposes. They contain the list of possible values that a field can take. For instance, your grade for this class has a limited set of possible values (A+, A, A-, B+, B, B-, F, AUD, ILL, INC, IP, P). A validation table can but does not have to be used to store these possible values to ensure that a user cannot enter the grade “G” or “Banana” in the grade field of the database. Validation tables are also useful for reducing the memory requirement of your database. You can replace large data types, such as character strings, with smaller data types, such as numbers. We will learn more about data types in the next chapter.</p></li>
+<li><p><strong>Validation tables (look-up tables)</strong> are used for data quality and validation purposes. They contain the list of possible values that a field can take. For instance, your grade for this class has a limited set of possible values (A+, A, A-, B+, B, B-, F, AUD, ILL, INC, IP, P). A validation table can but does not have to be used to store these possible values to ensure that a user cannot enter the grade “G” or “Banana” in the grade field of the database. Validation tables are also useful for reducing the memory requirement of your database. You can replace large data types, such as character strings, with smaller data types, such as numbers. We will learn more about data types in the next chapter.</p></li>
 </ul>
 </section>
 </section>
@@ -341,17 +338,23 @@ Important
 </div>
 <iframe src="https://dal.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=16ce4fdc-c66d-44fd-9851-ae26000ee7c7&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay">
 </iframe>
-<section id="other-tools-to-make-your-entity-relationship-diagram" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="other-tools-to-make-your-entity-relationship-diagram"><span class="header-section-number">3.5.1</span> Other tools to make your entity-relationship diagram</h3>
-<section id="whiteboard" class="level4" data-number="3.5.1.1">
-<h4 data-number="3.5.1.1" class="anchored" data-anchor-id="whiteboard"><span class="header-section-number">3.5.1.1</span> Whiteboard</h4>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>When you are at the very early stages of your design and still very unclear about what your tables may look like, it can be a good idea to try things out on a whiteboard (or paper) to get a quick sense of what works and what doesn’t.</p>
-</section>
-</section>
+</div>
+</div>
 </section>
 <section id="homework" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="homework"><span class="header-section-number">3.6</span> Homework</h2>
-<p>The homework for this week is to start designing your database with your teammates and to begin working on the individual lab #2.</p>
+<p>The homework for this week is to start designing your database with your teammates and working on individual lab #2.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
@@ -502,8 +505,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./relational_databases_part3.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 3)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
