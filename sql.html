@@ -1,0 +1,2849 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Management - 6&nbsp; Structured Query Language (SQL)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./rdbms.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Structured Query Language (SQL)</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Management</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Course overview</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Thinking about data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./relational_databases_part1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 1)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./relational_databases_part2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./relational_databases_part3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 3)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rdbms.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relational database management systems</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sql.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Structured Query Language (SQL)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="toc-section-number">6.1</span>  Learning objectives</a></li>
+  <li><a href="#what-is-sql" id="toc-what-is-sql" class="nav-link" data-scroll-target="#what-is-sql"><span class="toc-section-number">6.2</span>  What is SQL?</a></li>
+  <li><a href="#syntax" id="toc-syntax" class="nav-link" data-scroll-target="#syntax"><span class="toc-section-number">6.3</span>  Syntax</a></li>
+  <li><a href="#the-gummybox_sales-erd" id="toc-the-gummybox_sales-erd" class="nav-link" data-scroll-target="#the-gummybox_sales-erd"><span class="toc-section-number">6.4</span>  The gummybox_sales ERD</a></li>
+  <li><a href="#retrieve-data" id="toc-retrieve-data" class="nav-link" data-scroll-target="#retrieve-data"><span class="toc-section-number">6.5</span>  Retrieve data</a>
+  <ul class="collapse">
+  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"><span class="toc-section-number">6.5.1</span>  SELECT</a></li>
+  <li><a href="#select-distinct" id="toc-select-distinct" class="nav-link" data-scroll-target="#select-distinct"><span class="toc-section-number">6.5.2</span>  SELECT DISTINCT</a></li>
+  <li><a href="#where" id="toc-where" class="nav-link" data-scroll-target="#where"><span class="toc-section-number">6.5.3</span>  WHERE</a></li>
+  <li><a href="#order-by" id="toc-order-by" class="nav-link" data-scroll-target="#order-by"><span class="toc-section-number">6.5.4</span>  ORDER BY</a></li>
+  </ul></li>
+  <li><a href="#operators" id="toc-operators" class="nav-link" data-scroll-target="#operators"><span class="toc-section-number">6.6</span>  Operators</a>
+  <ul class="collapse">
+  <li><a href="#arithmetic-operators" id="toc-arithmetic-operators" class="nav-link" data-scroll-target="#arithmetic-operators"><span class="toc-section-number">6.6.1</span>  Arithmetic operators</a></li>
+  <li><a href="#comparison-operators" id="toc-comparison-operators" class="nav-link" data-scroll-target="#comparison-operators"><span class="toc-section-number">6.6.2</span>  Comparison operators</a></li>
+  <li><a href="#logical-boolean-operators" id="toc-logical-boolean-operators" class="nav-link" data-scroll-target="#logical-boolean-operators"><span class="toc-section-number">6.6.3</span>  Logical (boolean) operators</a></li>
+  <li><a href="#aggregate-functions" id="toc-aggregate-functions" class="nav-link" data-scroll-target="#aggregate-functions"><span class="toc-section-number">6.6.4</span>  Aggregate functions</a></li>
+  </ul></li>
+  <li><a href="#combining-joining-tables" id="toc-combining-joining-tables" class="nav-link" data-scroll-target="#combining-joining-tables"><span class="toc-section-number">6.7</span>  Combining (joining) tables</a>
+  <ul class="collapse">
+  <li><a href="#join-inner-join" id="toc-join-inner-join" class="nav-link" data-scroll-target="#join-inner-join"><span class="toc-section-number">6.7.1</span>  JOIN (INNER JOIN)</a></li>
+  <li><a href="#left-join" id="toc-left-join" class="nav-link" data-scroll-target="#left-join"><span class="toc-section-number">6.7.2</span>  LEFT JOIN</a></li>
+  <li><a href="#right-join" id="toc-right-join" class="nav-link" data-scroll-target="#right-join"><span class="toc-section-number">6.7.3</span>  RIGHT JOIN</a></li>
+  <li><a href="#union" id="toc-union" class="nav-link" data-scroll-target="#union"><span class="toc-section-number">6.7.4</span>  UNION</a></li>
+  </ul></li>
+  <li><a href="#aliases-as" id="toc-aliases-as" class="nav-link" data-scroll-target="#aliases-as"><span class="toc-section-number">6.8</span>  Aliases (AS)</a></li>
+  <li><a href="#database-views" id="toc-database-views" class="nav-link" data-scroll-target="#database-views"><span class="toc-section-number">6.9</span>  Database views</a></li>
+  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together"><span class="toc-section-number">6.10</span>  Putting it all together</a></li>
+  <li><a href="#homework" id="toc-homework" class="nav-link" data-scroll-target="#homework"><span class="toc-section-number">6.11</span>  Homework</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Structured Query Language (SQL)</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<section id="learning-objectives" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">6.1</span> Learning objectives</h2>
+<p><strong>Concepts</strong></p>
+<ul>
+<li>Structured Query Language (SQL)</li>
+<li>Database views</li>
+</ul>
+<p><strong>Practical skills</strong></p>
+<ul>
+<li>Writing SQL queries to extract data from a database (Lab #3)</li>
+<li>Creating database views in a RDBMS (team assignment #3)</li>
+</ul>
+</section>
+<section id="what-is-sql" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="what-is-sql"><span class="header-section-number">6.2</span> What is SQL?</h2>
+<p>SQL is a language with a relatively simple and intuitive syntax that uses written statements (or queries) to interact with the RDBMS to perform various operations such as creating databases, tables and other objects, inserting or updating data in tables and, of course, retrieve data.</p>
+</section>
+<section id="syntax" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="syntax"><span class="header-section-number">6.3</span> Syntax</h2>
+<p>A SQL statement typically looks like this.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> [TableName].[FieldName] </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> [DatabaseName].[TableName];</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> [DatabaseName].[TableName] <span class="kw">ON</span> [Condition]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> [Condition]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> [<span class="kw">list</span> <span class="kw">of</span> fields that form <span class="kw">groups</span>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> [field(s) <span class="kw">to</span> <span class="kw">use</span> <span class="cf">for</span> ordering, either ascending (<span class="kw">ASC</span>) <span class="kw">or</span> descending (<span class="kw">DESC</span>)];</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In English, the statement SELECTs some data FROM some table JOINed with some other table ON some condition, and WHERE the final joined tables meet some other condition. The aggregated values (if used) are GROUPed BY the other fields selected. Finally, the results are ORDERed BY one of the field values in ASCending or DESCending order.</p>
+<p>Here’s an example of an n actual SQL statement, which cacluates the average price of gummies with different consistencies, and order the resuls from highest average price to lowest.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> gummies.consistency, price_denominators.denominator, <span class="fu">avg</span>(gummies.price)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummybox_sales.gummies</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> gummybox_sales.price_denominators <span class="kw">ON</span> gummybox_sales.price_denominators.<span class="kw">id</span> <span class="op">=</span> gummybox_sales.gummies.price_denominator_id</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> gummies.colour <span class="op">=</span> <span class="st">'blue'</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> gummies.consistency, price_denominators.denominator</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="fu">avg</span>(gummies.price) <span class="kw">DESC</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>4 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">consistency</th>
+<th style="text-align: left;">denominator</th>
+<th style="text-align: right;">avg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">per unit</td>
+<td style="text-align: right;">0.50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">soft</td>
+<td style="text-align: left;">per unit</td>
+<td style="text-align: right;">0.25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">soft</td>
+<td style="text-align: left;">per gram</td>
+<td style="text-align: right;">0.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">chewy</td>
+<td style="text-align: left;">per unit</td>
+<td style="text-align: right;">0.03</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Not all of these parts are necessary for all statements. What you need to include depends on what you are trying to achieve. However, you will rarely have any other components than these in your statements. You can write your statements on a single line or spread them on multiple lines like I do. However, you must <strong>always respect the order of the elements</strong>. Your statement will not work if you put the GROUP BY part before the WHERE part, for instance. Also, try to remember to end your statements with a semi-colon.</p>
+<p>Finally, keep in mind that the default setting for PostgreSQL is case sensitivity, so “banana”, “BANANA”, and “BaNaNa” are <strong>not</strong> the same. However, this does not apply to the name of tables, functions, and operators. For my examples, I capitalize the functions and operators so that they can be more easily distinguished from the other elements of the statements, but in your SQL statements, <strong>select</strong> or <strong>SELECT</strong> would be interpreted the same way and .</p>
+<p>In the next section, I provide examples of the different functions and operators that you may need to use in your statements. These are far from exhaustive, but should cover 95% of the basic queries that users make when working with relational databases. Administrators of databases will typically use much more functions, but that is beyond the scope of this course.</p>
+</section>
+<section id="the-gummybox_sales-erd" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="the-gummybox_sales-erd"><span class="header-section-number">6.4</span> The gummybox_sales ERD</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="files/gummybox_sales_erd_pgadmin.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="retrieve-data" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="retrieve-data"><span class="header-section-number">6.5</span> Retrieve data</h2>
+<section id="select" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="select"><span class="header-section-number">6.5.1</span> SELECT</h3>
+<p>you can use select to retrieve data from a table.</p>
+<section id="select-an-entire-table" class="level4" data-number="6.5.1.1">
+<h4 data-number="6.5.1.1" class="anchored" data-anchor-id="select-an-entire-table"><span class="header-section-number">6.5.1.1</span> Select an entire table</h4>
+<p>To retrieve all the data in a table with <code>SELECT * FROM [table].</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummybox_sales.gummies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>Displaying records 1 - 10</caption>
+<colgroup>
+<col style="width: 1%">
+<col style="width: 12%">
+<col style="width: 36%">
+<col style="width: 7%">
+<col style="width: 4%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 3%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: left;">consistency</th>
+<th style="text-align: left;">colour</th>
+<th style="text-align: left;">flavour</th>
+<th style="text-align: right;">flavour_type_id</th>
+<th style="text-align: right;">price</th>
+<th style="text-align: right;">price_denominator_id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Bada Booms</td>
+<td style="text-align: left;">An explosion of taste</td>
+<td style="text-align: left;">soft</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: left;">strawberry</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Vinson Drops</td>
+<td style="text-align: left;">Soup. Now in gummy form</td>
+<td style="text-align: left;">chewy</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">soup</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Salmoniakki</td>
+<td style="text-align: left;">Salmon flavored salted licquorice</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">black</td>
+<td style="text-align: left;">salmon liquorice</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Froggurt</td>
+<td style="text-align: left;">Frog meat flavored yogurt gummy</td>
+<td style="text-align: left;">soft</td>
+<td style="text-align: left;">green</td>
+<td style="text-align: left;">frog</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Garum Gummae</td>
+<td style="text-align: left;">A gummy take on a Roman flavor</td>
+<td style="text-align: left;">stretchy</td>
+<td style="text-align: left;">black</td>
+<td style="text-align: left;">anchovie</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">Apple Bottom Jeans</td>
+<td style="text-align: left;">Gummies shaped like jeans with apple flavor</td>
+<td style="text-align: left;">chewy</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: left;">apple</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">Dog Residue</td>
+<td style="text-align: left;">Imitates dog dropping with imitation dog dropping flavor</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">dog</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">Kitty Litter</td>
+<td style="text-align: left;">Ever wanted to eat the drop box?</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">ammonia</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">Frostbite</td>
+<td style="text-align: left;">Imitates how it feels to have frostbite</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: left;">minty</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">Matchsticks</td>
+<td style="text-align: left;">Good for eating; not to ignite</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">red</td>
+<td style="text-align: left;">phosphorus</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.80</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="select-specific-fields-from-a-table" class="level4" data-number="6.5.1.2">
+<h4 data-number="6.5.1.2" class="anchored" data-anchor-id="select-specific-fields-from-a-table"><span class="header-section-number">6.5.1.2</span> Select specific fields from a table</h4>
+<p>When you only want to retrieve a few fields from a table, you need to specify the names fo the fields. In the example above, I retrieve information about gummies, excluding a few field like their id, and their price.</p>
+<p><em>Note : when listing fields, the table name is only required when the same field name is ambiguous because it exists in more than one table included in your query.</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  gummies.name, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  gummies.description, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  gummies.consistency, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  gummies.colour</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies; </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>Displaying records 1 - 10</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 60%">
+<col style="width: 12%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: left;">consistency</th>
+<th style="text-align: left;">colour</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Bada Booms</td>
+<td style="text-align: left;">An explosion of taste</td>
+<td style="text-align: left;">soft</td>
+<td style="text-align: left;">blue</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Vinson Drops</td>
+<td style="text-align: left;">Soup. Now in gummy form</td>
+<td style="text-align: left;">chewy</td>
+<td style="text-align: left;">brown</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Salmoniakki</td>
+<td style="text-align: left;">Salmon flavored salted licquorice</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">black</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Froggurt</td>
+<td style="text-align: left;">Frog meat flavored yogurt gummy</td>
+<td style="text-align: left;">soft</td>
+<td style="text-align: left;">green</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Garum Gummae</td>
+<td style="text-align: left;">A gummy take on a Roman flavor</td>
+<td style="text-align: left;">stretchy</td>
+<td style="text-align: left;">black</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Apple Bottom Jeans</td>
+<td style="text-align: left;">Gummies shaped like jeans with apple flavor</td>
+<td style="text-align: left;">chewy</td>
+<td style="text-align: left;">blue</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dog Residue</td>
+<td style="text-align: left;">Imitates dog dropping with imitation dog dropping flavor</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">brown</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kitty Litter</td>
+<td style="text-align: left;">Ever wanted to eat the drop box?</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">white</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Frostbite</td>
+<td style="text-align: left;">Imitates how it feels to have frostbite</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">blue</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Matchsticks</td>
+<td style="text-align: left;">Good for eating; not to ignite</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">red</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="print-values-that-are-not-in-a-table" class="level4" data-number="6.5.1.3">
+<h4 data-number="6.5.1.3" class="anchored" data-anchor-id="print-values-that-are-not-in-a-table"><span class="header-section-number">6.5.1.3</span> Print values that are not in a table</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="st">'Banana'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>1 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">?column?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Banana</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Notice that the name of the returned column in this case is <code>?column?</code>… we will learn how to rename columns with aliases (AS function) later on.</p>
+</section>
+</section>
+<section id="select-distinct" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="select-distinct"><span class="header-section-number">6.5.2</span> SELECT DISTINCT</h3>
+<p>The SELECT DISTINCT statement eliminate duplicate rows from the returned table. So if we want to retrieve a list of the gummy consistencies available, we would not want “hard” to be repeated in the list for every hard gummy available. We can do that with a SELECT DISTINCT statement.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> gummies.consistency </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies; </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>4 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">consistency</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">hard</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">soft</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stretchy</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">chewy</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="where" class="level3" data-number="6.5.3">
+<h3 data-number="6.5.3" class="anchored" data-anchor-id="where"><span class="header-section-number">6.5.3</span> WHERE</h3>
+<p>Perhaps you do not want to retrieve all the records of a table, but only a subset that meets a certain condition. Let’s try, for instance, to retrieve all the gummies that are blue from <em>gummy</em> table.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  gummies.name, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  gummies.description, </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  gummies.colour </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> gummies.colour <span class="op">=</span> <span class="st">'blue'</span>; </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>4 records</caption>
+<colgroup>
+<col style="width: 27%">
+<col style="width: 62%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: left;">colour</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Bada Booms</td>
+<td style="text-align: left;">An explosion of taste</td>
+<td style="text-align: left;">blue</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Apple Bottom Jeans</td>
+<td style="text-align: left;">Gummies shaped like jeans with apple flavor</td>
+<td style="text-align: left;">blue</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Frostbite</td>
+<td style="text-align: left;">Imitates how it feels to have frostbite</td>
+<td style="text-align: left;">blue</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gummyX</td>
+<td style="text-align: left;">Strangeness</td>
+<td style="text-align: left;">blue</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="order-by" class="level3" data-number="6.5.4">
+<h3 data-number="6.5.4" class="anchored" data-anchor-id="order-by"><span class="header-section-number">6.5.4</span> ORDER BY</h3>
+<p>The order by function lets you choose the order in which you would like the data to be displayed. Here we order the gummies in descending alphabetical order:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> gummies.name, </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>       gummies.description, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>       gummies.colour </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> gummies.name <span class="kw">DESC</span>; </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>Displaying records 1 - 10</caption>
+<colgroup>
+<col style="width: 15%">
+<col style="width: 78%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: left;">colour</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Vinson Drops</td>
+<td style="text-align: left;">Soup. Now in gummy form</td>
+<td style="text-align: left;">brown</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tempest</td>
+<td style="text-align: left;">Get schwasted</td>
+<td style="text-align: left;">tan</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Salmoniakki</td>
+<td style="text-align: left;">Salmon flavored salted licquorice</td>
+<td style="text-align: left;">black</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pain</td>
+<td style="text-align: left;">Made with Veal; comes with an mp4 of the hand-craftsmanship of orphans making them</td>
+<td style="text-align: left;">violet</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Matchsticks</td>
+<td style="text-align: left;">Good for eating; not to ignite</td>
+<td style="text-align: left;">red</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kitty Litter</td>
+<td style="text-align: left;">Ever wanted to eat the drop box?</td>
+<td style="text-align: left;">white</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Just Strawberry</td>
+<td style="text-align: left;">It’s strawberry, what more do you want to know?!</td>
+<td style="text-align: left;">pink</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gummyX</td>
+<td style="text-align: left;">Strangeness</td>
+<td style="text-align: left;">blue</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gummy to Go</td>
+<td style="text-align: left;">Make your friends pee their pants with a gummy laced with diuretics</td>
+<td style="text-align: left;">yellow</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Garum Gummae</td>
+<td style="text-align: left;">A gummy take on a Roman flavor</td>
+<td style="text-align: left;">black</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>And here we order the gummies in ascending alphabetical order:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> gummies.name, </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>       gummies.description, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>       gummies.colour </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> gummies.name <span class="kw">ASC</span>; <span class="co">-- Note that ASC is the default and doesn't need to be specified.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>Displaying records 1 - 10</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 72%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: left;">colour</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Apple Bottom Jeans</td>
+<td style="text-align: left;">Gummies shaped like jeans with apple flavor</td>
+<td style="text-align: left;">blue</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bada Booms</td>
+<td style="text-align: left;">An explosion of taste</td>
+<td style="text-align: left;">blue</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dog Residue</td>
+<td style="text-align: left;">Imitates dog dropping with imitation dog dropping flavor</td>
+<td style="text-align: left;">brown</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Eye for an Eye</td>
+<td style="text-align: left;">Blinding flavor</td>
+<td style="text-align: left;">white</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Froggurt</td>
+<td style="text-align: left;">Frog meat flavored yogurt gummy</td>
+<td style="text-align: left;">green</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Frostbite</td>
+<td style="text-align: left;">Imitates how it feels to have frostbite</td>
+<td style="text-align: left;">blue</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Garum Gummae</td>
+<td style="text-align: left;">A gummy take on a Roman flavor</td>
+<td style="text-align: left;">black</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Gummy to Go</td>
+<td style="text-align: left;">Make your friends pee their pants with a gummy laced with diuretics</td>
+<td style="text-align: left;">yellow</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gummyX</td>
+<td style="text-align: left;">Strangeness</td>
+<td style="text-align: left;">blue</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Just Strawberry</td>
+<td style="text-align: left;">It’s strawberry, what more do you want to know?!</td>
+<td style="text-align: left;">pink</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="operators" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="operators"><span class="header-section-number">6.6</span> Operators</h2>
+<section id="arithmetic-operators" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="arithmetic-operators"><span class="header-section-number">6.6.1</span> Arithmetic operators</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>+</td>
+<td>Addition</td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>Subtraction</td>
+</tr>
+<tr class="odd">
+<td>/</td>
+<td>Division</td>
+</tr>
+<tr class="even">
+<td>*</td>
+<td>Multiplication</td>
+</tr>
+</tbody>
+</table>
+<p>The following statement returns the results of several mathematical operations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="dv">1</span><span class="op">+</span><span class="dv">1</span>, </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>       <span class="dv">2</span><span class="op">/</span><span class="dv">4</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>       <span class="dv">2</span><span class="op">*</span><span class="dv">3</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>       <span class="dv">8</span><span class="op">-</span><span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>1 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">?column?</th>
+<th style="text-align: right;">?column?..2</th>
+<th style="text-align: right;">?column?..3</th>
+<th style="text-align: right;">?column?..4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Let’s try applying an arithmetic operator to a column and retrieve the price per 100 gummies instead of the unitary price.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  gummies.name, </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  gummies.price<span class="op">*</span><span class="dv">100</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> price_denominator_id <span class="op">=</span> <span class="dv">2</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>Displaying records 1 - 10</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: right;">?column?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Vinson Drops</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Salmoniakki</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Froggurt</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Garum Gummae</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Apple Bottom Jeans</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dog Residue</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Kitty Litter</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Frostbite</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Matchsticks</td>
+<td style="text-align: right;">80</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Gummy to Go</td>
+<td style="text-align: right;">40</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>While the next example wouldn’t make much sense in practice, it shows that you can use arithmetic operators with two columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  gummies.name, </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  gummies.price<span class="op">+</span>gummies.price</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>Displaying records 1 - 10</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: right;">?column?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Bada Booms</td>
+<td style="text-align: right;">0.10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Vinson Drops</td>
+<td style="text-align: right;">0.40</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Salmoniakki</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Froggurt</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Garum Gummae</td>
+<td style="text-align: right;">2.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Apple Bottom Jeans</td>
+<td style="text-align: right;">0.06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dog Residue</td>
+<td style="text-align: right;">0.02</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kitty Litter</td>
+<td style="text-align: right;">0.02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Frostbite</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Matchsticks</td>
+<td style="text-align: right;">1.60</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="comparison-operators" class="level3" data-number="6.6.2">
+<h3 data-number="6.6.2" class="anchored" data-anchor-id="comparison-operators"><span class="header-section-number">6.6.2</span> Comparison operators</h3>
+<p>The comparison operators are used to compare values, the result of a comparison is always TRUE (1) or FALSE (0).</p>
+<table class="table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>=</td>
+<td>Equal</td>
+</tr>
+<tr class="even">
+<td>&gt;</td>
+<td>Greater than</td>
+</tr>
+<tr class="odd">
+<td>&lt;</td>
+<td>Less than</td>
+</tr>
+<tr class="even">
+<td>&gt;=</td>
+<td>Greater than or equal to</td>
+</tr>
+<tr class="odd">
+<td>&lt;=</td>
+<td>Less than or equal to</td>
+</tr>
+<tr class="even">
+<td>&lt;&gt; or !=</td>
+<td>Not equal to</td>
+</tr>
+<tr class="odd">
+<td>IN</td>
+<td>Checks if value is contained in a list of values</td>
+</tr>
+<tr class="even">
+<td>BETWEEN … AND …</td>
+<td>Checks if value is between two values</td>
+</tr>
+</tbody>
+</table>
+<p>Here is a simple example that shows how the comparison operators work. The returned value for each column is 1 if the statement is true, and 0 if it’s false.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="st">'banana'</span> <span class="op">=</span> <span class="st">'apple'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>1 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">?column?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FALSE</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="dv">10</span> <span class="op">&lt;</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>1 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">?column?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FALSE</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="st">'b'</span> <span class="kw">BETWEEN</span> <span class="st">'a'</span> <span class="kw">AND</span> <span class="st">'c'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>1 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">?column?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span>  <span class="dv">5</span> <span class="op">&gt;=</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>1 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">?column?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="dv">10</span> <span class="op">&lt;</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>1 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">?column?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FALSE</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="dv">8</span> <span class="kw">in</span> (<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>1 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">?column?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>As we have already seen when we introduced the WHERE function, the comparison operators are usually used when checking if some condition is met.</p>
+<p>Here is an example in which we retrieve only the Canadian addresses from our address table.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> addresses</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> addresses.country <span class="op">=</span> <span class="st">'Canada'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>Displaying records 1 - 10</caption>
+<colgroup>
+<col style="width: 3%">
+<col style="width: 10%">
+<col style="width: 29%">
+<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">id</th>
+<th style="text-align: left;">address1</th>
+<th style="text-align: left;">address2</th>
+<th style="text-align: left;">address3</th>
+<th style="text-align: left;">city</th>
+<th style="text-align: left;">province</th>
+<th style="text-align: left;">country</th>
+<th style="text-align: left;">postal_code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">55</td>
+<td style="text-align: left;">ice cream crescent</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">H2T 1H3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">66</td>
+<td style="text-align: left;">vanilla avenue</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">B3L 1A6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">77</td>
+<td style="text-align: left;">chocolate avenue</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">B3K 2A7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">88</td>
+<td style="text-align: left;">red velvet avenue</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">B3G 4G6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">99</td>
+<td style="text-align: left;">mint chocolate chip lane</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">B4R 5F2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">candycane street</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">B7R 4H3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">22</td>
+<td style="text-align: left;">brownie court</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">B3J 1D3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">33</td>
+<td style="text-align: left;">sour patch drive</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">B3E 0I9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">44</td>
+<td style="text-align: left;">cheesecake boulevard</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">B2D 5T6</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">swedish berry cul-de-sac</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">B3D 9G0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Here is another example in which we retrieve the name and description of gummies that are hard or stretchy.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  gummies.name, </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  gummies.description</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> gummies.consistency <span class="kw">IN</span> (<span class="st">'stretchy'</span>,<span class="st">'hard'</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>8 records</caption>
+<colgroup>
+<col style="width: 13%">
+<col style="width: 86%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Salmoniakki</td>
+<td style="text-align: left;">Salmon flavored salted licquorice</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Garum Gummae</td>
+<td style="text-align: left;">A gummy take on a Roman flavor</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dog Residue</td>
+<td style="text-align: left;">Imitates dog dropping with imitation dog dropping flavor</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kitty Litter</td>
+<td style="text-align: left;">Ever wanted to eat the drop box?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Frostbite</td>
+<td style="text-align: left;">Imitates how it feels to have frostbite</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Matchsticks</td>
+<td style="text-align: left;">Good for eating; not to ignite</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pain</td>
+<td style="text-align: left;">Made with Veal; comes with an mp4 of the hand-craftsmanship of orphans making them</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tempest</td>
+<td style="text-align: left;">Get schwasted</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="logical-boolean-operators" class="level3" data-number="6.6.3">
+<h3 data-number="6.6.3" class="anchored" data-anchor-id="logical-boolean-operators"><span class="header-section-number">6.6.3</span> Logical (boolean) operators</h3>
+<p>The logical operators are used to combine multiple conditions that must all be true for the data to be returned.</p>
+<table class="table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 73%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operators</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AND</td>
+<td>Returns TRUE when all conditions are TRUE. Returns FALSE otherwise</td>
+</tr>
+<tr class="even">
+<td>OR</td>
+<td>Returns TRUE when at least one of multiple conditions is TRUE. Returns FALSE otherwise</td>
+</tr>
+<tr class="odd">
+<td>NOT</td>
+<td>Returns TRUE when the operand is FALSE, and returns FALSE when the operand is TRUE.</td>
+</tr>
+</tbody>
+</table>
+<p>We can test the boolean operators with the following statement.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">TRUE</span>, </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>       <span class="kw">FALSE</span>, </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>       <span class="kw">NOT</span> <span class="kw">FALSE</span>, </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>       <span class="kw">NOT</span> <span class="kw">TRUE</span>, </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>       <span class="kw">TRUE</span> <span class="kw">AND</span> <span class="kw">FALSE</span>, </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>       <span class="kw">TRUE</span> <span class="kw">OR</span> <span class="kw">FALSE</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>1 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">bool</th>
+<th style="text-align: left;">bool..2</th>
+<th style="text-align: left;">?column?</th>
+<th style="text-align: left;">?column?..4</th>
+<th style="text-align: left;">?column?..5</th>
+<th style="text-align: left;">?column?..6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Let’s now try this in a query and retrieve all gummies from the <em>gummybox_sales</em> database that are blue and AND a semi-hard consistency.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> gummies.<span class="kw">id</span>, </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>       gummies.name, </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>       gummies.description, </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>       gummies.consistency, </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>       gummies.colour</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies </span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> gummies.colour <span class="op">=</span> <span class="st">'blue'</span> <span class="kw">AND</span> gummies.consistency <span class="op">=</span> <span class="st">'hard'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>1 records</caption>
+<colgroup>
+<col style="width: 4%">
+<col style="width: 13%">
+<col style="width: 55%">
+<col style="width: 16%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">id</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: left;">consistency</th>
+<th style="text-align: left;">colour</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Frostbite</td>
+<td style="text-align: left;">Imitates how it feels to have frostbite</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">blue</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="aggregate-functions" class="level3" data-number="6.6.4">
+<h3 data-number="6.6.4" class="anchored" data-anchor-id="aggregate-functions"><span class="header-section-number">6.6.4</span> Aggregate functions</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MIN()</td>
+<td>Returns the minimum value of a column.</td>
+</tr>
+<tr class="even">
+<td>MAX()</td>
+<td>Returns the maximum value of column.</td>
+</tr>
+<tr class="odd">
+<td>SUM()</td>
+<td>Returns the sum of all values in a column.</td>
+</tr>
+<tr class="even">
+<td>AVG()</td>
+<td>Returns the average value of a column.</td>
+</tr>
+<tr class="odd">
+<td>COUNT()</td>
+<td>Returns the number of rows.</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s try the aggregate operators by querying the <em>gummybox_sales</em> database to retrieve the number of gummies in the catalogue and their minimum, maximum, and average price.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">COUNT</span>(<span class="op">*</span>), </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">MIN</span>(gummies.price), </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">MAX</span>(gummies.price), </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">AVG</span>(gummies.price)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>1 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">count</th>
+<th style="text-align: right;">min</th>
+<th style="text-align: right;">max</th>
+<th style="text-align: right;">avg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.434375</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>We can see that there are 15 entries in the gummies table, with prices ranging from 0.01$ to 1.00$ and an average price of 0.45$.</p>
+<p>Often times, you will want to retrieve these aggregate values for different subsets of records (e.g.&nbsp;to perform group comparisons). This is where the <strong>GROUP BY</strong> function comes into play. In fact, you <strong>must</strong> include a GROUP BY in your statement whenever you use an aggregate operator, unless <strong>all</strong> of your returned values are aggregates (as in the example above). Let’s write a query that returns the number of records, and the minimum, maximum, and average price for gummies of different consistency.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  gummies.consistency, </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">COUNT</span>(<span class="op">*</span>), </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">MIN</span>(gummies.price), </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">MAX</span>(gummies.price), </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">AVG</span>(gummies.price)  </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> gummies.consistency;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>4 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">consistency</th>
+<th style="text-align: right;">count</th>
+<th style="text-align: right;">min</th>
+<th style="text-align: right;">max</th>
+<th style="text-align: right;">avg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">hard</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">0.4600000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">soft</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">0.4166667</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stretchy</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">1.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">chewy</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.1150000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>It’s important to know that PostgreSQL will not return an error message if you forget the GROUP BY part of your statement. But will instead provide an erroneous result: the first value for <em>gummy.consistency</em> and the aggregate value for all of the records in the table. So remember to always examine the results of your queries (no matter what they are) to see if they are consistent with your expectations, and to not simply trust that all is fine and that the query worked and did what you wanted it to do because there is no error or warning message.</p>
+</section>
+</section>
+<section id="combining-joining-tables" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="combining-joining-tables"><span class="header-section-number">6.7</span> Combining (joining) tables</h2>
+<section id="join-inner-join" class="level3" data-number="6.7.1">
+<h3 data-number="6.7.1" class="anchored" data-anchor-id="join-inner-join"><span class="header-section-number">6.7.1</span> JOIN (INNER JOIN)</h3>
+<p>The JOIN returns only records for which the matching condition is TRUE. Here is an example, where I bring together the <em>order</em> and the <em>gummy_order</em> to see what gummies are part of each order, and in what quantity.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> orders</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> gummies_orders <span class="kw">ON</span> gummies_orders.order_id <span class="op">=</span> orders.<span class="kw">id</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>Displaying records 1 - 10</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">id</th>
+<th style="text-align: right;">customer_id</th>
+<th style="text-align: right;">address_id</th>
+<th style="text-align: left;">date</th>
+<th style="text-align: right;">gummy_id</th>
+<th style="text-align: right;">order_id</th>
+<th style="text-align: right;">quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">1995-08-08</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">1996-05-30</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">1994-11-05</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">1998-09-02</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">1993-10-15</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">90</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">2002-01-15</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">1987-09-12</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">34</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">1999-06-30</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">76</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">1995-08-08</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">1996-05-30</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">96</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="left-join" class="level3" data-number="6.7.2">
+<h3 data-number="6.7.2" class="anchored" data-anchor-id="left-join"><span class="header-section-number">6.7.2</span> LEFT JOIN</h3>
+<p>The LEFT JOIN function returns all records from the original table and only records from the joined table for which the matching condition is TRUE. This can be useful if I want to retrieve, for example, a list of all the gummies and the orders in which they were included, <strong>but keep in my list the gummies that were part of 0 orders.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  gummies.name,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  gummies_orders.order_id</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> gummies_orders <span class="kw">ON</span> gummies_orders.gummy_id <span class="op">=</span> gummies.<span class="kw">id</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>Displaying records 1 - 10</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: right;">order_id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Bada Booms</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Vinson Drops</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Salmoniakki</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Froggurt</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Garum Gummae</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dog Residue</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Kitty Litter</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Frostbite</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Matchsticks</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Gummy to Go</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="right-join" class="level3" data-number="6.7.3">
+<h3 data-number="6.7.3" class="anchored" data-anchor-id="right-join"><span class="header-section-number">6.7.3</span> RIGHT JOIN</h3>
+<p>The RIGHT JOIN function is the same as the LEFT JOIN function returns all records from the <strong>joined</strong> table and only records from the <strong>original</strong> table for which the matching condition is TRUE.</p>
+<p><strong>Note:</strong> You rarely use right join in practice. It is usually a better idea to use a LEFT JOIN, since most RIGHT JOIN statements can be reformulated as LEFT JOIN statements.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> gummies_orders.order_id,</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>       gummies.name</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies_orders</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="kw">RIGHT</span> <span class="kw">JOIN</span> gummies <span class="kw">ON</span> gummies.<span class="kw">id</span> <span class="op">=</span> gummies_orders.gummy_id;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="union" class="level3" data-number="6.7.4">
+<h3 data-number="6.7.4" class="anchored" data-anchor-id="union"><span class="header-section-number">6.7.4</span> UNION</h3>
+<p>While the JOIN functions are used to combine fields from different tables horizontally, the UNION function vertically combines two tables. Note that this requires that the two combined tables have the same structure (same fields). In our database. Let’s use the UNION function to make a list of the names and descriptions of all the products (gummies and boxes) in our inventory.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> gummies.name,</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>       gummies.description</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="kw">UNION</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> boxes.name,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>       boxes.description</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> boxes;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>Displaying records 1 - 10</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Matchsticks</td>
+<td style="text-align: left;">Good for eating; not to ignite</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Salty Boiz</td>
+<td style="text-align: left;">A collection of salty treats to dry your tongue</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Salmoniakki</td>
+<td style="text-align: left;">Salmon flavored salted licquorice</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Vinson Drops</td>
+<td style="text-align: left;">Soup. Now in gummy form</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mouth Tingles</td>
+<td style="text-align: left;">An explosion of flavours</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Earthy Fusion</td>
+<td style="text-align: left;">Fruity and tootie and earthy delights</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gummyX</td>
+<td style="text-align: left;">Strangeness</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Apple Bottom Jeans</td>
+<td style="text-align: left;">Gummies shaped like jeans with apple flavor</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Frostbite</td>
+<td style="text-align: left;">Imitates how it feels to have frostbite</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Froggurt</td>
+<td style="text-align: left;">Frog meat flavored yogurt gummy</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>As you might have noticed from the previous example, the “peak-a-chew” and “crocodile gumdee” gummies are available in both stores. The UNION function automatically removes duplicates and returns only distinct records. If you would like to keep the duplicate rows, this can be achieved with the <strong>UNION ALL</strong> function.</p>
+</section>
+</section>
+<section id="aliases-as" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="aliases-as"><span class="header-section-number">6.8</span> Aliases (AS)</h2>
+<p>Aliases are used to rename things within your SQL statements. You can change the name of a field or table. You can even change the data type of a field. Unless used in a CREATE or ALTER statement the Aliases do not modify your database. They are simply used for the specific statement that you are executing. We will focus here on one function of aliases: setting column names for the output of your SQL queries.</p>
+<section id="setting-column-names" class="level4" data-number="6.8.0.1">
+<h4 data-number="6.8.0.1" class="anchored" data-anchor-id="setting-column-names"><span class="header-section-number">6.8.0.1</span> Setting column names</h4>
+<p>A typical use of aliases is to choose a column name that is more appropriate for a display that is intended for the user. This is especially useful when you use arithmetic or aggregate operators, for instance. Here’s an example where we get the list of gummies and the price included in the order that has id 1.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> gummies_orders.order_id, </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  gummies.name <span class="kw">AS</span> Name,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  gummies_orders.quantity <span class="kw">AS</span> Quantity,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  gummies_orders.quantity <span class="op">*</span> gummies.price <span class="kw">AS</span> Price</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies_orders </span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> gummies <span class="kw">ON</span> gummies.<span class="kw">id</span> <span class="op">=</span> gummies_orders.gummy_id</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> gummies_orders.order_id <span class="op">=</span> <span class="dv">1</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>2 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">order_id</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: right;">quantity</th>
+<th style="text-align: right;">price</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Bada Booms</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.25</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Matchsticks</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">9.60</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="setting-table-names" class="level4" data-number="6.8.0.2">
+<h4 data-number="6.8.0.2" class="anchored" data-anchor-id="setting-table-names"><span class="header-section-number">6.8.0.2</span> Setting table names</h4>
+<p>Giving an alias to tables in your query can make them easier to write (and read).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> go.order_id, </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  g.name <span class="kw">AS</span> Name,</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  go.quantity <span class="kw">AS</span> Quantity,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  go.quantity <span class="op">*</span> g.price <span class="kw">AS</span> Price</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies_orders <span class="kw">AS</span> go </span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> gummies <span class="kw">as</span> g <span class="kw">ON</span> g.<span class="kw">id</span> <span class="op">=</span> go.gummy_id</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> go.order_id <span class="op">=</span> <span class="dv">1</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>2 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">order_id</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: right;">quantity</th>
+<th style="text-align: right;">price</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Bada Booms</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.25</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Matchsticks</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">9.60</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="database-views" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="database-views"><span class="header-section-number">6.9</span> Database views</h2>
+<p>What are views? technically they are not much more than stored query (in some DBMS, they views are actually called “stored queries”) with an alias.</p>
+<p>In practice, and for the purpose of this course, we will think of views as tables that your users may wish or need to see (or “<strong>view</strong>”) to obtain information or perform a certain task.</p>
+<section id="single-table-view" class="level4" data-number="6.9.0.1">
+<h4 data-number="6.9.0.1" class="anchored" data-anchor-id="single-table-view"><span class="header-section-number">6.9.0.1</span> Single table view</h4>
+<p>Creating views in PostgreSQL is pretty simple, here is an example of a single table view that simply provides the list of customers and their email address.</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> customers_emails <span class="kw">AS</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> first_name, last_name, email <span class="kw">FROM</span> customers;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>So now we can view the list of emails by retrieving records from our view.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> customers_emails;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>Displaying records 1 - 10</caption>
+<colgroup>
+<col style="width: 15%">
+<col style="width: 18%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">first_name</th>
+<th style="text-align: left;">last_name</th>
+<th style="text-align: left;">email</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Basil</td>
+<td style="text-align: left;">Exposition</td>
+<td style="text-align: left;">happygolucky@britishintelligence.uk</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">twentytwentyvision@evil.org</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Austin</td>
+<td style="text-align: left;">Powers</td>
+<td style="text-align: left;">groovybaby@ministryofdefence.uk</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mr.</td>
+<td style="text-align: left;">Bigglesworth</td>
+<td style="text-align: left;">destroyerofworlds@evil.org</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mini</td>
+<td style="text-align: left;">Me</td>
+<td style="text-align: left;">ilovechocolate@evil.org</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dr.</td>
+<td style="text-align: left;">Evil</td>
+<td style="text-align: left;">douglaspowers@evil.org</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nigel</td>
+<td style="text-align: left;">Powers</td>
+<td style="text-align: left;">easypeasylemonsqueezy@britishintelligence.uk</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scott</td>
+<td style="text-align: left;">Evil</td>
+<td style="text-align: left;">daddywasntthere@evil.org</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gold</td>
+<td style="text-align: left;">Member</td>
+<td style="text-align: left;">24k@rollerdisco.com</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Foxxy</td>
+<td style="text-align: left;">Cleopatra</td>
+<td style="text-align: left;">sugar@wholelottawoman.com</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="multitable-view" class="level4" data-number="6.9.0.2">
+<h4 data-number="6.9.0.2" class="anchored" data-anchor-id="multitable-view"><span class="header-section-number">6.9.0.2</span> Multitable view</h4>
+<p>You can also create views that combine data from multiple tables using the JOIN or UNION function. Here is an example where we</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> delivery_addresses <span class="kw">AS</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  orders.<span class="kw">id</span>, </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  customers.first_name, </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  customers.last_name, </span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  addresses.address1, </span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  addresses.address2, </span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  addresses.address3, </span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  addresses.city, </span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  addresses.province, </span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  addresses.country, </span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  addresses.postal_code</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> orders</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> customers <span class="kw">ON</span> customers.<span class="kw">id</span> <span class="op">=</span> orders.customer_id</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> addresses <span class="kw">ON</span> addresses.<span class="kw">id</span> <span class="op">=</span> orders.address_id;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then I can simply request the delivery_addresses for all orders like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> delivery_addresses;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>Displaying records 1 - 10</caption>
+<colgroup>
+<col style="width: 2%">
+<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 8%">
+<col style="width: 22%">
+<col style="width: 8%">
+<col style="width: 9%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">id</th>
+<th style="text-align: left;">first_name</th>
+<th style="text-align: left;">last_name</th>
+<th style="text-align: left;">address1</th>
+<th style="text-align: left;">address2</th>
+<th style="text-align: left;">address3</th>
+<th style="text-align: left;">city</th>
+<th style="text-align: left;">province</th>
+<th style="text-align: left;">country</th>
+<th style="text-align: left;">postal_code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Number</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">22</td>
+<td style="text-align: left;">brownie court</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">B3J 1D3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Foxxy</td>
+<td style="text-align: left;">Cleopatra</td>
+<td style="text-align: left;">88</td>
+<td style="text-align: left;">red velvet avenue</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">B3G 4G6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">Gold</td>
+<td style="text-align: left;">Member</td>
+<td style="text-align: left;">44</td>
+<td style="text-align: left;">cheesecake boulevard</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">B2D 5T6</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">Mr.</td>
+<td style="text-align: left;">Bigglesworth</td>
+<td style="text-align: left;">55</td>
+<td style="text-align: left;">snowcone crossing</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">B4F 5T0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Basil</td>
+<td style="text-align: left;">Exposition</td>
+<td style="text-align: left;">77</td>
+<td style="text-align: left;">chocolate avenue</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">B3K 2A7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Scott</td>
+<td style="text-align: left;">Evil</td>
+<td style="text-align: left;">33</td>
+<td style="text-align: left;">sour patch drive</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">B3E 0I9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">Austin</td>
+<td style="text-align: left;">Powers</td>
+<td style="text-align: left;">66</td>
+<td style="text-align: left;">vanilla avenue</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">B3L 1A6</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Dr.</td>
+<td style="text-align: left;">Evil</td>
+<td style="text-align: left;">99</td>
+<td style="text-align: left;">mint chocolate chip lane</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">B4R 5F2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Mini</td>
+<td style="text-align: left;">Me</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">candycane street</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">B7R 4H3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Nigel</td>
+<td style="text-align: left;">Powers</td>
+<td style="text-align: left;">55</td>
+<td style="text-align: left;">ice cream crescent</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Candyland</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">H2T 1H3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="putting-it-all-together" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="putting-it-all-together"><span class="header-section-number">6.10</span> Putting it all together</h2>
+<p>Let us now combine several of the functions that we learned to create a view that provides the average price of hard gummies. We will build the statement one piece at a time.</p>
+<section id="step-1---starting-with-the-gummy-table" class="level4" data-number="6.10.0.1">
+<h4 data-number="6.10.0.1" class="anchored" data-anchor-id="step-1---starting-with-the-gummy-table"><span class="header-section-number">6.10.0.1</span> Step 1 - starting with the <em>gummy</em> table</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>Displaying records 1 - 10</caption>
+<colgroup>
+<col style="width: 1%">
+<col style="width: 12%">
+<col style="width: 36%">
+<col style="width: 7%">
+<col style="width: 4%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 3%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: left;">consistency</th>
+<th style="text-align: left;">colour</th>
+<th style="text-align: left;">flavour</th>
+<th style="text-align: right;">flavour_type_id</th>
+<th style="text-align: right;">price</th>
+<th style="text-align: right;">price_denominator_id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Bada Booms</td>
+<td style="text-align: left;">An explosion of taste</td>
+<td style="text-align: left;">soft</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: left;">strawberry</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Vinson Drops</td>
+<td style="text-align: left;">Soup. Now in gummy form</td>
+<td style="text-align: left;">chewy</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">soup</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Salmoniakki</td>
+<td style="text-align: left;">Salmon flavored salted licquorice</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">black</td>
+<td style="text-align: left;">salmon liquorice</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Froggurt</td>
+<td style="text-align: left;">Frog meat flavored yogurt gummy</td>
+<td style="text-align: left;">soft</td>
+<td style="text-align: left;">green</td>
+<td style="text-align: left;">frog</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Garum Gummae</td>
+<td style="text-align: left;">A gummy take on a Roman flavor</td>
+<td style="text-align: left;">stretchy</td>
+<td style="text-align: left;">black</td>
+<td style="text-align: left;">anchovie</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">Apple Bottom Jeans</td>
+<td style="text-align: left;">Gummies shaped like jeans with apple flavor</td>
+<td style="text-align: left;">chewy</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: left;">apple</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">Dog Residue</td>
+<td style="text-align: left;">Imitates dog dropping with imitation dog dropping flavor</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">dog</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">Kitty Litter</td>
+<td style="text-align: left;">Ever wanted to eat the drop box?</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">ammonia</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">Frostbite</td>
+<td style="text-align: left;">Imitates how it feels to have frostbite</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">blue</td>
+<td style="text-align: left;">minty</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">Matchsticks</td>
+<td style="text-align: left;">Good for eating; not to ignite</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">red</td>
+<td style="text-align: left;">phosphorus</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.80</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="step-2---getting-the-flavour_type-for-each-gummy" class="level4" data-number="6.10.0.2">
+<h4 data-number="6.10.0.2" class="anchored" data-anchor-id="step-2---getting-the-flavour_type-for-each-gummy"><span class="header-section-number">6.10.0.2</span> Step 2 - getting the <em>flavour_type</em> for each gummy</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  gummies.<span class="kw">id</span>, </span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  gummies.name, </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  gummies.consistency, </span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  flavour_types.flavour_type, </span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  gummies.price</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> flavour_types <span class="kw">ON</span> flavour_types.<span class="kw">id</span> <span class="op">=</span> gummies.flavour_type_id</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>Displaying records 1 - 10</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">id</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">consistency</th>
+<th style="text-align: left;">flavour_type</th>
+<th style="text-align: right;">price</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">gummyX</td>
+<td style="text-align: left;">soft</td>
+<td style="text-align: left;">sweet</td>
+<td style="text-align: right;">0.25</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">Just Strawberry</td>
+<td style="text-align: left;">soft</td>
+<td style="text-align: left;">sweet</td>
+<td style="text-align: right;">0.40</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">14</td>
+<td style="text-align: left;">Eye for an Eye</td>
+<td style="text-align: left;">soft</td>
+<td style="text-align: left;">sweet</td>
+<td style="text-align: right;">0.90</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Apple Bottom Jeans</td>
+<td style="text-align: left;">chewy</td>
+<td style="text-align: left;">sweet</td>
+<td style="text-align: right;">0.03</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Froggurt</td>
+<td style="text-align: left;">soft</td>
+<td style="text-align: left;">sweet</td>
+<td style="text-align: right;">0.50</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Bada Booms</td>
+<td style="text-align: left;">soft</td>
+<td style="text-align: left;">sweet</td>
+<td style="text-align: right;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">Pain</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">umami</td>
+<td style="text-align: right;">0.60</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Salmoniakki</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">umami</td>
+<td style="text-align: right;">0.50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Vinson Drops</td>
+<td style="text-align: left;">chewy</td>
+<td style="text-align: left;">umami</td>
+<td style="text-align: right;">0.20</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">Matchsticks</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">salty</td>
+<td style="text-align: right;">0.80</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="step-3---limiting-to-hard-gummies" class="level4" data-number="6.10.0.3">
+<h4 data-number="6.10.0.3" class="anchored" data-anchor-id="step-3---limiting-to-hard-gummies"><span class="header-section-number">6.10.0.3</span> Step 3 - Limiting to hard gummies</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  gummies.<span class="kw">id</span>, </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  gummies.name, </span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  gummies.consistency, </span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  flavour_types.flavour_type, </span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  gummies.price </span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> flavour_types <span class="kw">ON</span> flavour_types.<span class="kw">id</span> <span class="op">=</span> gummies.flavour_type_id</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> gummies.consistency <span class="op">=</span> <span class="st">'hard'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>7 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">id</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">consistency</th>
+<th style="text-align: left;">flavour_type</th>
+<th style="text-align: right;">price</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Salmoniakki</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">umami</td>
+<td style="text-align: right;">0.50</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">Dog Residue</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">bitter</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">Kitty Litter</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">bitter</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Frostbite</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">lidocaine</td>
+<td style="text-align: right;">0.50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">Matchsticks</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">salty</td>
+<td style="text-align: right;">0.80</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">Pain</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">umami</td>
+<td style="text-align: right;">0.60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">Tempest</td>
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">sour</td>
+<td style="text-align: right;">0.80</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="step-4---selecting-final-columns-to-display-and-calculating-values" class="level4" data-number="6.10.0.4">
+<h4 data-number="6.10.0.4" class="anchored" data-anchor-id="step-4---selecting-final-columns-to-display-and-calculating-values"><span class="header-section-number">6.10.0.4</span> Step 4 - Selecting final columns to display and calculating values</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  gummies.consistency <span class="kw">AS</span> Consistency, </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  flavour_types.flavour_type <span class="kw">AS</span> <span class="ot">"Flavour type"</span>, </span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> <span class="ot">"Number of gummies"</span>,</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">AVG</span>(gummies.price) <span class="kw">AS</span> <span class="ot">"Average price"</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> flavour_types </span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ON</span> flavour_types.<span class="kw">id</span> <span class="op">=</span> gummies.flavour_type_id</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> gummies.consistency <span class="op">=</span> <span class="st">'hard'</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> gummies.consistency, flavour_types.flavour_type;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>5 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">consistency</th>
+<th style="text-align: left;">Flavour type</th>
+<th style="text-align: right;">Number of gummies</th>
+<th style="text-align: right;">Average price</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">bitter</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">lidocaine</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">salty</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.80</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">sour</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.80</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">umami</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.55</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="step-5---storing-this-virtual-table-as-a-view" class="level4" data-number="6.10.0.5">
+<h4 data-number="6.10.0.5" class="anchored" data-anchor-id="step-5---storing-this-virtual-table-as-a-view"><span class="header-section-number">6.10.0.5</span> Step 5 - Storing this virtual table as a view</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">VIEW</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> gummies_stats;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> gummies_stats <span class="kw">AS</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  gummies.consistency <span class="kw">AS</span> Consistency, </span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  flavour_types.flavour_type <span class="kw">AS</span> <span class="ot">"Flavour type"</span>, </span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> <span class="ot">"Number of gummies"</span>,</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">AVG</span>(gummies.price) <span class="kw">AS</span> <span class="ot">"Average price"</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> flavour_types <span class="kw">ON</span> flavour_types.<span class="kw">id</span> <span class="op">=</span> gummies.flavour_type_id</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> gummies.consistency <span class="op">=</span> <span class="st">'hard'</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> gummies.consistency, flavour_types.flavour_type;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-6---using-the-view" class="level4" data-number="6.10.0.6">
+<h4 data-number="6.10.0.6" class="anchored" data-anchor-id="step-6---using-the-view"><span class="header-section-number">6.10.0.6</span> Step 6 - using the view</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> gummies_stats;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>5 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">consistency</th>
+<th style="text-align: left;">Flavour type</th>
+<th style="text-align: right;">Number of gummies</th>
+<th style="text-align: right;">Average price</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">bitter</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">lidocaine</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">salty</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.80</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">sour</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.80</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hard</td>
+<td style="text-align: left;">umami</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.55</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="homework" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="homework"><span class="header-section-number">6.11</span> Homework</h2>
+<p>You are now ready to do individual lab #3 AND the (final) part #3 of your team assignment. Have fun!</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./rdbms.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relational database management systems</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

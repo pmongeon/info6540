@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="INFO6540 Philippe Mongeon" />
+  <meta name="dcterms.date" content="2022-01-25" />
+  <title>First steps of database design</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="slides_relational_database_1_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="slides_relational_database_1_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal .slide-menu-button {
+      left: 105px !important;
+    }
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="slides_relational_database_1_files/header-attrs-2.11/header-attrs.js"></script>
+    <link href="slides_relational_database_1_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="slides_relational_database_1_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title"><strong>First steps of database design</strong></h1>
+    <h2 class="author">INFO6540<br>Philippe Mongeon</h2>
+    <h3 class="date">2022-01-25</h3>
+</section>
+
+<section id="plan" class="title-slide slide level1">
+<h1>Plan</h1>
+<ul>
+<li><p>Database mission statement</p></li>
+<li><p>Database objectives statement</p></li>
+<li><p>Subjects</p></li>
+<li><p>Subject attributes</p></li>
+<li><p>Database rules</p></li>
+</ul>
+<style>
+    .reveal section img { 
+        background:none; 
+        border:none; 
+        box-shadow:none; 
+</style>
+</section>
+
+<section>
+<section id="mission-statement" class="title-slide slide level1">
+<h1>Mission statement</h1>
+
+</section>
+<section id="what-is-a-mission-statement" class="slide level2">
+<h2><strong>What is a mission statement?</strong></h2>
+<p>The database mission statement states its purpose. It answers the questions “why do we need a database?”</p>
+</section>
+<section id="why-do-we-need-a-mission-statement" class="slide level2">
+<h2><strong>Why do we need a mission statement?</strong></h2>
+<p>The mission statement establishes the focus of the database and will acts as a guide during the entire design process.</p>
+</section>
+<section id="what-is-a-good-mission-statement" class="slide level2">
+<h2><strong>What is a good mission statement?</strong></h2>
+<div style="text-align:left">
+<p>A good mission statement:</p>
+<ul>
+<li><p>is clear</p></li>
+<li><p>is concise</p></li>
+<li><p>does not describe specific tasks that the users of the database will perform.</p></li>
+</ul>
+</div>
+</section>
+<section id="mission-statement-examples" class="slide level2">
+<h2><strong>Mission statement examples</strong></h2>
+<div style="text-align: left">
+<p><em>The purpose of the gummybox_sales database is to manage the data needed by the sales department to attend to the customers’ sweet tooth.</em></p>
+<p><em>The pupose of the Dalhousie University awards database is to support the operations of the awards committee and the celebration of student talents.</em></p>
+</div>
+</section>
+<section id="extra-tips-for-writing-your-mission-statements" class="slide level2">
+<h2><strong>Extra tips for writing your mission statements</strong></h2>
+<div style="text-align: left">
+<ul>
+<li><p>Do not overthink it</p></li>
+<li><p>Keep it simple</p></li>
+<li><p>Start with “<em>The purpose of the name of organization and/or organizational unit database is…“</em></p></li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="objective-statements" class="title-slide slide level1">
+<h1>Objective statements</h1>
+
+</section>
+<section id="what-are-objective-statements" class="slide level2">
+<h2><strong>What are objective statements?</strong></h2>
+<p>The objectives relate to the tasks or needs of people inside the organization (e.g., employees) or outside the organization (e.g., clients or users). Here are the objectives of the <em>gummybox_sales</em> database</p>
+</section>
+<section id="why-do-we-need-objective-statements" class="slide level2">
+<h2><strong>Why do we need objective statements?</strong></h2>
+<div style="text-align:left">
+<p>Objectives:</p>
+<ul>
+<li><p>Translate the mission (the why) into actions (the what).</p></li>
+<li><p>Clarify what tasks the database needs to support.</p></li>
+<li><p>Help the database designer identify the data needs.</p></li>
+</ul>
+</div>
+</section>
+<section id="what-are-a-good-objective-statements" class="slide level2">
+<h2><strong>What are a good objective statements?</strong></h2>
+<div style="text-align:left">
+<p>Good objective statements:</p>
+<ul>
+<li><p>Are <strong>clear</strong> and <strong>concise</strong>, and non-ambiguous.</p></li>
+<li><p>Contain a <strong>single</strong> task.</p></li>
+<li><p>Do not mention <strong>how</strong> a task is performed.</p></li>
+</ul>
+</div>
+</section>
+<section id="example-of-objective-statements" class="slide level2">
+<h2><strong>Example of objective statements</strong></h2>
+<div style="text-align:left">
+<p>The objectives of the gummybox_sales database are:</p>
+<ul>
+<li>Maintain customer information.</li>
+<li>Keep track of orders.</li>
+<li>Maintain information on gummies.</li>
+<li>Maintain information on gummy assortments.</li>
+<li>Collect product reviews.</li>
+</ul>
+</div>
+</section>
+<section id="extra-tips-for-writing-objective-statements" class="slide level2">
+<h2><strong>Extra tips for writing objective statements</strong></h2>
+<div style="text-align:left">
+<ul>
+<li><p>Do not overthink it</p></li>
+<li><p>Keep them simple</p></li>
+<li><p>Keep them short (sometimes three words are enough)</p></li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="database-subjects" class="title-slide slide level1">
+<h1>Database subjects</h1>
+
+</section>
+<section id="what-are-database-subjects" class="slide level2">
+<h2><strong>What are database subjects?</strong></h2>
+<p>Think of your database as a simplified representation of the universe.</p>
+<p>Subjects are the things (<strong>objects</strong> and <strong>events</strong>) that exist in that universe.</p>
+</section>
+<section id="why-do-we-need-to-identify-database-subjects" class="slide level2">
+<h2><strong>Why do we need to identify database subjects?</strong></h2>
+<div style="text-align:left">
+<ul>
+<li><p>Subjects will become tables in the database. They are the central piece.</p></li>
+<li><p>A well-defined list of subjects ensures that we don’t forget anything or include things that are not necessary in our database design.</p></li>
+</ul>
+</div>
+</section>
+<section id="how-to-identify-database-subjects" class="slide level2">
+<h2><strong>How to identify database subjects?</strong></h2>
+<p>Ask yourself: <em>What <strong>kinds</strong> of things exist in my universe?</em></p>
+</section>
+<section id="example-of-database-subjects" class="slide level2">
+<h2><strong>Example of database subjects</strong></h2>
+<p>products, clients, employees, tansactions, orders, invoices, tweets, emails, courses, pets, furniture, equipment, instructors, locations, movies, books, stores, artists, etc.</p>
+</section>
+<section id="extra-tips-for-identifying-database-subjects" class="slide level2">
+<h2><strong>Extra tips for identifying database subjects</strong></h2>
+<div style="text-align:left">
+<ul>
+<li><p>Don’t be too specific (e.g., undergraduate students and graduate students)</p></li>
+<li><p>Don’t be to generic (e.g., people).</p></li>
+</ul>
+<p>Your subject are:</p>
+<ul>
+<li><p>too generic if they have subcategories with different attributes (see next slides).</p></li>
+<li><p>too specific if different subjects have the same attributes.</p></li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="subject-attributes" class="title-slide slide level1">
+<h1>Subject attributes</h1>
+
+</section>
+<section id="what-are-subject-attributes" class="slide level2">
+<h2><strong>What are subject attributes?</strong></h2>
+<p>The attributes are the characteristics that define your subjects in the context of your restricted database universe.</p>
+</section>
+<section id="why-do-we-need-to-identify-subject-attributes" class="slide level2">
+<h2><strong>Why do we need to identify subject attributes?</strong></h2>
+<div style="text-align:left">
+<ul>
+<li>They are the second central piece of your database. They will be columns in your tables.</li>
+</ul>
+<!-- -->
+<ul>
+<li>A well-defined list of attributes ensures that we don’t forget anything or include things that are not necessary in our database design.</li>
+</ul>
+</div>
+</section>
+<section id="how-do-we-identify-subject-attributes" class="slide level2">
+<h2><strong>How do we identify subject attributes?</strong></h2>
+<p>For each <strong>subject</strong>, ask yourself: <em>What <strong>characteristics</strong> definethat subject in the limited universe of my database?</em></p>
+</section>
+<section id="example-of-subject-attributes" class="slide level2">
+<h2><strong>Example of subject attributes</strong></h2>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 86%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Subjects</th>
+<th>Attributes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gummy</td>
+<td>name, description, consistency, colour, flavour, flavour_type, price, etc.</td>
+</tr>
+<tr class="even">
+<td>Customer</td>
+<td>first name, last name, email, phone number, address</td>
+</tr>
+<tr class="odd">
+<td>Address</td>
+<td>street name, civic number, apartment number, city, province, country, postal code</td>
+</tr>
+<tr class="even">
+<td>Order</td>
+<td>Customer, product, amount of product, delivery address, date</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="what-are-good-subject-attribute" class="slide level2">
+<h2><strong>What are good subject attribute?</strong></h2>
+<ul>
+<li><p>They are necessary to achieve the database objectives.</p></li>
+<li><p>They are related to the subject (e.g., The “cat” subject could have a “breed” attribute, but “cat breed” should not be an attribute of the person who owns that cat).</p></li>
+<li><p>They are non-ambiguous.</p></li>
+<li><p>They are atomic (a single attribute can’t be divided in multiple attributes).</p></li>
+</ul>
+</section></section>
+<section>
+<section id="database-rules" class="title-slide slide level1">
+<h1>Database rules</h1>
+
+</section>
+<section id="what-are-database-rules" class="slide level2">
+<h2><strong>What are database rules?</strong></h2>
+<p>Rules are statements that define or constrain the possibilities of your database.</p>
+</section>
+<section id="why-kind-of-rules-exist" class="slide level2">
+<h2><strong>Why kind of rules exist?</strong></h2>
+<ul>
+<li><p>Rules that specify <strong>the set</strong> of values a attribute can have. (e.g., the country attribute is limited to the set of existing countries).</p>
+<ul>
+<li>For this course, you don’t have to specify the set of values itself (you don’t need a list of countries).</li>
+</ul></li>
+<li><p>Rules that specify whether or not an attribute can have multiple values for the same entity (e.g. can a single gummy have multiple flavours?).</p>
+<ul>
+<li>For this course, it is sufficient to consider if an entity can have multiple values or not. It is not necessary to define the number of values that an attribute can have.</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-to-identify-database-rules" class="slide level2">
+<h2><strong>How to identify database rules?</strong></h2>
+<div style="text-align:left">
+<p>For each attribute, ask yourself:</p>
+<ol type="1">
+<li>Can this attribute take multiple value for a single entity?</li>
+<li>Is there a limited range of values for this attribute?</li>
+</ol>
+</div>
+</section>
+<section id="example-of-database-rules" class="slide level2">
+<h2><strong>Example of database rules</strong></h2>
+<table>
+<thead>
+<tr class="header">
+<th>Subject</th>
+<th>Attribute</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gummy</td>
+<td>Flavour</td>
+<td>A gummy can have multiple flavor</td>
+</tr>
+<tr class="even">
+<td>Gummy</td>
+<td>Flavour type</td>
+<td>A gummy can have multiple flavour type</td>
+</tr>
+<tr class="odd">
+<td>Gummy</td>
+<td>Flavour type</td>
+<td>Is limited to a set of five flavour types</td>
+</tr>
+<tr class="even">
+<td>Gummy</td>
+<td>Colour</td>
+<td>A gummy can have multiple colours</td>
+</tr>
+<tr class="odd">
+<td>Customer</td>
+<td>Address</td>
+<td>A customer can have multiple addresses</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="extra-tips-for-identifying-database-rules" class="slide level2">
+<h2><strong>Extra tips for identifying database rules</strong></h2>
+<div style="text-align:left">
+<ul>
+<li>Use rules parcimoniously</li>
+<li>Put more attention on values that scefify whether or not a single entity can have multiple values for the same attribute. Those have more implications for database designs.</li>
+</ul>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script src="slides_relational_database_1_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="slides_relational_database_1_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: true,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Loop the presentation
+        loop: false,
+        // Change the presentation direction to be RTL
+        rtl: false,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        menu: {
+          side: 'right',
+   
+    
+    
+    
+    
+    
+    
+ 
+          custom: false,
+          themes: false,
+          transitions: false
+        },
+
+
+
+        chalkboard: {
+          toggleNotesButton: true,
+          theme: 'default',
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'slides_relational_database_1_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
+          { src: 'slides_relational_database_1_files/reveal.js-3.3.0.1/plugin/menu/menu.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
