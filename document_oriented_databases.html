@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Management - 7&nbsp; Document-oriented databases</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./sql.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Document-oriented databases</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Management</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Course overview</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Thinking about data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./relational_databases_part1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 1)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./relational_databases_part2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./relational_databases_part3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 3)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rdbms.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relational database management systems</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Structured Query Language (SQL)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./document_oriented_databases.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Document-oriented databases</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="toc-section-number">7.1</span>  Learning objectives</a></li>
+  <li><a href="#nosql-databases" id="toc-nosql-databases" class="nav-link" data-scroll-target="#nosql-databases"><span class="toc-section-number">7.2</span>  NoSQL databases</a></li>
+  <li><a href="#document-oriented-databases" id="toc-document-oriented-databases" class="nav-link" data-scroll-target="#document-oriented-databases"><span class="toc-section-number">7.3</span>  Document-oriented databases</a>
+  <ul class="collapse">
+  <li><a href="#documents-and-collections" id="toc-documents-and-collections" class="nav-link" data-scroll-target="#documents-and-collections"><span class="toc-section-number">7.3.1</span>  Documents and collections</a></li>
+  <li><a href="#non-structured-data" id="toc-non-structured-data" class="nav-link" data-scroll-target="#non-structured-data"><span class="toc-section-number">7.3.2</span>  Non-structured data</a></li>
+  <li><a href="#no-very-few-relations" id="toc-no-very-few-relations" class="nav-link" data-scroll-target="#no-very-few-relations"><span class="toc-section-number">7.3.3</span>  No (very few) relations</a></li>
+  <li><a href="#implications-for-database-design" id="toc-implications-for-database-design" class="nav-link" data-scroll-target="#implications-for-database-design"><span class="toc-section-number">7.3.4</span>  Implications for database design</a></li>
+  </ul></li>
+  <li><a href="#storing-document-collections-in-a-json-file" id="toc-storing-document-collections-in-a-json-file" class="nav-link" data-scroll-target="#storing-document-collections-in-a-json-file"><span class="toc-section-number">7.4</span>  Storing document collections in a JSON file</a>
+  <ul class="collapse">
+  <li><a href="#key-value-pairs" id="toc-key-value-pairs" class="nav-link" data-scroll-target="#key-value-pairs"><span class="toc-section-number">7.4.1</span>  Key-value pairs</a></li>
+  <li><a href="#types-of-values" id="toc-types-of-values" class="nav-link" data-scroll-target="#types-of-values"><span class="toc-section-number">7.4.2</span>  Types of values</a></li>
+  <li><a href="#creating-a-document-json-object" id="toc-creating-a-document-json-object" class="nav-link" data-scroll-target="#creating-a-document-json-object"><span class="toc-section-number">7.4.3</span>  Creating a document (JSON object)</a></li>
+  <li><a href="#creating-a-collection-json-array" id="toc-creating-a-collection-json-array" class="nav-link" data-scroll-target="#creating-a-collection-json-array"><span class="toc-section-number">7.4.4</span>  Creating a collection (JSON array)</a></li>
+  <li><a href="#multiple-collections-in-a-single-json-file" id="toc-multiple-collections-in-a-single-json-file" class="nav-link" data-scroll-target="#multiple-collections-in-a-single-json-file"><span class="toc-section-number">7.4.5</span>  Multiple collections in a single JSON file</a></li>
+  </ul></li>
+  <li><a href="#homework-lab-4" id="toc-homework-lab-4" class="nav-link" data-scroll-target="#homework-lab-4"><span class="toc-section-number">7.5</span>  Homework (Lab 4)</a></li>
+  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources"><span class="toc-section-number">7.6</span>  Additional resources</a>
+  <ul class="collapse">
+  <li><a href="#mongodb-demo" id="toc-mongodb-demo" class="nav-link" data-scroll-target="#mongodb-demo"><span class="toc-section-number">7.6.1</span>  MongoDB demo</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Document-oriented databases</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="learning-objectives" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">7.1</span> Learning objectives</h2>
+<p><strong>Concepts</strong></p>
+<ul>
+<li><p>NoSQL databases</p></li>
+<li><p>Document-oriented databases (or document stores)</p></li>
+</ul>
+<p><strong>Practical skills</strong></p>
+<ul>
+<li>Writing a JSON document.</li>
+</ul>
+</section>
+<section id="nosql-databases" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="nosql-databases"><span class="header-section-number">7.2</span> NoSQL databases</h2>
+<p>Now that you have become familiar with relational databases, we will be turning our attention to different types of databases: the <strong>document-oriented database</strong> (also called <strong>document stores</strong>), and the <strong>graph databases</strong> (we’ll cover those in the next chapter). These are two variants of a much wider range of database types that, together, are regrouped under the NoSQL label (which can refer to “non-SQL” or “not only SQL”). These databases have grown in popularity with the rise of the web 2.0 and cloud computing, as well as the diminishing costs of data storage. Unlike relational databases that share a common language (SQL), there is no standard in the NoSQL world. However, we will not be discussing these languages in this course, but instead focus on how document-oriented databases and graph databases differ from relational databases in the way that they organize data.</p>
+</section>
+<section id="document-oriented-databases" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="document-oriented-databases"><span class="header-section-number">7.3</span> Document-oriented databases</h2>
+<p>There exists a wide variety of document-oriented databases, each with their own particularities. We will focus here on one very popular example of document-oriented databases: MongoDB (<a href="https://www.mongodb.com/" class="uri">https://www.mongodb.com/</a>). Let’s look at the main differences between MongoDB and MySQL.</p>
+<section id="documents-and-collections" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="documents-and-collections"><span class="header-section-number">7.3.1</span> Documents and collections</h3>
+<p>Instead of using storing records in tables as in the relational model, MongoDB (and other document-oriented databases) do not split the data into multiple tables that are linked together through foreign keys. Instead, data is stored in <strong>documents</strong> that are grouped together in <strong>collections</strong>.</p>
+<p>While they are not conceptually equivalent, documents are to document-oriented databases what <strong>table rows</strong> are to relational databases: they are individual records that have a unique identifier. collections are equivalent to <strong>tables</strong>, they contain a set of documents, just like tables contain a set of records representend by rows.</p>
+</section>
+<section id="non-structured-data" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="non-structured-data"><span class="header-section-number">7.3.2</span> Non-structured data</h3>
+<p>Rather than the structured data format of relational databases, document-oriented databases use non-structure data formats like XML and JSON. MongoDB uses the JSON format (actually some variation of it called BSON). As you might recall from the first chapter of this course, one particularity of the non-structured data formats is that the structure of the data is included directly in each document, which means that each document in a collection can have a different structure.</p>
+</section>
+<section id="no-very-few-relations" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="no-very-few-relations"><span class="header-section-number">7.3.3</span> No (very few) relations</h3>
+<p>Another important feature of the JSON format is that it can include a list of values in a single field. This eliminates the need for associative tables and, consequently, the need to retrieve data with more or less complex SQL queries pulling data from multiple tables using <strong>joins</strong>. With document-oriented databases, the documents contain all the data we need, reducing the need to pull data from other collections. That said, it remains possible to link collections together, but this is not a typical use of document-oriented databases.</p>
+</section>
+<section id="implications-for-database-design" class="level3" data-number="7.3.4">
+<h3 data-number="7.3.4" class="anchored" data-anchor-id="implications-for-database-design"><span class="header-section-number">7.3.4</span> Implications for database design</h3>
+<p>The differences between the relational and the document-oriented databases presented so far may seem a bit superficial or technical, but they also have important implications when it comes to designing databases. Most importantly, the documents include not only the entities’ attributes but <em>also</em> their relationship with other entities. This means that 1) the same data can be repeated in multiple documents and collections, and 2) there is no need for associative or validation tables. The following video shows off my exceptional whiteboard drawing skills but perhaps more importantly explains in more detail the fundamental differences between the two types of databases.</p>
+<iframe src="https://dal.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=cd92b748-d02d-4d43-9010-ace401194d91&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay">
+</iframe>
+</section>
+</section>
+<section id="storing-document-collections-in-a-json-file" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="storing-document-collections-in-a-json-file"><span class="header-section-number">7.4</span> Storing document collections in a JSON file</h2>
+<p>A JSON file is nothing more than a text file that contains text that follows the JSON syntax. So we can create them with any text editor (e.g.&nbsp;notepad). A JSON file must always begin with and end with a curly bracket <code>{}.</code></p>
+<section id="key-value-pairs" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="key-value-pairs"><span class="header-section-number">7.4.1</span> Key-value pairs</h3>
+<p>In JSON, everything is a key-value pair except for objects and arrays for which the key is optional.<br>
+The key is always between double quotes, and so are values that are strings. Here’s an example of a key-value pair.</p>
+<p><code>"name":"Barry Bonds"</code></p>
+<p>So a JSON file with only that one key-value pair would look like this:</p>
+<pre class="{json}"><code>{ "name":"Barry Bonds" }</code></pre>
+</section>
+<section id="types-of-values" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="types-of-values"><span class="header-section-number">7.4.2</span> Types of values</h3>
+<p>In JSON, values must be one of the following data types:</p>
+<ul>
+<li><p>String <code>"name":"bada booms"</code></p></li>
+<li><p>Number <code>"number_of_children":10</code></p></li>
+<li><p>Boolean <code>"sale":true</code></p></li>
+<li><p>NULL <code>"middlename":null</code></p></li>
+<li><p>Object <code>{"name":"John", "age":30, "city":"New York"}</code></p></li>
+<li><p>Array <code>["John", "Anna", "Peter"]</code></p></li>
+</ul>
+</section>
+<section id="creating-a-document-json-object" class="level3" data-number="7.4.3">
+<h3 data-number="7.4.3" class="anchored" data-anchor-id="creating-a-document-json-object"><span class="header-section-number">7.4.3</span> Creating a document (JSON object)</h3>
+<p>Here’s an example of a fictional course written as a JSON, which is an example of a document that we could eventually want to store in a collection.</p>
+<pre class="{json}"><code>{
+  "code": "INFO6540",
+   "semester": "Winter",
+   "year": 2023,
+   "description": "This is the course description",
+   "brightspace_active": true,
+   "students": [
+      {"id": "B00123456", "name": "Wayne Gretzky"},
+      {"id": "B00654321", "name": "Mario Lemieux"}],
+   "supplementary_files_url": null
+}</code></pre>
+<p>And here is another course.</p>
+<pre class="{json}"><code>{
+  "code": "INFO6270",
+  "semester": "Fall",
+  "year": 2022,
+  "name": "Singing for dummies",
+  "description": "This the course description for INFO6270",
+  "brightspace_active": false,
+  "room":"ROWE1234",
+  "students": [
+                {"id": "B00123457", "name": "Justin Bieber"},
+                {"id": "B00865321", "name": "Lady Gaga"}
+              ],
+  "supplementary_files_url": "www.info6270_sup.ca"
+}</code></pre>
+<p>we can see that the document contains strings (code, semester, description), numbers (year), booleans (brightspace_active), and an array (students) that contain objects.</p>
+</section>
+<section id="creating-a-collection-json-array" class="level3" data-number="7.4.4">
+<h3 data-number="7.4.4" class="anchored" data-anchor-id="creating-a-collection-json-array"><span class="header-section-number">7.4.4</span> Creating a collection (JSON array)</h3>
+<p>A collection is essentially a group of objects grouped together in an array. For example, if we wanted to store all our courses together into a collection of courses, we could do it in a single JSON file that contains an array called “courses”, like this:</p>
+<pre class="{json}"><code>{
+  "courses": [
+    {
+      "code": "INFO6540",
+      "semester": "Winter",
+      "year": 2023,
+      "description": "This is the course description",
+      "brightspace_active": true,
+      "students": [
+        {
+          "id": "B00123456",
+          "name": "Wayne Gretzky"
+        },
+        {
+          "id": "B00654321",
+          "name": "Mario Lemieux"
+        }
+      ],
+      "supplementary_files_url": null
+    },
+{
+      "code": "INFO6270",
+      "semester": "Fall",
+      "year": 2022,
+      "name": "Singing for dummies",
+      "description": "This the course description for INFO6270",
+      "brightspace_active": false,
+      "room":"ROWE1234",
+      "students": [
+        {
+          "id": "B00123457",
+          "name": "Justin Bieber"
+        },
+        {
+          "id": "B00865321",
+          "name": "Lady Gaga"
+        }
+      ],
+      "supplementary_files_url": "www.info6270_sup.ca"
+    }    
+  ]
+}</code></pre>
+</section>
+<section id="multiple-collections-in-a-single-json-file" class="level3" data-number="7.4.5">
+<h3 data-number="7.4.5" class="anchored" data-anchor-id="multiple-collections-in-a-single-json-file"><span class="header-section-number">7.4.5</span> Multiple collections in a single JSON file</h3>
+<p>We can include multiple collections in a single JSON file simply a second array. Let’s add a student collection to the our JSON file.</p>
+<pre class="{json}"><code>{
+  "courses": [
+    {
+      "code": "INFO6540",
+      "semester": "Winter",
+      "year": 2023,
+      "description": "This is the course description",
+      "brightspace_active": true,
+      "students": [
+        {
+          "id": "B00123456",
+          "name": "Wayne Gretzky"
+        },
+        {
+          "id": "B00654321",
+          "name": "Mario Lemieux"
+        }
+      ],
+      "supplementary_files_url": null
+    },
+{
+      "code": "INFO6270",
+      "semester": "Fall",
+      "year": 2022,
+      "name": "Singing for dummies",
+      "description": "This the course description for INFO6270",
+      "brightspace_active": false,
+      "room":"ROWE1234",
+      "students": [
+        {
+          "id": "B00123457",
+          "name": "Justin Bieber"
+        },
+        {
+          "id": "B00865321",
+          "name": "Lady Gaga"
+        }
+      ],
+      "supplementary_files_url": "www.info6270_sup.ca"
+    }    
+  ],
+  "students":[
+    {
+      "id":"B00865321",
+      "name":"Lady Gaga",
+      "courses":[
+        {
+          "code":"INFO6270",
+          "completed":true,
+          "grade":"B-"
+        }
+      ]
+    },
+    {
+      "id":"B00123457",
+      "name":"Justin Bieber",
+      "courses":[
+        {
+          "code":"INFO6270",
+          "completed":true,
+          "grade":"C+"
+        }
+      ]
+    },
+    {
+      "id":"B00123456",
+      "name":"Wayne Gretzky",
+      "courses":[
+        {
+          "code":"INFO6540",
+          "completed":false,
+          "grade":null
+        }
+      ]
+    },
+    {
+      "id":"B00654321",
+      "name":"Mario Lemieux",
+      "courses":[
+        {
+          "code":"INFO6540",
+          "completed":false,
+          "grade":null
+        }
+      ]
+    }
+  ]
+}</code></pre>
+</section>
+</section>
+<section id="homework-lab-4" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="homework-lab-4"><span class="header-section-number">7.5</span> Homework (Lab 4)</h2>
+<p>GummyBox has decided to store its data into a noSQL database that will include collections of gummies, gummy boxes, invoices, and an additional version of the gummy collection that includes reviews. The database administrator already extracted the data from the gummybox_sales database and sent it to you in an Excel file (see lab 4 on the course BrightSpace). Your task is to create a JSON file with a sample of the data (2 documents) for each collection.</p>
+</section>
+<section id="additional-resources" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="additional-resources"><span class="header-section-number">7.6</span> Additional resources</h2>
+<p>You can use this <a href="https://jsonformatter.org/">online JSON validator and formatter</a> to help you write JSON and convert your data from JSON to CSV or XML or vice versa.</p>
+<section id="mongodb-demo" class="level3" data-number="7.6.1">
+<h3 data-number="7.6.1" class="anchored" data-anchor-id="mongodb-demo"><span class="header-section-number">7.6.1</span> MongoDB demo</h3>
+<p>While you are not required to learn how to use MongoDB or another type of document-oriented database in this course, you may still be curious to see how such databases look like in real life, so In this video, I demonstrate how to create a collection and documents in MongoDB.</p>
+<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+<strong>Errata</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>at time 8:10, I include an object called orders. What I actually <strong>should</strong> have done is create an <strong>array</strong>, and then make each entry in that array an <strong>object.</strong></p>
+</div>
+</div>
+<iframe src="https://dal.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=1be2c4a7-2a48-41fb-9fb2-acde000829cd&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay">
+</iframe>
+<p>You can <a href="https://www.mongodb.com/try/download/community">install a local MongoDB server on your computer</a> if you want to use it to create your own document collections. MongoDB offers a series of <a href="https://university.mongodb.com/">free online courses</a> that can also help get you started.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./sql.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Structured Query Language (SQL)</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
