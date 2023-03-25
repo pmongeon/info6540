@@ -446,5 +446,82 @@
     "title": "7  Document-oriented databases",
     "section": "7.6 Additional resources",
     "text": "7.6 Additional resources\nYou can use this online JSON validator and formatter to help you write JSON and convert your data from JSON to CSV or XML or vice versa.\n\n7.6.1 MongoDB demo\nWhile you are not required to learn how to use MongoDB or another type of document-oriented database in this course, you may still be curious to see how such databases look like in real life, so In this video, I demonstrate how to create a collection and documents in MongoDB.\n\n\n\n\n\n\nErrata\n\n\n\nat time 8:10, I include an object called orders. What I actually should have done is create an array, and then make each entry in that array an object.\n\n\n\n\nYou can install a local MongoDB server on your computer if you want to use it to create your own document collections. MongoDB offers a series of free online courses that can also help get you started."
+  },
+  {
+    "objectID": "conclusion.html",
+    "href": "conclusion.html",
+    "title": "10  Conclusion",
+    "section": "",
+    "text": "… upcoming"
+  },
+  {
+    "objectID": "graph_databases.html#learning-objectives",
+    "href": "graph_databases.html#learning-objectives",
+    "title": "8  Graph databases",
+    "section": "8.1 Learning objectives",
+    "text": "8.1 Learning objectives\nConcepts\n\nGraphs (Networks)\nNodes\nEdges\nAttributes\n\nPractical skills\n\nCreating a network data set\nVisualizing a network"
+  },
+  {
+    "objectID": "graph_databases.html#graph-databases",
+    "href": "graph_databases.html#graph-databases",
+    "title": "8  Graph databases",
+    "section": "8.2 Graph databases",
+    "text": "8.2 Graph databases\nIn graph databases, the data is stored as collections of edges, nodes to which we assign properties, and the priority is on the relationship between the different data elements. They are used to visualize data in graphs (networks)and are thus particularly useful to explore how people, processes, and objects are interrelated.\nOntologies, which we will introduce in the next chapter, are essentially a form of graph with a semantic layer and a bunch of rules that formalize the types of entities and relationships that exist within a knowledge domain. For now, let us simply look at the most basic components that are found in every single graph: nodes, edges,and attributes.\n\n8.2.1 Nodes\nNodes are simply entities of some kind, such as people, products, processes, event, concepts, etc. Depending on the purpose of the graph and the available data, nodes can be practically anything.\nThis is a node :\n\nA graph that represents a single kind of entity (e.g., students) is called unimodal, and one representing different kinds of things (e.g., students and courses) is called multimodal.\n\n\n8.2.2 Edges\nAnd edge is a relationship that exists between two nodes. Like nodes, depending on the purpose of the graph, the edges can represent anything. An edge must have two nodes.\nThis is an edge:\n\nNote that an edge can relate a node to itself (that’s called a self-loop):\n\nThere are two types of edges: directed and undirected . The directed edge indicates that the relationship has a direction (e.g., I like ice cream, but ice cream doesn’t like me back):\n\nThe undirected edge represent associations and co-occurences. For instance, we could form an undirected edge between two students (node) that are taking the same course:\n\nNote: While the direction of the edges is an attribute of nodes, the undirected and directed attributes are usually not used in combination in the same graph, so we will most often refer to an undirected or directed graphs.\n\n\n8.2.3 Attributes\nNodes and edges can have attributes that can be used to manipulate their appearance in the graph (e.g., size, shape, color, label). Here is a network where the nodes have label:"
+  },
+  {
+    "objectID": "graph_databases.html#creating-a-network-dataset",
+    "href": "graph_databases.html#creating-a-network-dataset",
+    "title": "8  Graph databases",
+    "section": "8.3 Creating a network dataset",
+    "text": "8.3 Creating a network dataset\n\n8.3.1 Edges list\nThe most basic form of network can be constructed from a simple table of edges with two columns.\nHere is an example:\n\n\n\nFrom\nTo\n\n\n\n\nStudent A\nStudent B\n\n\nStudent A\nStudent C\n\n\nStudent B\nStudent C\n\n\nStudent C\nStudent D\n\n\n\nNote: There is no standard for the names of your columns. Some network analysis or visualization tools will use from and to, some will use source and target, and some others my not require headers at all. Please also note that if you are building an undirected graph, you only need to include the relationship between A and B once. In other words, once the relationship between Student A and Student B has been entered, there is no need to add another row to indicate that Student B is also related to Student A.\n\n8.3.1.1 Adding attributes\nThe most common attribute to provide for your edges are a weight representing the strength of the relationship between two nodes. For instance if you have a directed network representing email sent from people to other people, then the weight could be the number of emails sent by the person in the from column to the person in the To column. Like this:\n\n\n\nFrom\nTo\nWeight\n\n\n\n\nStudent A\nStudent B\n15\n\n\nStudent A\nStudent C\n4\n\n\nStudent B\nStudent C\n542\n\n\nStudent C\nStudent D\n5\n\n\n\nWe can also indicate whether the relationship is directed or undirected, and also add a label for the edge. Like this\n\n\n\nFrom\nTo\nWeight\nType\nLabel\n\n\n\n\nStudent A\nStudent B\n15\ndirected\nemailed\n\n\nStudent A\nStudent C\n4\ndirected\nemailed\n\n\nStudent B\nStudent C\n542\ndirected\nemailed\n\n\nStudent C\nStudent D\n5\ndirected\nemailed\n\n\n\n\n\n\n8.3.2 Nodes list\nIn the table above the students are nodes and the from and to columns contain the student IDs. The nodes lists is simply a list of all the students in the networks, along with any number of attributes. The only mandatory column in a nodes list is usually the ID column, and the most common attribute is a label which is required to display a label for the node when visualizing the graph. Categorical attributes are typically used to color the nodes, and numerical attributes are typically used for node size. Here’s an example:\n\n\n\nid\nlabel\nprogram\nemails_written\n\n\n\n\nStudent A\nStudent A\nMI\n19\n\n\nStudent B\nStudent B\nMBA\n542\n\n\nStudent C\nStudent C\nMREM\n5\n\n\nStudent D\nStudent D\nMI\n0"
+  },
+  {
+    "objectID": "graph_databases.html#exercises",
+    "href": "graph_databases.html#exercises",
+    "title": "8  Graph databases",
+    "section": "8.4 Exercises",
+    "text": "8.4 Exercises\nThis is a simple exercise in which you will create a simple edge list (only from and to columns) using a template, and use a super fancy application developed by your instructor to visualize your network.\n\nDownload the following Excel template and add data to build a unimodal graph, which can be directed or undirected (but not both).\nUse this web application developed specially for this exercise to visualize and play around with your network."
+  },
+  {
+    "objectID": "graph_databases.html#additional-resources",
+    "href": "graph_databases.html#additional-resources",
+    "title": "8  Graph databases",
+    "section": "8.5 Additional resources",
+    "text": "8.5 Additional resources\nGephi (www.gephi.org) is an open source network analysis software that you can use to build, visualize and analyze networks of different complexity levels and sizes. It has a tiny bit of a learning curve, but it has the advantage of being free and able to support various kinds of network related tasks.\nThe edges list for Gephi should include the a source column and a target columns (equivalent to From and To in the example above).\nThe nodes list for Gephi is not mandatory (nodes will be created automatically if you import an edge list). If you do import your own nodes list, the advantage is that you can include as many attributes as you’d like, and use them to filter, size or color your nodes if you wish. The only mandatory column is id (this is what the Source and Target columns contain)."
+  },
+  {
+    "objectID": "ontologies.html#learning-objectives",
+    "href": "ontologies.html#learning-objectives",
+    "title": "9  Ontologies",
+    "section": "9.1 Learning objectives",
+    "text": "9.1 Learning objectives\nConcepts\n\nOntologies\nClasses\nIndividuals\nRelationships\nTriples\n\nPractical Skills\n\nBuilding a very basic ontology (individual assignment #2)"
+  },
+  {
+    "objectID": "ontologies.html#what-are-ontologies",
+    "href": "ontologies.html#what-are-ontologies",
+    "title": "9  Ontologies",
+    "section": "9.2 What are ontologies?",
+    "text": "9.2 What are ontologies?\n\n“An ontology encompasses a representation, formal naming and definition of the categories, properties and relations between the concepts, data and entities that substantiate one, many, or all domains of discourse.” (Wikipedia)"
+  },
+  {
+    "objectID": "ontologies.html#components-of-an-ontology",
+    "href": "ontologies.html#components-of-an-ontology",
+    "title": "9  Ontologies",
+    "section": "9.3 Components of an ontology",
+    "text": "9.3 Components of an ontology\n\nClasses: The type of things that exist in the domain. They can be represented as nodes or as attributes of nodes in a graph.\nIndividuals: These are instances of objects or concepts that belong to a class. They are represented as nodes in a graph.\nRelationships: These are the ways in which individuals and classes can be related to one another. They are represented as edges in the graph.\nAttributes: Attributes are characteristics of individuals, classes, or relationships (e.g. price of an individual of the class product, or date of birth of an individual of the class person).\nTriples: A triple is a representation of ontological components that take the following form:\n\n\nSUBJECT PREDICATE OBJECT\n\nFor instance:\n\nIn a film ontology: Sylvester Stallone (subject) wrote (predicate) Rocky (object)\nIn a Dalhousie ontology: Philippe Mongeon (subject) teaches (predicate) Data Management (object)\nIn a hockey ontology: Brad Marchand (subject) plays for (predicate) Boston Bruins (subject)\n\nBasically, the subject and the objects are two nodes in the network, and the predicate is the label of the edge that unites the nodes in the network."
+  },
+  {
+    "objectID": "ontologies.html#building-a-simple-ontology",
+    "href": "ontologies.html#building-a-simple-ontology",
+    "title": "9  Ontologies",
+    "section": "9.4 Building a simple ontology",
+    "text": "9.4 Building a simple ontology\nLet us now go through a series of five simple steps to build a very simple ontology. This is the exact process that I suggest that you follow for the final assignment. Please use this template for this purpose and for your final assignment. It comes pre-loaded with the example presented below.\nImportant note: in order to simplify the process we will not use attributes in this example, nor in the final assignment.\nThe five steps are:\n\nDefining classes\nDefining individuals\nAssigning individuals to classes\nDefining characteristics\nWriting triples\n\nHere’s an example of how to follow these steps to fill the provided template to build a basic pizza ontology.\n\nWhat kind of things do exists in the domain you want to represent?\nThese are your classes. Make a list and insert them in the classes sheet of the template.\n\n\n\nClass_id\nClass\n\n\n\n\n1\nPizza\n\n\n2\nBase\n\n\n3\nSauce\n\n\n4\nCheese\n\n\n5\nTopping\n\n\n\nWhat individuals (instances of classes) do you want to include in my ontology?\nThese will be the nodes in your network. Write in the template the name of each individual in the individuals sheet under the name column. \n\n\n\n\n\nIndividual_id\nName\n\n\n\n\n1\nHawaiian\n\n\n2\nCanadian\n\n\n3\nChicken Alfredo\n\n\n4\nAlfredo\n\n\n5\nChicago style\n\n\n6\nMozzarella\n\n\n7\nPineapple\n\n\n\nTo which class do each individual belong?\nTo what class does each of my individuals belong. Your individuals should belong to only one class. You should also have at least one individual for each class, otherwise that class is irrelevant for your ontology. Write the class to which each individual belongs in the class column of he individuals sheet.\n\n\n\nIndividual_id\nName\nClass_id\n\n\n\n\n1\nHawaiian\n1\n\n\n2\nCanadian\n1\n\n\n3\nChicken Alfredo\n1\n\n\n4\nTomato\n3\n\n\n5\nChicago style\n2\n\n\n6\nMozzarella\n4\n\n\n7\nPineapple\n5\n\n\n\nWhat type of relationships between individuals exist in my ontology?\nIn the relationships sheet, make a list of the different types of relationships that exist between your individuals. Your relationship should be verbs (e.g., acts_in, is_author_of, has_flavor, bought). For each of your relationship, consider whether it has a inverse relationship (e.g., has_actor, has_author is_flavor_of, was_bought_by) and if that is the case, indicate it in the inverse_relationship column. Here is an example:\n\n\n\nRelationship_id\nRelationship\nInverse_relationship\n\n\n\n\n1\nhas_topping\nis_topping_of\n\n\n2\nhas_base\nis_base_of\n\n\n3\nhas_sauce\nis_sauce_of\n\n\n4\nhas_cheese\nis_cheese_of\n\n\n\nImportant note: For your individual assignment you should have at least 3 relationships, excluding the inverse ones and you should not use the is_a relationships (these are used to link objects with their class, but for our purpose, we included the class as an attribute in the individuals sheet).\nWhat relationships exist between individuals exist in my ontology?\nThis is where you write your triples in the triples sheet of the template. Make sure that each individual has a relationship with at least one other. In sheet you want to write the ID of each component, but it may be less confusing to start with the actual names of the individuals and relationship, like this:\n\n\n\nSubject_id\nRelationship_id\nObject_id\n\n\n\n\nCanadian\nhas_cheese\nMozzarella\n\n\nCanadian\nhas_base\nChicago style\n\n\nHawaiian\nhas_topping\nPineapple\n\n\nChicken Alfredo Pizza\nhas_sauce\nAlfredo\n\n\n\nAnd then you can replace the values with their respective IDs.\n\n\n\nSubject_id\nRelationship_id\nObject_id\n\n\n\n\n2\n1\n6\n\n\n2\n2\n5\n\n\n1\n1\n7\n\n\n3\n3\n4\n\n\n\nAs mentioned above, you could normally represent the relationship between an individual and its class can be represented in triples using the is_a relationship (e.g., Philippe is_a Professor). But for this assignment we will not use the is_a relationship, since the link between each individual and its class is already declared in the individuals table.\n\n\n9.4.1 Visualizing our graph\nI created a very primitive web application that can read data from the ontology template provided. Here is our graph:"
+  },
+  {
+    "objectID": "ontologies.html#exercises",
+    "href": "ontologies.html#exercises",
+    "title": "9  Ontologies",
+    "section": "9.5 Exercises",
+    "text": "9.5 Exercises\n\nDownload the template file that contains the data used in the example above ontology.\nCreate a list of 10 to 20 individuals that cover the five classes.\nCreate a list of 10 to 20 triples that cover the four types of relationships.\nVisualize your ontology with this web application.\nNote: For the graph visualization tool to work, you must use the template and keep the names of the sheet and columns exactly as as they are."
   }
 ]
