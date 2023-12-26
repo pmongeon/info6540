@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -57,7 +57,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -68,11 +69,16 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relational database management systems</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rdbms.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relational database management systems</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -80,120 +86,105 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Data Management</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Course overview</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course overview</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Thinking about data</span></a>
+  <a href="./introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Thinking about data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./relational_databases_part1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 1)</span></a>
+  <a href="./relational_databases_part1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 1)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./relational_databases_part2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 2)</span></a>
+  <a href="./relational_databases_part2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 2)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./relational_databases_part3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 3)</span></a>
+  <a href="./relational_databases_part3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 3)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rdbms.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relational database management systems</span></a>
+  <a href="./rdbms.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relational database management systems</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Structured Query Language (SQL)</span></a>
+  <a href="./sql.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Structured Query Language (SQL)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./document_oriented_databases.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Document-oriented databases</span></a>
+  <a href="./document_oriented_databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Document-oriented databases</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graph_databases.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Graph databases</span></a>
+  <a href="./graph_databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Graph databases</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ontologies.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ontologies</span></a>
+  <a href="./ontologies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ontologies</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./conclusion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Conclusion</span></a>
+  <a href="./conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="toc-section-number">5.1</span>  Learning objectives</a></li>
-  <li><a href="#what-is-an-rdbms" id="toc-what-is-an-rdbms" class="nav-link" data-scroll-target="#what-is-an-rdbms"><span class="toc-section-number">5.2</span>  What is an RDBMS?</a></li>
-  <li><a href="#psql-and-pgadmin" id="toc-psql-and-pgadmin" class="nav-link" data-scroll-target="#psql-and-pgadmin"><span class="toc-section-number">5.3</span>  psql and pgAdmin</a></li>
-  <li><a href="#installing-pgadmin" id="toc-installing-pgadmin" class="nav-link" data-scroll-target="#installing-pgadmin"><span class="toc-section-number">5.4</span>  Installing pgAdmin</a>
-  <ul class="collapse">
-  <li><a href="#go-to-the-pgadmin-website-and-click-on-the-download-tab." id="toc-go-to-the-pgadmin-website-and-click-on-the-download-tab." class="nav-link" data-scroll-target="#go-to-the-pgadmin-website-and-click-on-the-download-tab."><span class="toc-section-number">5.4.1</span>  Go to the pgAdmin website and click on the <strong>download</strong> tab.</a></li>
-  <li><a href="#choose-your-operating-system" id="toc-choose-your-operating-system" class="nav-link" data-scroll-target="#choose-your-operating-system"><span class="toc-section-number">5.4.2</span>  Choose your operating system</a></li>
-  <li><a href="#select-the-latest-version-of-the-software" id="toc-select-the-latest-version-of-the-software" class="nav-link" data-scroll-target="#select-the-latest-version-of-the-software"><span class="toc-section-number">5.4.3</span>  Select the latest version of the software</a></li>
-  <li><a href="#download-the-installation-file" id="toc-download-the-installation-file" class="nav-link" data-scroll-target="#download-the-installation-file"><span class="toc-section-number">5.4.4</span>  Download the installation file</a></li>
-  </ul></li>
-  <li><a href="#connecting-to-the-server" id="toc-connecting-to-the-server" class="nav-link" data-scroll-target="#connecting-to-the-server"><span class="toc-section-number">5.5</span>  Connecting to the server</a>
-  <ul class="collapse">
-  <li><a href="#set-a-name-for-the-server-connection" id="toc-set-a-name-for-the-server-connection" class="nav-link" data-scroll-target="#set-a-name-for-the-server-connection"><span class="toc-section-number">5.5.1</span>  Set a name for the server connection</a></li>
-  <li><a href="#enter-the-login-details-provided-to-you-by-email" id="toc-enter-the-login-details-provided-to-you-by-email" class="nav-link" data-scroll-target="#enter-the-login-details-provided-to-you-by-email"><span class="toc-section-number">5.5.2</span>  Enter the login details provided to you by email</a></li>
-  </ul></li>
-  <li><a href="#creating-tables" id="toc-creating-tables" class="nav-link" data-scroll-target="#creating-tables"><span class="toc-section-number">5.6</span>  Creating tables</a>
-  <ul class="collapse">
-  <li><a href="#locate-your-teams-schema" id="toc-locate-your-teams-schema" class="nav-link" data-scroll-target="#locate-your-teams-schema"><span class="toc-section-number">5.6.1</span>  locate your team’s schema</a></li>
-  <li><a href="#create-tables" id="toc-create-tables" class="nav-link" data-scroll-target="#create-tables"><span class="toc-section-number">5.6.2</span>  Create tables</a></li>
-  <li><a href="#give-your-table-a-name" id="toc-give-your-table-a-name" class="nav-link" data-scroll-target="#give-your-table-a-name"><span class="toc-section-number">5.6.3</span>  Give your table a name</a></li>
-  <li><a href="#define-your-table-columns" id="toc-define-your-table-columns" class="nav-link" data-scroll-target="#define-your-table-columns"><span class="toc-section-number">5.6.4</span>  Define your table columns</a></li>
-  <li><a href="#set-foreign-key-constraints" id="toc-set-foreign-key-constraints" class="nav-link" data-scroll-target="#set-foreign-key-constraints"><span class="toc-section-number">5.6.5</span>  Set foreign key constraints</a></li>
-  </ul></li>
-  <li><a href="#adding-data-to-tables" id="toc-adding-data-to-tables" class="nav-link" data-scroll-target="#adding-data-to-tables"><span class="toc-section-number">5.7</span>  Adding data to tables</a>
-  <ul class="collapse">
-  <li><a href="#manually" id="toc-manually" class="nav-link" data-scroll-target="#manually"><span class="toc-section-number">5.7.1</span>  Manually</a></li>
-  <li><a href="#using-the-importexport-tool" id="toc-using-the-importexport-tool" class="nav-link" data-scroll-target="#using-the-importexport-tool"><span class="toc-section-number">5.7.2</span>  Using the import/export tool</a></li>
-  <li><a href="#locate-the-file-to-import-on-your-computer" id="toc-locate-the-file-to-import-on-your-computer" class="nav-link" data-scroll-target="#locate-the-file-to-import-on-your-computer"><span class="toc-section-number">5.7.3</span>  Locate the file to import on your computer</a></li>
-  <li><a href="#set-the-appropriate-options" id="toc-set-the-appropriate-options" class="nav-link" data-scroll-target="#set-the-appropriate-options"><span class="toc-section-number">5.7.4</span>  Set the appropriate options</a></li>
-  <li><a href="#choose-columns-to-be-imported" id="toc-choose-columns-to-be-imported" class="nav-link" data-scroll-target="#choose-columns-to-be-imported"><span class="toc-section-number">5.7.5</span>  Choose columns to be imported</a></li>
-  </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="toc-section-number">5.8</span>  Conclusion</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">5.1</span> Learning objectives</a></li>
+  <li><a href="#what-is-an-rdbms" id="toc-what-is-an-rdbms" class="nav-link" data-scroll-target="#what-is-an-rdbms"><span class="header-section-number">5.2</span> What is an RDBMS?</a></li>
+  <li><a href="#upcoming-content." id="toc-upcoming-content." class="nav-link" data-scroll-target="#upcoming-content."><span class="header-section-number">5.3</span> Upcoming content….</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.4</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -202,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relational database management systems</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relational database management systems</span></h1>
 </div>
 
 
@@ -225,204 +216,11 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="5.2" class="anchored" data-anchor-id="what-is-an-rdbms"><span class="header-section-number">5.2</span> What is an RDBMS?</h2>
 <p>As we saw in the first chapter of this book. <strong>D</strong>ata<strong>b</strong>ase <strong>M</strong>anagement <strong>S</strong>ystems (DBMS) are software that supports the development, maintenance, security, and use of databases. The R in <strong>R</strong>DBMS stands for relational, and it is the kind of DBMS that we will be using to implement and manage the relational databases that we have been developing. <strong>PostgreSQL</strong> is an increasingly popular RDBMS that can also handle non-relational data structures. It does not have an interface; it is the engine that stores your data and enforces rules regarding the content of your fields and tables, who can access them, etc.</p>
 </section>
-<section id="psql-and-pgadmin" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="psql-and-pgadmin"><span class="header-section-number">5.3</span> psql and pgAdmin</h2>
-<p>psql is a command-line interface that allows you to manage and interact with PostgreSQL using commands and SQL code. You can essentially do everything you need to do in psql, including creating databases, users, tables, importing and exporting data, etc. However, the command-line interface is not very pleasing to the eye, and while database administrators and geeky coders might insist that it is better than using a graphical user interface (GUI) that allows you to perform operations by clicking buttons and filling structured forms, for this course, we will use such a free and open-source GUI called pgAdmin. You will notice that every operation you perform in pgAdmin is actually translated into SQL code, and it is that code which is executed and produces the outcome. This code is often displayed in pgAdmin and that can be a useful way to learn how to learn the SQL language.</p>
-<p>You can install PostgreSQL on your computer and use pgAdmin to manage local databases. However, for this course, we will use a PostgreSQL database hosted on a Microsoft Azure server. The next sections walk you through the process of installing pgAdmin, connecting to the course database, creating tables on the schema created for your team, and adding data to your tables. By the end of this process, you will have a live database that can fulfill its intended purpose.</p>
+<section id="upcoming-content." class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="upcoming-content."><span class="header-section-number">5.3</span> Upcoming content….</h2>
 </section>
-<section id="installing-pgadmin" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="installing-pgadmin"><span class="header-section-number">5.4</span> Installing pgAdmin</h2>
-<section id="go-to-the-pgadmin-website-and-click-on-the-download-tab." class="level3" data-number="5.4.1">
-<h3 data-number="5.4.1" class="anchored" data-anchor-id="go-to-the-pgadmin-website-and-click-on-the-download-tab."><span class="header-section-number">5.4.1</span> Go to the pgAdmin <a href="https://www.pgadmin.org/">website</a> and click on the <strong>download</strong> tab.</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_install_1.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</section>
-<section id="choose-your-operating-system" class="level3" data-number="5.4.2">
-<h3 data-number="5.4.2" class="anchored" data-anchor-id="choose-your-operating-system"><span class="header-section-number">5.4.2</span> Choose your operating system</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_install_2.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</section>
-<section id="select-the-latest-version-of-the-software" class="level3" data-number="5.4.3">
-<h3 data-number="5.4.3" class="anchored" data-anchor-id="select-the-latest-version-of-the-software"><span class="header-section-number">5.4.3</span> Select the latest version of the software</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_install_3.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</section>
-<section id="download-the-installation-file" class="level3" data-number="5.4.4">
-<h3 data-number="5.4.4" class="anchored" data-anchor-id="download-the-installation-file"><span class="header-section-number">5.4.4</span> Download the installation file</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_install_4.jpg" class="img-fluid figure-img" width="900"></p>
-</figure>
-</div>
-<p>At this point, you should just follow the instructions and install the software without changing any of the default settings. Note that when you open pgAdmin for the first time, you will be asked for a master password. Choose something you will remember.</p>
-</section>
-</section>
-<section id="connecting-to-the-server" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="connecting-to-the-server"><span class="header-section-number">5.5</span> Connecting to the server</h2>
-<p>The first thing you’ll want to do in pgAdmin is adding a connection to the info6540 server.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pg_admin_start_1.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-<section id="set-a-name-for-the-server-connection" class="level3" data-number="5.5.1">
-<h3 data-number="5.5.1" class="anchored" data-anchor-id="set-a-name-for-the-server-connection"><span class="header-section-number">5.5.1</span> Set a name for the server connection</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pg_admin_start_2.jpg" class="img-fluid figure-img" width="500"></p>
-</figure>
-</div>
-</section>
-<section id="enter-the-login-details-provided-to-you-by-email" class="level3" data-number="5.5.2">
-<h3 data-number="5.5.2" class="anchored" data-anchor-id="enter-the-login-details-provided-to-you-by-email"><span class="header-section-number">5.5.2</span> Enter the login details provided to you by email</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pg_admin_start_3.jpg" class="img-fluid figure-img" width="500"></p>
-</figure>
-</div>
-<p>You can now see the server connection on the left panel, and access it there.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pg_admin_start_4.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</section>
-</section>
-<section id="creating-tables" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="creating-tables"><span class="header-section-number">5.6</span> Creating tables</h2>
-<section id="locate-your-teams-schema" class="level3" data-number="5.6.1">
-<h3 data-number="5.6.1" class="anchored" data-anchor-id="locate-your-teams-schema"><span class="header-section-number">5.6.1</span> locate your team’s schema</h3>
-<p>You will notice two schemas with your team name: one is just the team name, and the other has <strong>_sandbox</strong> at the end. The _sandbox schema is there for you to play around and try stuff out as you please. So, feel free to experiment there if you want to try something new and are afraid of messing up your main database.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_tables_1.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</section>
-<section id="create-tables" class="level3" data-number="5.6.2">
-<h3 data-number="5.6.2" class="anchored" data-anchor-id="create-tables"><span class="header-section-number">5.6.2</span> Create tables</h3>
-<p>To create a table, click on the schema you want to create a table in, find the <strong>tables</strong> icon, right-click on it, and select <strong>Create</strong>, then <strong>Table</strong>…</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_tables_2.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</section>
-<section id="give-your-table-a-name" class="level3" data-number="5.6.3">
-<h3 data-number="5.6.3" class="anchored" data-anchor-id="give-your-table-a-name"><span class="header-section-number">5.6.3</span> Give your table a name</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_tables3.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</section>
-<section id="define-your-table-columns" class="level3" data-number="5.6.4">
-<h3 data-number="5.6.4" class="anchored" data-anchor-id="define-your-table-columns"><span class="header-section-number">5.6.4</span> Define your table columns</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_tables4.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</section>
-<section id="set-foreign-key-constraints" class="level3" data-number="5.6.5">
-<h3 data-number="5.6.5" class="anchored" data-anchor-id="set-foreign-key-constraints"><span class="header-section-number">5.6.5</span> Set foreign key constraints</h3>
-<p>Because you cannot add a foreign key constraint pointing to the id of a table that does not yet exist. You should create your validation (look-up) tables first, then create your data tables, and create you associative tables last. Here’s how you set the foreign keys, in the <strong>constraints</strong> tab of the <strong>create table</strong> process. If your table is already created, you can add the foreign key constraints in the by right-clicking the table and selecting <strong>properties…</strong> Here are a few screenshots that show what the process of adding a foreign key looks like:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_fk1.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_fk2.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_fk2.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_fk3.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_fk4.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</section>
-</section>
-<section id="adding-data-to-tables" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="adding-data-to-tables"><span class="header-section-number">5.7</span> Adding data to tables</h2>
-<p>Now that we have learned how to create tables in PostgreSQL using pgAdmin, we are ready to populate these tables with data. One important thing to remember when populating your tables is that the order in which we populate the tables is important. Just like a table cannot reference another table that does not yet exist, so is a foreign key column not allowed to contain a value that does not exist in the referenced column. In practice, this means that a product that does not exist cannot be part of an order, and a customer that does not exist cannot have an address in the database, which is pretty logical, and also prevents errors in the data. So, the order for data entry is the same as for table creation: validation tables first, then data tables, then associative tables.</p>
-<p>The next two sections show how to populate tables manually or by reading the data from a file.</p>
-<section id="manually" class="level3" data-number="5.7.1">
-<h3 data-number="5.7.1" class="anchored" data-anchor-id="manually"><span class="header-section-number">5.7.1</span> Manually</h3>
-<p>You can add data manually by viewing it and then manually filling or updating the cells.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_data1.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_data2.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</section>
-<section id="using-the-importexport-tool" class="level3" data-number="5.7.2">
-<h3 data-number="5.7.2" class="anchored" data-anchor-id="using-the-importexport-tool"><span class="header-section-number">5.7.2</span> Using the import/export tool</h3>
-<p>Adding data to cells one by one in pgAdmin can be a little time-consuming. You may wish to create CSV files with the data and then import this data to your tables with the import/export tool.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_data3.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</section>
-<section id="locate-the-file-to-import-on-your-computer" class="level3" data-number="5.7.3">
-<h3 data-number="5.7.3" class="anchored" data-anchor-id="locate-the-file-to-import-on-your-computer"><span class="header-section-number">5.7.3</span> Locate the file to import on your computer</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_data4.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</section>
-<section id="set-the-appropriate-options" class="level3" data-number="5.7.4">
-<h3 data-number="5.7.4" class="anchored" data-anchor-id="set-the-appropriate-options"><span class="header-section-number">5.7.4</span> Set the appropriate options</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_data5.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</section>
-<section id="choose-columns-to-be-imported" class="level3" data-number="5.7.5">
-<h3 data-number="5.7.5" class="anchored" data-anchor-id="choose-columns-to-be-imported"><span class="header-section-number">5.7.5</span> Choose columns to be imported</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_data6.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-<p>Once the process is completed, we can verify that the data was imported properly by right-clicking on the table name and then selecting <strong>View/Edit Data</strong>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="files/pgAdmin_data7.jpg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</section>
-</section>
-<section id="conclusion" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.8</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.4</span> Conclusion</h2>
 <p>That’s it! Now you know how to implement database designs on a real server and populate your tables with data. In the next week, you will learn the basics of the SQL language and how to write SQL queries to extract data from your database and produce database views that fulfill some needs for some users of the databases.</p>
 
 
@@ -456,9 +254,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -523,6 +335,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
