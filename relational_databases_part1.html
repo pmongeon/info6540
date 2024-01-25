@@ -239,7 +239,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="what-is-a-relational-database" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="what-is-a-relational-database"><span class="header-section-number">2.2</span> What is a relational database?</h2>
-<p>Relational databases store relations that are represented as tables. Each column of a table is an attribute (also called field, column, variable or feature). I will call fields from now on), and tuples (or records) are a set of attributes. For example, consider the table below, which is a set of relations representing students. Each record is a unique student defined by four attributes: their student ID, first name, last name, and program. The subject represented in this table are the students, and the same set of limited features represents all the students. No student can exist in this database with different features than the others. A relational database is a collection of tables linked to one another, each representing a different subject (courses, buildings, animals, concerts, orders, conversations, families, foods, games, or anything that we wish to capture in the database), and each with their own set of fields, and records.</p>
+<p>Relational databases store relations that are represented as tables. Each column of a table is an attribute (also called field, variable or feature), and tuples (or records) are a set of attributes. For example, consider the table below, which is a set of relations representing students. Each record is a unique student defined by four attributes: their student ID, first name, last name, and program. The subject represented in this table are the students, and the same set of limited features represents all the students. No student can exist in this database with different features than the others. A relational database is a collection of tables linked to one another, each representing a different subject (courses, buildings, animals, concerts, orders, conversations, families, foods, games, or anything that we wish to capture in the database), and each with their own set of fields, and records.</p>
 <p><img src="files/ch3/relational_model.png" class="img-fluid"></p>
 <p>The figure below shows how tables are linked to one another in the relational model.</p>
 <p><img src="files/ch3/linked_tables.png" class="img-fluid" width="550"></p>
@@ -256,11 +256,11 @@ ul.task-list li input[type="checkbox"] {
 <p></p>
 <p>This way you are less likely to forget that the database is what matters here.</p>
 <p>Ideally, your database mission statement would be aligned with the organization’s mission for which it is intended, so having a good understanding of the organization’s mission is essential. In real life, this part of the database design process would likely involve conducting interviews with the key actors of the organization and across its different departments to ensure that you have a good idea of the needs that your database will be addressing. However, in the context of this course, you will not be conducting interviews. You will have to use your best judgment to ensure that your database mission statement is related to the organization’s mission. Also, since organizations usually state their missions on their website, you can certainly use that information to help you.</p>
-<p>It should also be noted that the database that you will be proposing, and its mission statement, do not necessarily have to cover everything that an organization does. You could, for instance, choose to develop a database that would support the teaching mission of a university without considering or mentioning the other missions of the university, such as research.</p>
+<p>It should also be noted that the database that you will be proposing and its mission statement do not necessarily have to cover everything that an organization does. You could, for instance, choose to develop a database that would support the teaching mission of a university without considering or mentioning the other missions of the university, such as research.</p>
 <p>Other constraints present in the context of the course, but not in real life, are the minimum number of specific tasks that your database should be supporting (5) and the minimum number of required tables in your database design (10). You can use these requirements to gauge whether your mission statement is too narrow or too broad.</p>
 <section id="a-database-for-gummybox" class="level4" data-number="2.3.1.1">
 <h4 data-number="2.3.1.1" class="anchored" data-anchor-id="a-database-for-gummybox"><span class="header-section-number">2.3.1.1</span> A database for GummyBox</h4>
-<p>GummyBox is a new online store specializing in the sale and delivery of gummies and gummy assortments. The organization needs a database to support its operations. The company has multiple divisions with their own data needs. The HR department deals with employee records and data on pay and benefits, the purchasing department deals with orders to the suppliers, and the sales team handles customers’ orders. We decide to design a database that will support the operations of the sales department, and so we decide to name the database gummybox_sales and to formulate its mission as follows:</p>
+<p>GummyBox is a new online store specializing in the sale and delivery of gummies and gummy assortments. The organization needs a database to support its operations. The company has multiple divisions with their own data needs. The HR department deals with employee records and data on pay and benefits, the purchasing department deals with orders to the suppliers, and the sales team handles customers’ orders. We decided to design a database that will support the operations of the sales department, and so we decided to name the database gummybox_sales and formulate its mission as follows:</p>
 <blockquote class="blockquote">
 <p>The purpose of the gummybox_sales database is to manage the data needed by the sales department to attend to the customers’ sweet tooth.</p>
 </blockquote>
@@ -271,11 +271,11 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="database-objectives-statement"><span class="header-section-number">2.3.2</span> Database objectives statement</h3>
 <p>The database objectives are general tasks supported by the database. One way to distinguish them from the database mission is to remember that the mission statement relates to what the organization does. In contrast, the database objectives relate to the specific tasks or needs of people inside the organization (e.g., employees) or outside the organization (e.g., clients or users). Here are some examples:</p>
 <ul>
-<li>Keep track of students progress in their programs</li>
+<li>Keep track of students’ progress in their programs</li>
 <li>Maintain vehicle inventory</li>
 <li>Manage song collections</li>
 <li>Manage team roster</li>
-<li>Keep track of players performance</li>
+<li>Keep track of players’ performance</li>
 </ul>
 <p>Here is a list of criteria to help you write a good objective statement:</p>
 <ul>
@@ -302,7 +302,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Now that we have established the mission and objectives that the database will be supporting, we need to ask ourselves two questions:</p>
 <ol type="1">
 <li><strong><em>What entities (objects and events) are needed to fulfill the mission and objectives of the database?</em></strong> These objects and events constitute the subjects (or <strong>entities</strong>). If the mission is to support the activities of a job placement agency, your subjects would likely include jobs, job-seekers, employers, and agents. For a university, you might want to include things like students, courses, instructors, and departments.</li>
-<li><strong><em>What attributes of the subjects are needed to fulfill the mission and objectives of the database?</em></strong> This is where you list, for each of the subjects identified with the first question, the attributes that your database requires. If one of the subjects of your database is customers, you would likely want to include their name, and possibly their email or phone number. But do you need their address? their social insurance number? the name of their first pet? There is no universal answer, so you need to ask yourself this question for every table in your database, and answer it based on your judgement and the mission and objectives of the database.</li>
+<li><strong><em>What attributes of the subjects are needed to fulfill the mission and objectives of the database?</em></strong> This is where you list, for each of the subjects identified with the first question, the attributes that your database requires. If one of the subjects of your database is customers, you would likely want to include their name, and possibly their email or phone number. But do you need their address? Their social insurance number? The name of their first pet? There is no universal answer, so you need to ask yourself this question for every table in your database, and answer it based on your judgement and the mission and objectives of the database.</li>
 </ol>
 <p>Relational databases don’t impose rules on the subjects and attributes that you can include in your database. It does, however, impose rules on how these subjects and attributes must be captured in tables (subjects) and fields (attributes).</p>
 <section id="subjects-and-attributes-of-the-gummybox_sales-database" class="level4" data-number="2.4.0.1">
@@ -313,9 +313,9 @@ ul.task-list li input[type="checkbox"] {
 <li>Keep track of <strong>orders</strong>.</li>
 <li>Maintain information on <strong>gummies</strong>.</li>
 <li>Maintain information on <strong>gummy assortments</strong>.</li>
-<li>Collect procuct <strong>reviews</strong>.</li>
+<li>Collect product <strong>reviews</strong>.</li>
 </ul>
-<p>Identifying subjects is no more complicated then that. I have five: customer, order, gummy, gummy assortments, and reviews.</p>
+<p>Identifying subjects is no more complicated than that. I have five: customer, order, gummy, gummy assortments, and reviews.</p>
 </section>
 <section id="database-rules" class="level3" data-number="2.4.1">
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="database-rules"><span class="header-section-number">2.4.1</span> Database rules</h3>
@@ -333,10 +333,10 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Can a customer provide a review for orders or only for products?</p></li>
 <li><p>Can a customer review the same product multiple times?</p></li>
 </ul>
-<p>The answer to these questions establish the nature of the relationship between the reviews and other subjects in the database such as gummies, gummy assortments, customers and orders. They also help ensuring that all the necessary attributes have been included.</p>
-<p>We can also set rules to <strong>limit the specific values</strong> that an attribute can have. These rules are often implied in the database mission and objectives. For instance, if you are building a database of Electronic music and artists, it implies that other genres will not be included in the database. In this, case you could simply not consider genre at all in the attributes of our tables, or include a <em>genre</em> attribute with a rule specifying that the genre must be electronic. In the <em>gummybox_sales</em> database, we could decide to specify the different types of flavours that a gummy can have: sweet, salty, sour, bitter and umami.</p>
-<p>Not all elements of your database needs explicit rules, but it is important to think about them early on to prevent headaches later in the process. It is also important to remember that the rules are <strong>decisions</strong> determined by the practices and needs of the organization and the database. They are not meant to reflect the absolute reality. For example, while it is a fact that a person can have multiple addresses in real-life, we are free to decide to allow only one address per customer in our database. Similarly, if we have a <em>country</em> attribute in our database, we are not obligated to consider the entire set of countries that exist in the world. We can limit the set of possible countries according to our needs. These choices can also sometimes be made out of convenience when certain rules increase the complexity of a database without clear benefits.</p>
-<p><strong>Important note</strong>: The most important rules to consider, especially for this course, are whether or not records can have multiple values for the same attribute (e.g.&nbsp;can a customer have more than one address?) and those that define relationship between subjects (e.g., are only customers allowed to post product reviews?). These rules have direct implications for your database design. On the other hand, while they can play a crucial role data validation and quality insurance purposes, value-limiting rules (e.g.&nbsp;the list of values that the <em>country</em> attribute can have) have little to no implications for your design. It is also easy to get carried away and start defining rules for all attributes that could contain a specific set of values, so you should avoid doing that and use these rules parsimoniously. Besides, they are not mandatory for the database design that you will produce in this course.</p>
+<p>The answer to these questions establishes the nature of the relationship between the reviews and other subjects in the database, such as gummies, gummy assortments, customers and orders. They also help ensure that all the necessary attributes have been included.</p>
+<p>We can also set rules to <strong>limit the specific values</strong> that an attribute can have. These rules are often implied in the database mission and objectives. For instance, if you are building a database of Electronic music and artists, it implies that other genres will not be included in the database. In this case, you could simply not consider genre at all in the attributes of our tables, or include a <em>genre</em> attribute with a rule specifying that the genre must be electronic. In the <em>gummybox_sales</em> database, we could decide to specify the different types of flavours that a gummy can have: sweet, salty, sour, bitter and umami.</p>
+<p>Not all elements of your database need explicit rules, but it is important to think about them early on to prevent headaches later in the process. It is also important to remember that the rules are <strong>decisions</strong> determined by the practices and needs of the organization and the database. They are not meant to reflect the absolute reality. For example, while it is a fact that a person can have multiple addresses in real-life, we are free to decide to allow only one address per customer in our database. Similarly, if we have a <em>country</em> attribute in our database, we are not obligated to consider the entire set of countries that exist in the world. We can limit the set of possible countries according to our needs. These choices can also sometimes be made out of convenience when certain rules increase the complexity of a database without clear benefits.</p>
+<p><strong>Important note</strong>: The most important rules to consider, especially for this course, are whether or not records can have multiple values for the same attribute (e.g.&nbsp;can a customer have more than one address?) and those that define the relationship between subjects (e.g., are only registered customers allowed to post product reviews?). These rules have direct implications for your database design. On the other hand, while they can play a crucial role for data validation and quality insurance purposes, value-limiting rules (e.g.&nbsp;the list of values that the <em>country</em> attribute can have) have little to no implications for your design. It is also easy to get carried away and start defining rules for all attributes that could contain a specific set of values, so you should avoid doing that and use these rules parsimoniously. Besides, they are not mandatory for the database design that you will produce in this course.</p>
 <p>Finally, you should also avoid setting explicit rules when the relationship between subjects of your database is obvious. For instance, it is obvious that customers can place multiple orders and that orders can contain multiple products. Only define the rules when there are multiple suitable options for your design.</p>
 </section>
 </section>
@@ -345,9 +345,9 @@ ul.task-list li input[type="checkbox"] {
 <p>This chapter covered all the steps that deal with conceptual questions related to our database (i.e., those that are external to the requirements of the relational model) and you and your teammates should now be equipped to identify:</p>
 <ol type="1">
 <li>The mission and objective of your database.</li>
-<li>The objects and events are included in the database</li>
-<li>The attributes of these objects and events that will be included in the database</li>
-<li>The rules that specify the number or set of values that an attribute can have for a single record, and the relationships that exists between subjects.</li>
+<li>The objects and events included in the database.</li>
+<li>The attributes of these objects and events that will be included in the database.</li>
+<li>The rules that specify the number or set of values that an attribute can have for a single record and the relationships that exist between subjects.</li>
 </ol>
 <p>In the next chapter we will get one step closer to our fully operational database by converting that information into a set of tables, fields, and relationships that follow the rules of the relational model.</p>
 </section>
@@ -357,9 +357,9 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><p>Define the mission and objectives of your database.</p></li>
 <li><p>Determine the subjects and attributes that will be considered in your database.</p></li>
-<li><p>Define the database rules that will specify whether .</p></li>
+<li><p>Define the database rules.</p></li>
 </ul>
-<p>You can (but are not required) to use this <a href="https://pmongeon.github.io/info6540/files/database_design_template.xlsx">template</a>.</p>
+<p>You can (but are not required to) use this <a href="https://pmongeon.github.io/info6540/files/database_design_template.xlsx">template</a>.</p>
 <p>Remember that the decisions you make at this point are not set in stone and that you will be able to revisit them as you build your database, so don’t aim for perfection (yet)!</p>
 
 
