@@ -183,7 +183,11 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">5.1</span> Learning objectives</a></li>
   <li><a href="#what-is-an-rdbms" id="toc-what-is-an-rdbms" class="nav-link" data-scroll-target="#what-is-an-rdbms"><span class="header-section-number">5.2</span> What is an RDBMS?</a></li>
-  <li><a href="#upcoming-content." id="toc-upcoming-content." class="nav-link" data-scroll-target="#upcoming-content."><span class="header-section-number">5.3</span> Upcoming content….</a></li>
+  <li><a href="#accessing-your-database-with-dbeaver" id="toc-accessing-your-database-with-dbeaver" class="nav-link" data-scroll-target="#accessing-your-database-with-dbeaver"><span class="header-section-number">5.3</span> Accessing your database with DBeaver</a>
+  <ul class="collapse">
+  <li><a href="#downloading-and-installing-dbeaver" id="toc-downloading-and-installing-dbeaver" class="nav-link" data-scroll-target="#downloading-and-installing-dbeaver"><span class="header-section-number">5.3.1</span> Downloading and installing DBeaver</a></li>
+  <li><a href="#dbeaver-demo" id="toc-dbeaver-demo" class="nav-link" data-scroll-target="#dbeaver-demo"><span class="header-section-number">5.3.2</span> DBeaver demo</a></li>
+  </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.4</span> Conclusion</a></li>
   </ul>
 </nav>
@@ -216,8 +220,24 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="5.2" class="anchored" data-anchor-id="what-is-an-rdbms"><span class="header-section-number">5.2</span> What is an RDBMS?</h2>
 <p>As we saw in the first chapter of this book. <strong>D</strong>ata<strong>b</strong>ase <strong>M</strong>anagement <strong>S</strong>ystems (DBMS) are software that supports the development, maintenance, security, and use of databases. The R in <strong>R</strong>DBMS stands for relational, and it is the kind of DBMS that we will be using to implement and manage the relational databases that we have been developing. <strong>PostgreSQL</strong> is an increasingly popular RDBMS that can also handle non-relational data structures. It does not have an interface; it is the engine that stores your data and enforces rules regarding the content of your fields and tables, who can access them, etc.</p>
 </section>
-<section id="upcoming-content." class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="upcoming-content."><span class="header-section-number">5.3</span> Upcoming content….</h2>
+<section id="accessing-your-database-with-dbeaver" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="accessing-your-database-with-dbeaver"><span class="header-section-number">5.3</span> Accessing your database with DBeaver</h2>
+<p>DBeaver&nbsp;is a&nbsp;SQL client software application and a&nbsp;database administration tool. In this chapter, you will learn to use it to access a real PostgreSQL database hosting on a server in the cloud, implement a live version of the database you designed, and store some data into it.</p>
+<section id="downloading-and-installing-dbeaver" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="downloading-and-installing-dbeaver"><span class="header-section-number">5.3.1</span> Downloading and installing DBeaver</h3>
+<p>You can download and install DBeaver community from the DBeaver website (<a href="https://dbeaver.io" class="uri">https://dbeaver.io</a>). Please make sure you download DBeaver <strong>community</strong> (that’s the free version) from the dbeaver.io website, and not one of the paid versions (e.g.&nbsp;DBeaver Lite) from the dbeaver.com website. Then install DBeaver and keep all the default settings throughout the installation.</p>
+</section>
+<section id="dbeaver-demo" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="dbeaver-demo"><span class="header-section-number">5.3.2</span> DBeaver demo</h3>
+<p>For now I decided to not write instructions on how to use DBeaver with text and screenshots, but instead to record a live demo. You will find that recording in the content tab on Brightspace. The video walks you through the process of:</p>
+<ul>
+<li><p>connecting to the database;</p></li>
+<li><p>finding your schema (your database);</p></li>
+<li><p>creating tables, columns, and relationships between tables (foreign keys);</p></li>
+<li><p>entering data in your tables;</p></li>
+<li><p>Visualizing your entity relationship diagram in DBeaver.</p></li>
+</ul>
+</section>
 </section>
 <section id="conclusion" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.4</span> Conclusion</h2>
