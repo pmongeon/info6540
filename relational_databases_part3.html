@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -57,7 +57,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -68,11 +69,16 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 3)</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./relational_databases_part3.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 3)</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -80,98 +86,111 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Data Management</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Course overview</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course overview</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Thinking about data</span></a>
+  <a href="./introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Thinking about data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./relational_databases_part1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 1)</span></a>
+  <a href="./relational_databases_part1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 1)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./relational_databases_part2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 2)</span></a>
+  <a href="./relational_databases_part2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 2)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./relational_databases_part3.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 3)</span></a>
+  <a href="./relational_databases_part3.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 3)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rdbms.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relational database management systems</span></a>
+  <a href="./rdbms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relational database management systems</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sql.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Structured Query Language (SQL)</span></a>
+  <a href="./sql.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Structured Query Language (SQL)</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./document_oriented_databases.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Document-oriented databases</span></a>
+  <a href="./document_oriented_databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Document-oriented databases</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graph_databases.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Graph databases</span></a>
+  <a href="./graph_databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Graph databases</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ontologies.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ontologies</span></a>
+  <a href="./ontologies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ontologies</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./conclusion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Conclusion</span></a>
+  <a href="./conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="toc-section-number">4.1</span>  Learning objectives</a></li>
-  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"><span class="toc-section-number">4.2</span>  Data types</a>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">4.1</span> Learning objectives</a></li>
+  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"><span class="header-section-number">4.2</span> Data types</a>
   <ul class="collapse">
-  <li><a href="#character-data-types" id="toc-character-data-types" class="nav-link" data-scroll-target="#character-data-types"><span class="toc-section-number">4.2.1</span>  Character data types</a></li>
-  <li><a href="#numeric-data-types" id="toc-numeric-data-types" class="nav-link" data-scroll-target="#numeric-data-types"><span class="toc-section-number">4.2.2</span>  Numeric data types</a></li>
-  <li><a href="#date-and-time" id="toc-date-and-time" class="nav-link" data-scroll-target="#date-and-time"><span class="toc-section-number">4.2.3</span>  Date and time</a></li>
+  <li><a href="#character-data-types" id="toc-character-data-types" class="nav-link" data-scroll-target="#character-data-types"><span class="header-section-number">4.2.1</span> Character data types</a></li>
+  <li><a href="#numeric-data-types" id="toc-numeric-data-types" class="nav-link" data-scroll-target="#numeric-data-types"><span class="header-section-number">4.2.2</span> Numeric data types</a></li>
+  <li><a href="#date-and-time" id="toc-date-and-time" class="nav-link" data-scroll-target="#date-and-time"><span class="header-section-number">4.2.3</span> Date and time</a></li>
   </ul></li>
-  <li><a href="#constraints" id="toc-constraints" class="nav-link" data-scroll-target="#constraints"><span class="toc-section-number">4.3</span>  Constraints</a></li>
-  <li><a href="#indices" id="toc-indices" class="nav-link" data-scroll-target="#indices"><span class="toc-section-number">4.4</span>  Indices</a></li>
-  <li><a href="#documenting-your-database" id="toc-documenting-your-database" class="nav-link" data-scroll-target="#documenting-your-database"><span class="toc-section-number">4.5</span>  Documenting your database</a></li>
+  <li><a href="#constraints" id="toc-constraints" class="nav-link" data-scroll-target="#constraints"><span class="header-section-number">4.3</span> Constraints</a></li>
+  <li><a href="#indices" id="toc-indices" class="nav-link" data-scroll-target="#indices"><span class="header-section-number">4.4</span> Indices</a></li>
+  <li><a href="#documenting-your-database" id="toc-documenting-your-database" class="nav-link" data-scroll-target="#documenting-your-database"><span class="header-section-number">4.5</span> Documenting your database</a></li>
   </ul>
 </nav>
     </div>
@@ -180,7 +199,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 3)</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases (Pt. 3)</span></h1>
 </div>
 
 
@@ -215,24 +234,24 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="data-types" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="data-types"><span class="header-section-number">4.2</span> Data types</h2>
-<p>Every field you include in a table needs to have a data type. The data type is extremely important as it determines how the RDBMS will interpret, store, and potentially transform the data inserted in the tables. The data type also determines the types of operations that can be performed with the data it contains.</p>
+<p>Every field you include in a table needs to have a data type. The data type is extremely important as it determines how the relational database management system (RDBMS) will interpret, store, and potentially transform the data inserted in the tables. The data type also determines the types of operations that can be performed with the data it contains.</p>
 <p>Unfortunately, the data types that are available to use for your database are also determined by the type of database that you are using. In this course, we will be implementing our database designs on a PostgreSQL database, which is one type of SQL (Structured Query Language) database, others being MySQL, SQLite, and Microsoft SQL Server. These databases can vary in what data types they can handle, but they do share basic data types such as numbers, text, and dates.</p>
 <p>In this course, we will limit the data types used to three basic kinds: <strong>character,</strong> <strong>numeric,</strong> and <strong>dates and times</strong>.</p>
 <section id="character-data-types" class="level3" data-number="4.2.1">
 <h3 data-number="4.2.1" class="anchored" data-anchor-id="character-data-types"><span class="header-section-number">4.2.1</span> Character data types</h3>
 <p>Character data types are very flexible because they can contain any combination of letters, numbers or symbols. The most common data types are <code>character(n) or char(n)</code> and <code>character varying(n) or varchar(n)</code>. The <code>n</code> sets the maximum number of characters that the field can contain. For example, a field with the data type <code>varchar(5)</code> will not be able to store strings longer than 5 characters (such as the word “banana”). The term <code>varying</code> indicates that the field is expected to contain strings of different length. You should use the <code>character(n)</code> data type only when the length of the strings you will store will not vary (ex., country codes, phone numbers, postal codes), and the <code>character varying</code> data type should be used when the length of the strings is expected to vary. PostgreSQL also has the <code>text</code> datatype which is essentially the same as character varying with no limit specification.</p>
 <p>More information on the string data types can be found in the <a href="https://www.postgresql.org/docs/current/datatype-character.html">PostgreSQL documentation</a>.</p>
-<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Should you specify a maximum length for your character fields?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Let’s say you are storing names of individuals in one of your database fields. You may be tempted to choose text of character varying without specifying a character limit, since you don’t know the length of the longest name that this field could ever store. However, there is in fact a limit of PostgresSQL 10,485,760 characters (which is about 1GB), which means that without any other mechanisms to restrict the length of the string might open up the door to pranks, attacks, or errors where one would enter a <strong>very long string</strong> in the field, and blow up the storage requirement of your database. It is therefore recommended to set a limit to your character fields in all cases, but to make sure that the limit is large enough to accommodate all plausible values for the field.</p>
+<p>Let’s say you are storing names of individuals in one of your database fields. You may be tempted to choose text of character varying without specifying a character limit, since you don’t know the length of the longest name that this field could ever store. However, there is in fact a limit of PostgresSQL 10,485,760 characters (which is about 1GB). Not restricting the length of the string might open the door to pranks, attacks, or errors. For example, one could enter a <strong>very long</strong> string in the field and blow up the storage requirement of your database. It is therefore recommended to set a limit to your character fields in all cases, but to make sure that the limit is large enough to accommodate all plausible values for the field.</p>
 </div>
 </div>
 </section>
@@ -241,10 +260,10 @@ Should you specify a maximum length for your character fields?
 <p>The numeric data types store… you guessed it: numbers! The main numeric data types available in PostgreSQL are listed in the table below.</p>
 <table class="table">
 <colgroup>
-<col style="width: 12%">
-<col style="width: 11%">
-<col style="width: 20%">
-<col style="width: 55%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 46%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -320,7 +339,7 @@ Should you specify a maximum length for your character fields?
 <p>There are two basic types of numbers: integers (no decimals), and floating-point numbers (allow decimals).</p>
 <p>For integers, the main decision you have to make is the storage size. To minimize costs and optimize performance, it is generally best to choose the smallest possible type that will be able to store all plausible values for the field.</p>
 <p>Serials are integers that auto-increment, which means that no values need to be inserted in this field when a new entry is created in the table. This is often used for automatically generating unique primary keys.</p>
-<p>For values with decimals, I recommend using the <code>numeric</code> data allows you to fix the number of total digits, and the number of decimals values can have. For instance, the <code>numeric(5,2)</code> data type indicates that the field can contain values with 5 digits and 2 decimals so the range would be -999.99 to 999.99. This is particularly useful for financial data or other cases where having more than a certain number of decimals makes no sense (e.g., 2.333$). If you do not want to fix the precision and scale of your numeric field, you can use the data type <code>numeric</code> without the parentheses, which will store data with any number of digits before and after the decimal points</p>
+<p>For values with decimals, I recommend using the <code>numeric</code> data type that allows you to fix the number of total digits and the number of decimal values. For instance, the <code>numeric(5,2)</code> data type indicates that the field can contain values with 5 digits and 2 decimals so the range would be -999.99 to 999.99. This is particularly useful for financial data or other cases where having more than a certain number of decimals makes no sense (e.g., 2.333$). If you do not want to fix the precision and scale of your numeric field, you can use the data type <code>numeric</code> without the parentheses, which will store data with any number of digits before and after th</p>
 <p>More information on the numeric data types can be found in the <a href="https://www.postgresql.org/docs/current/datatype-numeric.html">PostgreSQL documentation</a>.</p>
 </section>
 <section id="date-and-time" class="level3" data-number="4.2.3">
@@ -382,12 +401,12 @@ Should you specify a maximum length for your character fields?
 </tbody>
 </table>
 <p>More details on the date and time formats can be found in the <a href="https://www.postgresql.org/docs/current/datatype-datetime.html">PostgreSQL documentation</a>.</p>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important note
 </div>
 </div>
@@ -402,26 +421,26 @@ Important note
 <p>SQL constraints are used to specify rules for data in a table. They are used to preserve the integrity of the database, ensure data quality, and prevent data loss. While you do not need to use constraints other than the <code>primary key</code> and the <code>foreign key</code> ones for this course, it is helpful to know about constraints and what they do. Here is a list of constraints that are available in PostgreSQL.</p>
 <ul>
 <li><strong><code>Primary key</code></strong>: As you already know, the primary key must be unique and cannot be empty. The RDBMS also automatically creates an index (explained below) on this field.</li>
-<li><code>Not null</code>: Specifies that this field must always contain a value and cannot be empty (null).</li>
-<li><code>Unique</code>: A field with a unique constraint cannot contain duplicate values.</li>
-<li><code>Foreign key</code>: the value inserted into a foreign key must exist in the primary key field of the parent table. Null values are allowed in foreign key fields.</li>
-<li><strong><code>Check</code></strong>: the check constraint is a very flexible constraint that allows you to specify the specific values that a field can contain. For example, you could set a check constraint on the number of gummies in an order specifying that the value must be greater than 0.</li>
-<li><code>Default</code>: This constraint defines a default value to be inserted in the field when a new record is created, and no value is provided for that specific field.</li>
+<li><strong><code>Not null</code></strong>: Specifies that this field must always contain a value and cannot be empty (null).</li>
+<li><strong><code>Unique</code></strong>: A field with a unique constraint cannot contain duplicate values.</li>
+<li><strong><code>Foreign key</code></strong>: The value inserted into a foreign key must exist in the primary key field of the parent table. Null values are allowed in foreign key fields.</li>
+<li><strong><code>Check</code></strong>: The check constraint is a very flexible constraint that allows you to specify the specific values that a field can contain. For example, you could set a check constraint on the number of gummies in an order specifying that the value must be greater than 0.</li>
+<li><strong><code>Default</code></strong>: This constraint defines a default value to be inserted in the field when a new record is created, and no value is provided for that specific field.</li>
 </ul>
 </section>
 <section id="indices" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="indices"><span class="header-section-number">4.4</span> Indices</h2>
 <p>Creating an index for the values of a field can dramatically increase the speed of your queries. Just like an index at the end of a book telling you on what page(s) you can find information about a particular concept or topic instead of having to look at each page to find those sections, the index creates a list of records where each of the different values of that field can be found and stores that list into its memory, so that those records can be retrieved much faster. So, for example, if you have 50 different gummy records in your <em>gummy</em> table, 12 of which are red, 25 are blue, and 13 are green, you could create an index on the gummy_color table. The index would have one record for each colour (red., blue, green), each containing a list of the gummy_id that has that colour.</p>
-<p>For example, if you ask the database to retrieve the blue gummies from the <em>gummy</em> table and you do not have an inde on the <em>colour</em> column, it has to scan each row, to see the colour is “blue”, if the table as 1 million rows, then this verification has to be done 1 million times.</p>
+<p>For example, if you ask the database to retrieve blue gummies from the gummy table and you do not have an index on the colour column, it has to scan each row for “blue.” If the table has 1 million rows, then this verification has to be done 1 million times..</p>
 <p><strong>No index on the <em>colour</em> field of the <em>gummy</em> table</strong></p>
 <p><img src="files/index1.jpg" class="img-fluid"></p>
 <p><strong>With an index on the <em>colour</em> field of the <em>gummy</em> table</strong></p>
-<p>If you ask the database to retrieve the blue gummies from the <em>gummy</em> table, <strong>and have an index on the <em>colour</em> column</strong>. The database scans the index until it finds the colour “blue” and and then fetches the rows of the <em>gummy</em> table with that are blue. If there are 50 possible colours, then the database has to scan between 1 and 50 rows (depending when it finds the value “blue”).</p>
+<p>If you ask the database to retrieve blue gummies from the gummy table and you have an index on the colour column, the database scans the index until it finds the colour “blue” and then fetches the rows of that are “blue.”.</p>
 <p><img src="files/index2.jpg" class="img-fluid"></p>
 </section>
 <section id="documenting-your-database" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="documenting-your-database"><span class="header-section-number">4.5</span> Documenting your database</h2>
-<p>Now that you have a complete database designed, with tables, fields with all the appropriate data types and constraints. You are ready to move to the next step: documentation.</p>
+<p>Now that you have a complete database design, with tables and fields with all the appropriate data types and constraints, you are ready to move to the next step: documentation.</p>
 <p>Adequately documenting your database is crucial because it ensures that the users will be able to understand what tables contain, why they exist, and how to use your database. You already know (and have applied) best practices for table and field names. That likely reduces the need for your database users to refer to the documentation all the time, but it does not eliminate the need for it. Describing your tables and fields also helps ensure they are needed and well-designed. If you cannot describe the purpose of a table, it may be that it has, in fact, no purpose.</p>
 <p>Here are a few simple rules to follow:</p>
 <ul>
@@ -462,9 +481,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -529,6 +562,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
