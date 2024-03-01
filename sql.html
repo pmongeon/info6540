@@ -240,9 +240,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#right-join" id="toc-right-join" class="nav-link" data-scroll-target="#right-join"><span class="header-section-number">6.7.3</span> RIGHT JOIN</a></li>
   <li><a href="#union" id="toc-union" class="nav-link" data-scroll-target="#union"><span class="header-section-number">6.7.4</span> UNION</a></li>
   </ul></li>
-  <li><a href="#aliases-as" id="toc-aliases-as" class="nav-link" data-scroll-target="#aliases-as"><span class="header-section-number">6.8</span> Aliases (AS)</a></li>
-  <li><a href="#database-views" id="toc-database-views" class="nav-link" data-scroll-target="#database-views"><span class="header-section-number">6.9</span> Database views</a></li>
-  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together"><span class="header-section-number">6.10</span> Putting it all together</a></li>
+  <li><a href="#aliases-as" id="toc-aliases-as" class="nav-link" data-scroll-target="#aliases-as"><span class="header-section-number">6.8</span> Aliases (AS)</a>
+  <ul class="collapse">
+  <li><a href="#setting-column-names" id="toc-setting-column-names" class="nav-link" data-scroll-target="#setting-column-names"><span class="header-section-number">6.8.1</span> Setting column names</a></li>
+  <li><a href="#setting-table-names" id="toc-setting-table-names" class="nav-link" data-scroll-target="#setting-table-names"><span class="header-section-number">6.8.2</span> Setting table names</a></li>
+  </ul></li>
+  <li><a href="#database-views" id="toc-database-views" class="nav-link" data-scroll-target="#database-views"><span class="header-section-number">6.9</span> Database views</a>
+  <ul class="collapse">
+  <li><a href="#single-table-view" id="toc-single-table-view" class="nav-link" data-scroll-target="#single-table-view"><span class="header-section-number">6.9.1</span> Single table view</a></li>
+  <li><a href="#multitable-view" id="toc-multitable-view" class="nav-link" data-scroll-target="#multitable-view"><span class="header-section-number">6.9.2</span> Multitable view</a></li>
+  </ul></li>
+  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together"><span class="header-section-number">6.10</span> Putting it all together</a>
+  <ul class="collapse">
+  <li><a href="#step-1---starting-with-the-gummy-table" id="toc-step-1---starting-with-the-gummy-table" class="nav-link" data-scroll-target="#step-1---starting-with-the-gummy-table"><span class="header-section-number">6.10.1</span> Step 1 - starting with the <em>gummy</em> table</a></li>
+  <li><a href="#step-2---getting-the-flavour_type-for-each-gummy" id="toc-step-2---getting-the-flavour_type-for-each-gummy" class="nav-link" data-scroll-target="#step-2---getting-the-flavour_type-for-each-gummy"><span class="header-section-number">6.10.2</span> Step 2 - getting the <em>flavour_type</em> for each gummy</a></li>
+  <li><a href="#step-3---limiting-to-hard-gummies" id="toc-step-3---limiting-to-hard-gummies" class="nav-link" data-scroll-target="#step-3---limiting-to-hard-gummies"><span class="header-section-number">6.10.3</span> Step 3 - Limiting to hard gummies</a></li>
+  <li><a href="#step-4---selecting-final-columns-to-display-and-calculating-values" id="toc-step-4---selecting-final-columns-to-display-and-calculating-values" class="nav-link" data-scroll-target="#step-4---selecting-final-columns-to-display-and-calculating-values"><span class="header-section-number">6.10.4</span> Step 4 - Selecting final columns to display and calculating values</a></li>
+  <li><a href="#step-5---storing-this-virtual-table-as-a-view" id="toc-step-5---storing-this-virtual-table-as-a-view" class="nav-link" data-scroll-target="#step-5---storing-this-virtual-table-as-a-view"><span class="header-section-number">6.10.5</span> Step 5 - Storing this virtual table as a view</a></li>
+  <li><a href="#step-6---using-the-view" id="toc-step-6---using-the-view" class="nav-link" data-scroll-target="#step-6---using-the-view"><span class="header-section-number">6.10.6</span> Step 6 - using the view</a></li>
+  </ul></li>
   <li><a href="#homework" id="toc-homework" class="nav-link" data-scroll-target="#homework"><span class="header-section-number">6.11</span> Homework</a></li>
   </ul>
 </nav>
@@ -296,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> [field(s) <span class="kw">to</span> <span class="kw">use</span> <span class="cf">for</span> ordering, either ascending (<span class="kw">ASC</span>) <span class="kw">or</span> descending (<span class="kw">DESC</span>)];</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In English, the statement SELECTs some data FROM some table JOINed with some other table ON some condition, and WHERE the final joined tables meet some other condition. The aggregated values (if used) are GROUPed BY the other fields selected. Finally, the results are ORDERed BY one of the field values in ASCending or DESCending order.</p>
-<p>Here’s an example of an n actual SQL statement, which cacluates the average price of gummies with different consistencies, and order the resuls from highest average price to lowest.</p>
+<p>Here’s an example of an actual SQL statement, which calculates the average price of gummies with different consistencies, and order the results from highest average price to lowest.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> gummies.consistency, price_denominators.denominator, <span class="fu">avg</span>(gummies.price)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummybox_sales.gummies</span>
@@ -340,8 +356,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Not all of these parts are necessary for all statements. What you need to include depends on what you are trying to achieve. However, you will rarely have any other components than these in your statements. You can write your statements on a single line or spread them on multiple lines like I do. However, you must <strong>always respect the order of the elements</strong>. Your statement will not work if you put the GROUP BY part before the WHERE part, for instance. Also, try to remember to end your statements with a semi-colon.</p>
-<p>Finally, keep in mind that the default setting for PostgreSQL is case sensitivity, so “banana”, “BANANA”, and “BaNaNa” are <strong>not</strong> the same. However, this does not apply to the name of tables, functions, and operators. For my examples, I capitalize the functions and operators so that they can be more easily distinguished from the other elements of the statements, but in your SQL statements, <strong>select</strong> or <strong>SELECT</strong> would be interpreted the same way and .</p>
-<p>In the next section, I provide examples of the different functions and operators that you may need to use in your statements. These are far from exhaustive, but should cover 95% of the basic queries that users make when working with relational databases. Administrators of databases will typically use much more functions, but that is beyond the scope of this course.</p>
+<p>Finally, keep in mind that the default setting for PostgreSQL is case sensitive, so “banana”, “BANANA”, and “BaNaNa” are <strong>not</strong> the same. However, this does not apply to the names of tables, functions, and operators. For my examples, I capitalize the functions and operators so that they can be more easily distinguished from the other elements of the statements, but in your SQL statements, <strong>select</strong> or <strong>SELECT</strong> would be interpreted the same way and produce the same results.</p>
+<p>In the next section, I provide examples of the different functions and operators that you may need to use in your statements. These are far from exhaustive but should cover 95% of the basic queries that users make when working with relational databases. Administrators of databases will typically use many more functions, but that is beyond the scope of this course.</p>
 </section>
 <section id="the-gummybox_sales-erd" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="the-gummybox_sales-erd"><span class="header-section-number">6.4</span> The gummybox_sales ERD</h2>
@@ -355,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="6.5" class="anchored" data-anchor-id="retrieve-data"><span class="header-section-number">6.5</span> Retrieve data</h2>
 <section id="select" class="level3" data-number="6.5.1">
 <h3 data-number="6.5.1" class="anchored" data-anchor-id="select"><span class="header-section-number">6.5.1</span> SELECT</h3>
-<p>you can use select to retrieve data from a table.</p>
+<p>You can use the <code>select</code> function to retrieve data from a table.</p>
 <section id="select-an-entire-table" class="level4" data-number="6.5.1.1">
 <h4 data-number="6.5.1.1" class="anchored" data-anchor-id="select-an-entire-table"><span class="header-section-number">6.5.1.1</span> Select an entire table</h4>
 <p>To retrieve all the data in a table with <code>SELECT * FROM [table].</code></p>
@@ -507,8 +523,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="select-specific-fields-from-a-table" class="level4" data-number="6.5.1.2">
 <h4 data-number="6.5.1.2" class="anchored" data-anchor-id="select-specific-fields-from-a-table"><span class="header-section-number">6.5.1.2</span> Select specific fields from a table</h4>
-<p>When you only want to retrieve a few fields from a table, you need to specify the names fo the fields. In the example above, I retrieve information about gummies, excluding a few field like their id, and their price.</p>
-<p><em>Note : when listing fields, the table name is only required when the same field name is ambiguous because it exists in more than one table included in your query.</em></p>
+<p>When you only want to retrieve a few fields from a table, you need to specify the names of the fields. In the previous example, I retrieved information about gummies, excluding a few fields, like their id and their price.</p>
+<p><em>Note: when listing fields, the table name is only required when the same field name is ambiguous because it exists in more than one table included in your query.</em></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  gummies.name, </span>
@@ -1045,7 +1061,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="comparison-operators" class="level3" data-number="6.6.2">
 <h3 data-number="6.6.2" class="anchored" data-anchor-id="comparison-operators"><span class="header-section-number">6.6.2</span> Comparison operators</h3>
-<p>The comparison operators are used to compare values, the result of a comparison is always TRUE (1) or FALSE (0).</p>
+<p>The comparison operators are used to compare values. The result of a comparison is always TRUE (1) or FALSE (0).</p>
 <table class="table">
 <colgroup>
 <col style="width: 29%">
@@ -1400,8 +1416,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The logical operators are used to combine multiple conditions that must all be true for the data to be returned.</p>
 <table class="table">
 <colgroup>
-<col style="width: 19%">
-<col style="width: 80%">
+<col style="width: 23%">
+<col style="width: 76%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1531,7 +1547,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Let’s try the aggregate operators by querying the <em>gummybox_sales</em> database to retrieve the number of gummies in the catalogue and their minimum, maximum, and average price.</p>
+<p>Let’s try the aggregate operators by querying the <em>gummybox_sales</em> database to retrieve the number of gummies in the catalogue and their minimum, maximum, and average prices.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">COUNT</span>(<span class="op">*</span>), </span>
@@ -1805,7 +1821,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="right-join" class="level3" data-number="6.7.3">
 <h3 data-number="6.7.3" class="anchored" data-anchor-id="right-join"><span class="header-section-number">6.7.3</span> RIGHT JOIN</h3>
-<p>The RIGHT JOIN function is the same as the LEFT JOIN function returns all records from the <strong>joined</strong> table and only records from the <strong>original</strong> table for which the matching condition is TRUE.</p>
+<p>The RIGHT JOIN function is the same as the LEFT JOIN function, but instead returns all records from the <strong>joined</strong> table and only records from the <strong>original</strong> table for which the matching condition is TRUE.</p>
 <p><strong>Note:</strong> You rarely use right join in practice. It is usually a better idea to use a LEFT JOIN, since most RIGHT JOIN statements can be reformulated as LEFT JOIN statements.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> gummies_orders.order_id,</span>
@@ -1885,8 +1901,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="aliases-as" class="level2" data-number="6.8">
 <h2 data-number="6.8" class="anchored" data-anchor-id="aliases-as"><span class="header-section-number">6.8</span> Aliases (AS)</h2>
 <p>Aliases are used to rename things within your SQL statements. You can change the name of a field or table. You can even change the data type of a field. Unless used in a CREATE or ALTER statement the Aliases do not modify your database. They are simply used for the specific statement that you are executing. We will focus here on one function of aliases: setting column names for the output of your SQL queries.</p>
-<section id="setting-column-names" class="level4" data-number="6.8.0.1">
-<h4 data-number="6.8.0.1" class="anchored" data-anchor-id="setting-column-names"><span class="header-section-number">6.8.0.1</span> Setting column names</h4>
+<section id="setting-column-names" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="setting-column-names"><span class="header-section-number">6.8.1</span> Setting column names</h3>
 <p>A typical use of aliases is to choose a column name that is more appropriate for a display that is intended for the user. This is especially useful when you use arithmetic or aggregate operators, for instance. Here’s an example where we get the list of gummies and the price included in the order that has id 1.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> gummies_orders.order_id, </span>
@@ -1925,8 +1941,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="setting-table-names" class="level4" data-number="6.8.0.2">
-<h4 data-number="6.8.0.2" class="anchored" data-anchor-id="setting-table-names"><span class="header-section-number">6.8.0.2</span> Setting table names</h4>
+<section id="setting-table-names" class="level3" data-number="6.8.2">
+<h3 data-number="6.8.2" class="anchored" data-anchor-id="setting-table-names"><span class="header-section-number">6.8.2</span> Setting table names</h3>
 <p>Giving an alias to tables in your query can make them easier to write (and read).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> go.order_id, </span>
@@ -1968,11 +1984,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="database-views" class="level2" data-number="6.9">
 <h2 data-number="6.9" class="anchored" data-anchor-id="database-views"><span class="header-section-number">6.9</span> Database views</h2>
-<p>What are views? technically they are not much more than stored query (in some DBMS, they views are actually called “stored queries”) with an alias.</p>
+<p>What are views? Technically they are not much more than stored query (in some DBMS, they views are actually called “stored queries”) with an alias.</p>
 <p>In practice, and for the purpose of this course, we will think of views as tables that your users may wish or need to see (or “<strong>view</strong>”) to obtain information or perform a certain task.</p>
-<section id="single-table-view" class="level4" data-number="6.9.0.1">
-<h4 data-number="6.9.0.1" class="anchored" data-anchor-id="single-table-view"><span class="header-section-number">6.9.0.1</span> Single table view</h4>
-<p>Creating views in PostgreSQL is pretty simple, here is an example of a single table view that simply provides the list of customers and their email address.</p>
+<section id="single-table-view" class="level3" data-number="6.9.1">
+<h3 data-number="6.9.1" class="anchored" data-anchor-id="single-table-view"><span class="header-section-number">6.9.1</span> Single table view</h3>
+<p>Creating views in PostgreSQL is pretty simple. Here is an example of a single table view that simply provides the list of customers and their email address.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> customers_emails <span class="kw">AS</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> first_name, last_name, email <span class="kw">FROM</span> customers;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2051,9 +2067,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="multitable-view" class="level4" data-number="6.9.0.2">
-<h4 data-number="6.9.0.2" class="anchored" data-anchor-id="multitable-view"><span class="header-section-number">6.9.0.2</span> Multitable view</h4>
-<p>You can also create views that combine data from multiple tables using the JOIN or UNION function. Here is an example where we</p>
+<section id="multitable-view" class="level3" data-number="6.9.2">
+<h3 data-number="6.9.2" class="anchored" data-anchor-id="multitable-view"><span class="header-section-number">6.9.2</span> Multitable view</h3>
+<p>You can also create views that combine data from multiple tables using the JOIN or UNION function. Here is an example where we use fields from the orders, customers, and addresses tables to create a view called delivery_addresses.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> delivery_addresses <span class="kw">AS</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> </span>
@@ -2234,8 +2250,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="putting-it-all-together" class="level2" data-number="6.10">
 <h2 data-number="6.10" class="anchored" data-anchor-id="putting-it-all-together"><span class="header-section-number">6.10</span> Putting it all together</h2>
 <p>Let us now combine several of the functions that we learned to create a view that provides the average price of hard gummies. We will build the statement one piece at a time.</p>
-<section id="step-1---starting-with-the-gummy-table" class="level4" data-number="6.10.0.1">
-<h4 data-number="6.10.0.1" class="anchored" data-anchor-id="step-1---starting-with-the-gummy-table"><span class="header-section-number">6.10.0.1</span> Step 1 - starting with the <em>gummy</em> table</h4>
+<section id="step-1---starting-with-the-gummy-table" class="level3" data-number="6.10.1">
+<h3 data-number="6.10.1" class="anchored" data-anchor-id="step-1---starting-with-the-gummy-table"><span class="header-section-number">6.10.1</span> Step 1 - starting with the <em>gummy</em> table</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> gummies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2382,8 +2398,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="step-2---getting-the-flavour_type-for-each-gummy" class="level4" data-number="6.10.0.2">
-<h4 data-number="6.10.0.2" class="anchored" data-anchor-id="step-2---getting-the-flavour_type-for-each-gummy"><span class="header-section-number">6.10.0.2</span> Step 2 - getting the <em>flavour_type</em> for each gummy</h4>
+<section id="step-2---getting-the-flavour_type-for-each-gummy" class="level3" data-number="6.10.2">
+<h3 data-number="6.10.2" class="anchored" data-anchor-id="step-2---getting-the-flavour_type-for-each-gummy"><span class="header-section-number">6.10.2</span> Step 2 - getting the <em>flavour_type</em> for each gummy</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  gummies.<span class="kw">id</span>, </span>
@@ -2481,8 +2497,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="step-3---limiting-to-hard-gummies" class="level4" data-number="6.10.0.3">
-<h4 data-number="6.10.0.3" class="anchored" data-anchor-id="step-3---limiting-to-hard-gummies"><span class="header-section-number">6.10.0.3</span> Step 3 - Limiting to hard gummies</h4>
+<section id="step-3---limiting-to-hard-gummies" class="level3" data-number="6.10.3">
+<h3 data-number="6.10.3" class="anchored" data-anchor-id="step-3---limiting-to-hard-gummies"><span class="header-section-number">6.10.3</span> Step 3 - Limiting to hard gummies</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  gummies.<span class="kw">id</span>, </span>
@@ -2560,8 +2576,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="step-4---selecting-final-columns-to-display-and-calculating-values" class="level4" data-number="6.10.0.4">
-<h4 data-number="6.10.0.4" class="anchored" data-anchor-id="step-4---selecting-final-columns-to-display-and-calculating-values"><span class="header-section-number">6.10.0.4</span> Step 4 - Selecting final columns to display and calculating values</h4>
+<section id="step-4---selecting-final-columns-to-display-and-calculating-values" class="level3" data-number="6.10.4">
+<h3 data-number="6.10.4" class="anchored" data-anchor-id="step-4---selecting-final-columns-to-display-and-calculating-values"><span class="header-section-number">6.10.4</span> Step 4 - Selecting final columns to display and calculating values</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  gummies.consistency <span class="kw">AS</span> Consistency, </span>
@@ -2620,8 +2636,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="step-5---storing-this-virtual-table-as-a-view" class="level4" data-number="6.10.0.5">
-<h4 data-number="6.10.0.5" class="anchored" data-anchor-id="step-5---storing-this-virtual-table-as-a-view"><span class="header-section-number">6.10.0.5</span> Step 5 - Storing this virtual table as a view</h4>
+<section id="step-5---storing-this-virtual-table-as-a-view" class="level3" data-number="6.10.5">
+<h3 data-number="6.10.5" class="anchored" data-anchor-id="step-5---storing-this-virtual-table-as-a-view"><span class="header-section-number">6.10.5</span> Step 5 - Storing this virtual table as a view</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">VIEW</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> gummies_stats;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -2638,8 +2654,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> gummies.consistency, flavour_types.flavour_type;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="step-6---using-the-view" class="level4" data-number="6.10.0.6">
-<h4 data-number="6.10.0.6" class="anchored" data-anchor-id="step-6---using-the-view"><span class="header-section-number">6.10.0.6</span> Step 6 - using the view</h4>
+<section id="step-6---using-the-view" class="level3" data-number="6.10.6">
+<h3 data-number="6.10.6" class="anchored" data-anchor-id="step-6---using-the-view"><span class="header-section-number">6.10.6</span> Step 6 - using the view</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> gummies_stats;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="knitsql-table">
